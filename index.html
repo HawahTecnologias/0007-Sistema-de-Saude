@@ -31,15 +31,6 @@
     <link rel="stylesheet" href="plugins/fullcalendar/dist/fullcalendar.min.css">
 
 
-    <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-        <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
-        <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
-        <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
-        
-        
-    
-
 </head>
 
 <body>
@@ -70,7 +61,7 @@
                                     class="ik ik-bell"></i><span class="badge bg-danger">3</span></a>
                             <div class="dropdown-menu dropdown-menu-right notification-dropdown"
                                 aria-labelledby="notiDropdown">
-                                <h4 class="header">Notificaçõesssssssssss</h4>
+                                <h4 class="header">Notificações</h4>
                                 <div class="notifications-wrap">
                                     <a href="#" class="media">
                                         <span class="d-flex">
@@ -187,10 +178,10 @@
                             <div class="nav-item has-sub">
                                 <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Pacientes</span> </a>
                                 <div class="submenu-content">
-                                    <a href="pages/widgets.html" class="menu-item">Pacientes Atendidos</a>
-                                    <a href="pages/widget-statistic.html" class="menu-item">Pacientes Internados</a>
-                                    <a href="pages/widget-data.html" class="menu-item">Lista de Atendimentos</a>
-                                    <a href="pages/widget-chart.html" class="menu-item">Histórico de agendamento</a>
+                                    <a href="pages/widgets.html" class="menu-item">Cadastro</a>
+                                    <a href="pages/widget-statistic.html" class="menu-item">Agendamento</a>
+                                    <!-- <a href="pages/widget-data.html" class="menu-item">Lista de Atendimentos</a>
+                                    <a href="pages/widget-chart.html" class="menu-item">Histórico de agendamento</a> -->
                                 </div>
                             </div>
                             <div class="nav-item">
@@ -695,7 +686,105 @@
                                             class="btn btn-outline-info">Ver todas as consultas</button></a>
                                 </div>
                                 <div class="card-body">
-
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                               
+                                                <div class="card-body">
+                                                    <table id="" class="table"> <!-- Retirado o id =  -->
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Id</th>
+                                                                <th class="nosort">Avatar</th>
+                                                                <th>Nome</th>
+                                                                <th>Email</th>
+                                                                <th>Status </th>
+                                                                <th>Tipo de consulta</th>
+                                                                <th class="nosort">&nbsp;</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>001</td>
+                                                                <td><img src="img/users/1.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td>Erich Heaney</td>
+                                                                <td>erich@example.com</td>
+                                                                <td>Atendido</td>
+                                                                <td>Retorno</td>
+                                                                <td>
+                                                                    <div class="table-actions">
+                                                                        <a href="#"><i class="ik ik-eye"></i></a>
+                                                                        <a href="#"><i class="ik ik-edit-2"></i></a>
+                                                                        <a href="#"><i class="ik ik-trash-2"></i></a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>002</td>
+                                                                <td><img src="../img/users/2.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td>Abraham Douglas</td>
+                                                                <td>jgraham@example.com</td>
+                                                                <td>Em atendimento</td>
+                                                                <td>Primeira</td>
+                                                                <td>
+                                                                    <div class="table-actions">
+                                                                        <a href="#"><i class="ik ik-eye"></i></a>
+                                                                        <a href="#"><i class="ik ik-edit-2"></i></a>
+                                                                        <a href="#"><i class="ik ik-trash-2"></i></a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>003</td>
+                                                                <td><img src="../img/users/3.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td>Roderick Simonis</td>
+                                                                <td>grant.simonis@example.com</td>
+                                                                <td>Faltou</td>
+                                                                <td>Retorno</td>
+                                                                <td>
+                                                                    <div class="table-actions">
+                                                                        <a href="#"><i class="ik ik-eye"></i></a>
+                                                                        <a href="#"><i class="ik ik-edit-2"></i></a>
+                                                                        <a href="#"><i class="ik ik-trash-2"></i></a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>004</td>
+                                                                <td><img src="../img/users/4.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td>Christopher Henry</td>
+                                                                <td>henry.chris@example.com</td>
+                                                                <td>Cancelado</td>
+                                                                <td>Primeira</td>
+                                                                <td>
+                                                                    <div class="table-actions">
+                                                                        <a href="#"><i class="ik ik-eye"></i></a>
+                                                                        <a href="#"><i class="ik ik-edit-2"></i></a>
+                                                                        <a href="#"><i class="ik ik-trash-2"></i></a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>005</td>
+                                                                <td><img src="../img/users/5.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td>Sonia Wilkinson</td>
+                                                                <td>boyle.aglea@example.com</td>
+                                                                <td>Teleconsulta</td>
+                                                                <td>Internamento</td>
+                                                                <td>
+                                                                    <div class="table-actions">
+                                                                        <a href="#"><i class="ik ik-eye"></i></a>
+                                                                        <a href="#"><i class="ik ik-edit-2"></i></a>
+                                                                        <a href="#"><i class="ik ik-trash-2"></i></a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -894,32 +983,8 @@
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <div class="page-header">
-                        <div class="row align-items-end">
-                            <div class="col-lg-8">
-                                <div class="page-header-title">
-                                    <i class="ik ik-inbox bg-blue"></i>
-                                    <div class="d-inline">
-                                        <h5>Data Table</h5>
-                                        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <nav class="breadcrumb-container" aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a href="../index.html"><i class="ik ik-home"></i></a>
-                                        </li>
-                                        <li class="breadcrumb-item">
-                                            <a href="#">Tables</a>
-                                        </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Data Table</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -1242,9 +1307,12 @@
 
 
 
+    
+    
+    
 
 
-    < src="https://code.jquery.com/jquery-3.3.1.min.js"></>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')
     </script>
@@ -1268,6 +1336,7 @@
     <script src="js/charts.js"></script>
     <script src="dist/js/theme.min.js"></script>
     <script src="js/calendar.js"></script>
+    <script src="js/datatables.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function (b, o, i, l, e, r) {
