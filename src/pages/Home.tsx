@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { useStyles } from "./styles";
 import { useTheme } from "@material-ui/core/styles";
 import {
   Drawer,
@@ -22,7 +23,8 @@ import {
   Inbox as InboxIcon,
   Mail as MailIcon,
 } from "@material-ui/icons";
-import { useStyles } from "./style";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
 
 export const Home = () => {
   const classes = useStyles();
@@ -41,7 +43,6 @@ export const Home = () => {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -107,6 +108,13 @@ export const Home = () => {
           [classes.contentShift]: open,
         })}
       >
+        <div className={classes.calendar}>
+          <FullCalendar
+            plugins={[dayGridPlugin]}
+            initialView="dayGridMonth"
+            locale="pt-br"
+          />
+        </div>
         <div className={classes.drawerHeader} />
       </main>
     </div>
