@@ -1,23 +1,20 @@
 import React from "react";
-
 import { BrowserRouter, Switch, Route} from "react-router-dom";
-
-// Layout
 import MainLayout from "../../layout/MainLayout";
-
-// Pages
+import CreatePatient from "./CreatePatient";
 import Home from "./Home";
 
-const DashBoard: React.FC = () => {
+const Dashboard: React.FC = () => {
 	return (
 		<MainLayout>
 		<BrowserRouter>
 			<Switch>
 				<Route path="/dashboard" exact={true} component={Home} />
+				<Route path="/dashboard/createPatient" component={CreatePatient} />
 			</Switch>
 		</BrowserRouter>
 		</MainLayout>
 	);
 }
 
-export default DashBoard;
+export default Dashboard;
