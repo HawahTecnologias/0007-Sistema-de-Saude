@@ -1,37 +1,38 @@
 import React from "react";
-import clsx from "clsx";
-import { useTheme } from "@material-ui/core/styles";
 
+import { useHistory } from "react-router-dom";
 import strings from "../../resources/strings";
+import { baseRoutes } from "../../resources/baseRoutes";
+
+import clsx from "clsx";
 
 import {
-	Drawer,
-	CssBaseline,
-	AppBar,
-	Toolbar,
-	List,
-	Typography,
-	Divider,
-	IconButton,
-	ListItem,
-	ListItemText,
-	ListItemIcon,
-} from "@material-ui/core";
+	useTheme,
+} from "@material-ui/core/styles";
 
-import {
-	Menu as MenuIcon,
-	ChevronLeft as ChevronLeftIcon,
-	ChevronRight as ChevronRightIcon,
-	Inbox as InboxIcon,
-	Mail as MailIcon,
-} from "@material-ui/icons";
+import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+
 import { useStyles } from "./style";
 
 const MainLayout: React.FC = (props) => {
+	const history = useHistory();
+	const MainStrings = strings.mainLayout;
 	const classes = useStyles();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
-	const layoutStrings = strings.mainLayout;
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
@@ -56,72 +57,57 @@ const MainLayout: React.FC = (props) => {
 						aria-label="open drawer"
 						onClick={handleDrawerOpen}
 						edge="start"
-						className={clsx(
-							classes.menuButton,
-							open && classes.hide,
-						)}
+						className={clsx(classes.menuButton, {
+							[classes.hide]: open,
+						})}
 					>
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" noWrap>
-						{layoutStrings.LogoName}
+						{MainStrings.LogoName}
 					</Typography>
 				</Toolbar>
 			</AppBar>
 			<Drawer
-				className={classes.drawer}
-				variant="persistent"
-				anchor="left"
-				open={open}
+				variant="permanent"
+				className={clsx(classes.drawer, {
+					[classes.drawerOpen]: open,
+					[classes.drawerClose]: !open,
+				})}
 				classes={{
-					paper: classes.drawerPaper,
+					paper: clsx({
+						[classes.drawerOpen]: open,
+						[classes.drawerClose]: !open,
+					}),
 				}}
 			>
-				<div className={classes.drawerHeader}>
+				<div className={classes.toolbar}>
 					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === "ltr" ? (
-							<ChevronLeftIcon />
-						) : (
+						{theme.direction === "rtl" ? (
 							<ChevronRightIcon />
+						) : (
+							<ChevronLeftIcon />
 						)}
 					</IconButton>
 				</div>
 				<Divider />
 				<List>
-					{["Inbox", "Starred", "Send email", "Drafts"].map(
-						(text, index) => (
-							<ListItem button key={text}>
-								<ListItemIcon>
-									{index % 2 === 0 ? (
-										<InboxIcon />
-									) : (
-										<MailIcon />
-									)}
+					{baseRoutes.map(
+						(routes, index) => (
+							<ListItem button key={`${routes.title}-${index}`}>
+								<ListItemIcon onClick={() => history.push(routes.path)}>
+									<routes.icon />
 								</ListItemIcon>
-								<ListItemText primary={text} />
+								<ListItemText primary={routes.title} />
 							</ListItem>
 						),
 					)}
 				</List>
 				<Divider />
-				<List>
-					{["All mail", "Trash", "Spam"].map((text, index) => (
-						<ListItem button key={text}>
-							<ListItemIcon>
-								{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-							</ListItemIcon>
-							<ListItemText primary={text} />
-						</ListItem>
-					))}
-				</List>
 			</Drawer>
-			<main
-				className={clsx(classes.content, {
-					[classes.contentShift]: open,
-				})}
-			>
-				<div className={classes.drawerHeader} />
-                {props.children}
+			<main className={classes.content}>
+				<div className={classes.toolbar} />
+				{props.children}
 			</main>
 		</div>
 	);
