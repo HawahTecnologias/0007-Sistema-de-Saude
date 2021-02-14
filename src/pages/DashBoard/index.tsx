@@ -1,18 +1,17 @@
 import React from "react";
-import { BrowserRouter, Switch, Route} from "react-router-dom";
+import { Switch, Route} from "react-router-dom";
 import MainLayout from "../../layout/MainLayout";
-import CreatePatient from "./CreatePatient";
+
 import Home from "./Home";
+import Patient from "./Patient";
 
 const Dashboard: React.FC = () => {
 	return (
 		<MainLayout>
-		<BrowserRouter>
 			<Switch>
 				<Route path="/dashboard" exact={true} component={Home} />
-				<Route path="/dashboard/createPatient" component={CreatePatient} />
+				<Route path="/dashboard/patient" component={Patient} />
 			</Switch>
-		</BrowserRouter>
 		</MainLayout>
 	);
 }

@@ -27,8 +27,6 @@ import {
 } from "@material-ui/icons";
 import { useStyles } from "./style";
 
-interface IProps {
-}
 const MainLayout: React.FC = (props) => {
 	const classes = useStyles();
 	const theme = useTheme();
