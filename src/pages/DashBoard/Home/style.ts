@@ -6,6 +6,17 @@ export const useStyles = makeStyles((theme: Theme) =>
             maxWidth: 1000,
             margin: "0 auto",
         },
+        twoCardBox: {
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between"
+        },
+        tableStyle: {
+            width: "55%",
+        },
+        messageBox: {
+            width: "40%",
+        },
 		row: {
             width: "100%",
 			marginBottom: "10px",

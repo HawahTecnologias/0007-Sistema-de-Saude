@@ -3,14 +3,17 @@ import React from "react";
 import { useStyles } from "./style";
 
 import Table from "../../../components/Table";
+
+import { Box, Paper, Card, TableCell, TableRow, Typography } from "@material-ui/core";
 import {} from "@material-ui/icons";
-import { TableCell, TableRow } from "@material-ui/core";
 
 const Home: React.FC = () => {
 const classes = useStyles();
 
 	return (
+		<Box className={classes.twoCardBox}>
 		<Table 
+		mainContainerStyles={classes.tableStyle}
 			header={["Horario", "Nome", "Tipo de Consulta"]}
 			title="Consultas do dia"
 			rows={[
@@ -24,15 +27,65 @@ const classes = useStyles();
 					name: "Marcela",
 					type: "Cardiologista"
 				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+				{
+					hour: "8:30",
+					name: "Marcela",
+					type: "Cardiologista"
+				},
+
 			]}
 			renderItems={(item, index) => (
 				<TableRow key={`${item}-${index}`}>
-					<TableCell>{item.hour}</TableCell>
-					<TableCell>{item.name}</TableCell>
-					<TableCell>{item.type}</TableCell>
+					<TableCell align="center">{item.hour}</TableCell>
+					<TableCell align="center">{item.name}</TableCell>
+					<TableCell align="center">{item.type}</TableCell>
 				</TableRow>
 			)}
 		/>
+		<Paper className={classes.messageBox}>
+			<Typography>Messages</Typography>
+		</Paper>
+		</Box>
 	);
 };
 
