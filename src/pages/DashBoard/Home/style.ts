@@ -12,14 +12,24 @@ export const useStyles = makeStyles((theme: Theme) =>
             justifyContent: "space-between"
         },
         tableStyle: {
-            width: "55%",
+            width: "70%",
         },
         messageBox: {
-            width: "40%",
+            width: "28%",
+        },
+        messageContent: {
+            padding: 8,
         },
 		row: {
             width: "100%",
 			marginBottom: "10px",
 		},
+        MiniCardsContainer: {
+            marginBottom: 10,
+        },
+        MiniCardIcon: {
+            width: 40, 
+            height: 40,
+        }
 	}),
 );

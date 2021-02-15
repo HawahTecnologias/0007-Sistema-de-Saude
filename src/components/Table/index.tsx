@@ -13,11 +13,7 @@ import {
 	Typography,
 	Box,
 	Divider,
-	TableFooter,
-	Button,
 } from "@material-ui/core";
-
-import {} from "@material-ui/icons";
 
 import Pagination from "../Pagination";
 
@@ -49,8 +45,12 @@ function Table<ItemType> (props: ITableProps<ItemType>) {
 		mainContainerStyles,
 	} = props;
 
+	React.useEffect(()=>{
+		
+	},[]);
+
 	return (
-		<Paper className={mainContainerStyles || classes.mainContainer}>
+		<Paper className={mainContainerStyles || classes.mainContainer} elevation={3}>
 			<Box className={classes.tableTop}>
 				{title && (
 					<Typography variant="h6">{title}</Typography>
