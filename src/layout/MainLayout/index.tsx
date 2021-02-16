@@ -25,6 +25,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
+import NavBar from "./NavBar";
+
 import { useStyles } from "./style";
 
 const MainLayout: React.FC = (props) => {
@@ -45,29 +47,13 @@ const MainLayout: React.FC = (props) => {
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
-			<AppBar
-				position="fixed"
-				className={clsx(classes.appBar, {
-					[classes.appBarShift]: open,
-				})}
-			>
-				<Toolbar>
-					<IconButton
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						className={clsx(classes.menuButton, {
-							[classes.hide]: open,
-						})}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="h6" noWrap>
-						{MainStrings.LogoName}
-					</Typography>
-				</Toolbar>
-			</AppBar>
+
+			<NavBar
+				title={MainStrings.LogoName}
+				handleDrawerOpen={handleDrawerOpen}
+				open={open}
+			/>
+
 			<Drawer
 				variant="permanent"
 				className={clsx(classes.drawer, {
