@@ -2,12 +2,11 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
-        mainContainer: {
-            maxWidth: 1000,
-            margin: "0 auto",
-        },
-        tableStyle: {
-            width: "100%",
-        },
+		pageContent: {
+			marginTop: "20px",
+		},
+        cardContent: {
+            padding: "20px 40px 40px 40px",
+        }
 	}),
 );

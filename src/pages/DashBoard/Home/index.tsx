@@ -13,8 +13,7 @@ import { Box,
 	TableRow,
 	Typography
 } from "@material-ui/core";
-import { PersonAddOutlined } from "@material-ui/icons";
-
+import { PersonAddOutlined, ListAlt } from "@material-ui/icons";
 const Home: React.FC = () => {
 	const classes = useStyles();
 	const { push } = useHistory();
@@ -25,7 +24,14 @@ const Home: React.FC = () => {
 			explain:"Cadastrar",
 			placeHolder:"Adicione um novo paciente",
 			Icon: <PersonAddOutlined color="disabled" className={classes.MiniCardIcon}/>,
-			onClick: () => push("dashboard/patient"),
+			onClick: () => push("dashboard/patient/createPatient"),
+		},
+		{
+			title:"Agendar Cosnulta",
+			explain:"Agendar",
+			placeHolder:"Agende a consulta de um paciente",
+			Icon: <ListAlt color="disabled" className={classes.MiniCardIcon}/>,
+			onClick: () => push("dashboard/consultations/create"),
 		},
 	]
 

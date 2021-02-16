@@ -26,6 +26,7 @@ export const useStyles = makeStyles((theme: Theme) =>
 		},
         MiniCardsContainer: {
             marginBottom: 10,
+            display:"flex",
         },
         MiniCardIcon: {
             width: 40, 

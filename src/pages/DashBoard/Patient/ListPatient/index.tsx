@@ -9,6 +9,7 @@ import { Box,
 	TableCell,
 	TableRow,
 } from "@material-ui/core";
+import { Add } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 
 const ListPatient: React.FC = () => {
@@ -20,9 +21,9 @@ const ListPatient: React.FC = () => {
     }
 	return (
 		<Box>
-			<Box className={classes.twoCardBox}>
+			<Box className={classes.mainContainer}>
 				<Table
-                    tableFooter={<Button onClick={()=>{pushToCreate("patient/createPatient")}}>Criar</Button>}
+                    tableFooter={<Button onClick={()=>{pushToCreate("patient/createPatient")}}> <Add/>Criar</Button>}
 					mainContainerStyles={classes.tableStyle}
 					header={["Horario", "Nome", "Tipo de Consulta"]}
 					title="Consultas do dia"
