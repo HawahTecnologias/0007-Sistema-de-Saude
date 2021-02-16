@@ -4,6 +4,7 @@ import MainLayout from "../../layout/MainLayout";
 
 import Home from "./Home";
 import Patient from "./Patient";
+import Consultations from "./Consultations";
 
 const Dashboard: React.FC = () => {
 	return (
@@ -11,6 +12,7 @@ const Dashboard: React.FC = () => {
 			<Switch>
 				<Route path="/dashboard" exact={true} component={Home} />
 				<Route path="/dashboard/patient" component={Patient} />
+				<Route path="/dashboard/consultations" component={Consultations} />
 			</Switch>
 		</MainLayout>
 	);

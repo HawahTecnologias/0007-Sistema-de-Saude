@@ -1,54 +1,27 @@
 import React from "react";
 
 import { useStyles } from "./style";
-import { useHistory } from "react-router-dom";
 
-import Table from "../../../components/Table";
-import MiniCardLink from "../../../components/MiniCardLink";
+import Table from "../../../../components/Table";
+import StatusButton, {Status} from "../../../../components/StatusButton";
 
 import { Box,
-	Divider,
-	Paper,
+    Button,
 	TableCell,
 	TableRow,
-	Typography
 } from "@material-ui/core";
-import { PersonAddOutlined } from "@material-ui/icons";
 
-const Home: React.FC = () => {
+import { useHistory } from "react-router-dom";
+
+const List: React.FC = () => {
 	const classes = useStyles();
-	const { push } = useHistory();
-
-	const miniCardIcons = [
-		{
-			title:"Cadastrar Paciente",
-			explain:"Cadastrar",
-			placeHolder:"Adicione um novo paciente",
-			Icon: <PersonAddOutlined color="disabled" className={classes.MiniCardIcon}/>,
-			onClick: () => push("dashboard/patient"),
-		},
-	]
+    const { push } = useHistory();
 
 	return (
-		<Box>
-			<Box className={classes.MiniCardsContainer}>
-				{miniCardIcons.map((cardIcon, index) => (
-					<MiniCardLink 
-					key={`${cardIcon.placeHolder}-${index}`}
-					title={cardIcon.title}
-					explain={cardIcon.explain}
-					placeHolder={cardIcon.placeHolder}
-					Icon={cardIcon.Icon}
-					onClick={cardIcon.onClick}
-				/>
-				))}
-			
-			</Box>
-			<Box className={classes.twoCardBox}>
-				<Table
-					mainContainerStyles={classes.tableStyle}
-					header={["Horario", "Nome", "Tipo de Consulta"]}
-					title="Consultas do dia"
+			<Table
+					mainContainerStyles={classes.mainContainer}
+					header={["Horario", "Nome", "Tipo de Consulta", "Status"]}
+					title="Consultas"
 					rows={[
 						{
 							hour: "8:00",
@@ -111,18 +84,11 @@ const Home: React.FC = () => {
 							<TableCell align="center">{item.hour}</TableCell>
 							<TableCell align="center">{item.name}</TableCell>
 							<TableCell align="center">{item.type}</TableCell>
+							<TableCell align="center">{<StatusButton  status={Status.Confirm}/>}</TableCell>
 						</TableRow>
 					)}
 				/>
-				<Paper className={classes.messageBox} elevation={3}>
-					<Box className={classes.messageContent}>
-						<Typography variant="h6">Messages</Typography>
-					</Box>
-					<Divider/>
-				</Paper>
-			</Box>
-		</Box>
 	);
 };
 
-export default Home;
+export default List;

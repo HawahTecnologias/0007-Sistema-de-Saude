@@ -5,9 +5,14 @@ const strings = {
 	baseRoutes: {
 		home: "Home",
 		patient: "Pacientes",
+		consultations: "Consultas",
 	},
 	components: {},
-	pages: {},
+	pages: {
+		consultations: {
+			title: "Consultas",
+		},
+	},
 };
 
 export default strings;

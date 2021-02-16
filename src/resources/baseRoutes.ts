@@ -1,7 +1,8 @@
 import strings from "./strings";
 
 import { Home, 
-	AccessibilityNew
+	AccessibilityNew,
+	ListAlt
 } from '@material-ui/icons';
 
 const routesStrings = strings.baseRoutes;
@@ -16,6 +17,11 @@ export const baseRoutes = [
 		title: routesStrings.patient,
 		icon: AccessibilityNew,
 		path: "/dashboard/patient",
+	},
+	{
+		title: routesStrings.consultations,
+		icon: ListAlt,
+		path: "/dashboard/consultations",
 	},
 ];
 

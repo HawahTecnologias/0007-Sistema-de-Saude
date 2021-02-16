@@ -11,7 +11,7 @@ import { Box,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
-const Home: React.FC = () => {
+const ListPatient: React.FC = () => {
 	const classes = useStyles();
     const { push } = useHistory();
 
@@ -96,4 +96,4 @@ const Home: React.FC = () => {
 	);
 };
 
-export default Home;
+export default ListPatient;
