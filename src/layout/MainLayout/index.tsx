@@ -76,8 +76,11 @@ const MainLayout: React.FC = (props) => {
 				<List>
 					{baseRoutes.map(
 						(routes, index) => (
-							<ListItem button={true} key={`${routes.path}-${index}`}>
-								<ListItemIcon onClick={() => history.push(routes.path)}>
+							<ListItem
+								button={true} key={`${routes.path}-${index}`}
+								onClick={() => history.push(routes.path)}
+							>
+								<ListItemIcon >
 									<routes.icon />
 								</ListItemIcon>
 								<ListItemText primary={routes.title} />
