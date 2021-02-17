@@ -45,7 +45,7 @@ const ListPatient: React.FC = () => {
 						"Editar",
 						"Deletar",
 					]}
-					title="Consultas do dia"
+					title="Pacientes"
 					rows={[
 						{
 							email: "teste@gmail.com",
