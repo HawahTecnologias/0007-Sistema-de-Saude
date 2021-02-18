@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route} from "react-router-dom";
 
 // Pages
 import Authentic from "./Authentic";
-import Dashboard from "./Dashboard";
+import Dashboard from "./DashBoard";
 import Login from "./Login";
 
 const App: React.FC = () => {
