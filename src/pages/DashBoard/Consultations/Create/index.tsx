@@ -6,7 +6,7 @@ import {
 	InputLabel,
 	Select,
 	TextField,
-    Box,
+	Box,
 } from "@material-ui/core";
 import React from "react";
 import Card from "../../../../components/Card";
@@ -14,8 +14,20 @@ import Form from "../../../../components/Form";
 import Row from "../../../../components/Form/Row";
 import TextRow from "../../../../components/Form/TextRow";
 import { useStyles } from "./style";
+import api from "../../../../services/API";
 
 const Create: React.FC = () => {
+	React.useEffect(() => {
+		const request = async () => {
+			try {
+				const result = await api.get("patients");
+				console.log(result);
+			} catch (e) {
+				console.log(e.message);
+			}
+		};
+		request();
+	}, []);
 	const classes = useStyles();
 	return (
 		<Container className={classes.pageContent}>
@@ -48,7 +60,7 @@ const Create: React.FC = () => {
 								<option value={30}>Internação</option>
 							</Select>
 						</FormControl>
-                        
+
 						<TextField
 							className={classes.inputForm}
 							id="datetime-local"
@@ -63,16 +75,28 @@ const Create: React.FC = () => {
 					</Row>
 					<Row>
 						<Box className={classes.patientInfo}>
-							<Typography className={classes.patientInfoItems}>Gênero: Masculino</Typography>
-							<Typography className={classes.patientInfoItems}>Nascimento: 15/06/1971</Typography>
-							<Typography className={classes.patientInfoItems}>Plano de saúde:  Plano01</Typography>
+							<Typography className={classes.patientInfoItems}>
+								Gênero: Masculino
+							</Typography>
+							<Typography className={classes.patientInfoItems}>
+								Nascimento: 15/06/1971
+							</Typography>
+							<Typography className={classes.patientInfoItems}>
+								Plano de saúde: Plano01
+							</Typography>
 						</Box>
 					</Row>
-                    <Row>
+					<Row>
 						<Box className={classes.patientInfo}>
-							<Typography className={classes.patientInfoItems}>Telefone01: 57912378129</Typography>
-							<Typography className={classes.patientInfoItems}>Telefone02: 57912370953</Typography>
-							<Typography className={classes.patientInfoItems}>E-mail: teste@gmail.com</Typography>
+							<Typography className={classes.patientInfoItems}>
+								Telefone01: 57912378129
+							</Typography>
+							<Typography className={classes.patientInfoItems}>
+								Telefone02: 57912370953
+							</Typography>
+							<Typography className={classes.patientInfoItems}>
+								E-mail: teste@gmail.com
+							</Typography>
 						</Box>
 					</Row>
 					<Row>
