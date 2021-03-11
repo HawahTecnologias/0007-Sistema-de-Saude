@@ -18,8 +18,14 @@ import useCreatePatient from "../../../../hooks/useCreatePatient";
 const CreatePatient: React.FC = () => {
 	const {
 		setName,
+		setAge,
+		setGender,
+		setBirthdate,
 		setColor,
+		setHealthPlan,
+		setConsultType,
 		setNationality,
+		setIncome,
 		setProfession,
 		setPhone,
 		setSecondaryPhone,
@@ -45,6 +51,7 @@ const CreatePatient: React.FC = () => {
 				<Form>
 					<Row>
 						<TextRow label="Nome" setChange={setName} />
+						<TextRow label="Idade" setChange={setAge} />
 						<FormControl
 							variant="outlined"
 							className={classes.inputForm}
@@ -53,17 +60,19 @@ const CreatePatient: React.FC = () => {
 							<Select
 								native
 								onChange={(e) => {
-									console.log(e.currentTarget.value);
+									if (e.currentTarget.value) {
+										setGender(
+											String(e.currentTarget.value),
+										);
+									}
 								}}
 								label="Gênero"
 							>
 								<option aria-label="None" value="" />
-								<option value={10}>Ten</option>
-								<option value={20}>Twenty</option>
-								<option value={30}>Thirty</option>
+								<option value={"masculino"}>Masculino</option>
+								<option value={"feminino"}>Feminino</option>
 							</Select>
 						</FormControl>
-						<TextRow label="Cor" setChange={setColor} />
 					</Row>
 					<Row>
 						<TextField
@@ -72,31 +81,14 @@ const CreatePatient: React.FC = () => {
 							type="date"
 							variant="outlined"
 							onChange={(e) => {
-								console.log(e.currentTarget.value);
+								setBirthdate(e.currentTarget.value);
 							}}
 							className={classes.inputForm}
 							InputLabelProps={{
 								shrink: true,
 							}}
 						/>
-						<FormControl
-							variant="outlined"
-							className={classes.inputForm}
-						>
-							<InputLabel>Plano de Saúde</InputLabel>
-							<Select
-								native
-								onChange={(e) => {
-									console.log(e.currentTarget.value);
-								}}
-								label="Plano de Saúde"
-							>
-								<option aria-label="None" value="" />
-								<option value={10}>Ten</option>
-								<option value={20}>Twenty</option>
-								<option value={30}>Thirty</option>
-							</Select>
-						</FormControl>
+						<TextRow label="Cor" setChange={setColor} />
 						<TextRow
 							label="Naturalidade"
 							setChange={setNationality}
@@ -111,14 +103,18 @@ const CreatePatient: React.FC = () => {
 							<Select
 								native
 								onChange={(e) => {
-									console.log(e.currentTarget.value);
+									if (e.currentTarget.value) {
+										setIncome(
+											String(e.currentTarget.value),
+										);
+									}
 								}}
 								label="Renda"
 							>
 								<option aria-label="None" value="" />
-								<option value={10}>Ten</option>
-								<option value={20}>Twenty</option>
-								<option value={30}>Thirty</option>
+								<option value={"1000-2000"}>1000-2000</option>
+								<option value={"2000-4000"}>2000-4000</option>
+								<option value={"4000-8000"}>4000-8000</option>
 							</Select>
 						</FormControl>
 						<TextRow label="Profissão" setChange={setProfession} />
@@ -148,14 +144,18 @@ const CreatePatient: React.FC = () => {
 							<Select
 								native
 								onChange={(e) => {
-									console.log(e.currentTarget.value);
+									if (e.currentTarget.value) {
+										setIncome(
+											String(e.currentTarget.value),
+										);
+									}
 								}}
 								label="Como conheceu"
 							>
 								<option aria-label="None" value="" />
-								<option value={10}>Ten</option>
-								<option value={20}>Twenty</option>
-								<option value={30}>Thirty</option>
+								<option value={"facebook"}>Facebook</option>
+								<option value={"instagram"}>Instagram</option>
+								<option value={"outros"}>Outros</option>
 							</Select>
 						</FormControl>
 						<TextField
@@ -166,6 +166,50 @@ const CreatePatient: React.FC = () => {
 							}}
 							variant="outlined"
 						/>
+						<FormControl
+							variant="outlined"
+							className={classes.inputForm}
+						>
+							<InputLabel>Plano de Saúde</InputLabel>
+							<Select
+								native
+								onChange={(e) => {
+									if (e.currentTarget.value) {
+										setHealthPlan(
+											String(e.currentTarget.value),
+										);
+									}
+								}}
+								label="Plano de Saúde"
+							>
+								<option aria-label="None" value="" />
+								<option value={"plano1"}>Plano01</option>
+								<option value={"plano2"}>Plano02</option>
+								<option value={"plano3"}>Plano03</option>
+							</Select>
+						</FormControl>
+						<FormControl
+							variant="outlined"
+							className={classes.inputForm}
+						>
+							<InputLabel>Tipo de consulta</InputLabel>
+							<Select
+								native
+								onChange={(e) => {
+									if (e.currentTarget.value) {
+										setConsultType(
+											String(e.currentTarget.value),
+										);
+									}
+								}}
+								label="Tipo de consulta"
+							>
+								<option aria-label="None" value="" />
+								<option value={"consulta1"}>Consulta01</option>
+								<option value={"consulta2"}>Consulta02</option>
+								<option value={"consulta3"}>Consulta03</option>
+							</Select>
+						</FormControl>
 					</Row>
 					<Row>
 						<Button
