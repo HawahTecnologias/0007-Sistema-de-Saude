@@ -8,7 +8,6 @@ function useCreatePatient() {
 	const [birthdate, setBirthdate] = React.useState("");
 	const [color, setColor] = React.useState("");
 	const [healthPlan, setHealthPlan] = React.useState("");
-	const [consultType, setConsultType] = React.useState("");
 	const [nationality, setNationality] = React.useState("");
 	const [income, setIncome] = React.useState("");
 	const [profession, setProfession] = React.useState("");
@@ -23,7 +22,7 @@ function useCreatePatient() {
 	const [medicine, setMedicine] = React.useState("");
 
 	const createPatient = async() => {
-		const time_start = new Date().getTime();
+		console.log(birthdate);
 		const data = {
 			name,
 			age,
@@ -31,14 +30,12 @@ function useCreatePatient() {
 			birthdate,
 			color,
 			health_plan: healthPlan,
-			consult_type: consultType,
 			nationality,
 			income,
 			profession,
 			phone_number_01: phone,
 			phone_number_02: secondaryPhone,
 			email,
-			time_start,
 			how_know: howKnow,
 			scholarity,
 			adress,
@@ -63,7 +60,6 @@ function useCreatePatient() {
 		setBirthdate,
 		setColor,
 		setHealthPlan,
-		setConsultType,
 		setNationality,
 		setIncome,
 		setProfession,

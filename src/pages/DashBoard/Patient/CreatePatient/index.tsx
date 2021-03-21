@@ -23,7 +23,6 @@ const CreatePatient: React.FC = () => {
 		setBirthdate,
 		setColor,
 		setHealthPlan,
-		setConsultType,
 		setNationality,
 		setIncome,
 		setProfession,
@@ -186,28 +185,6 @@ const CreatePatient: React.FC = () => {
 								<option value={"plano1"}>Plano01</option>
 								<option value={"plano2"}>Plano02</option>
 								<option value={"plano3"}>Plano03</option>
-							</Select>
-						</FormControl>
-						<FormControl
-							variant="outlined"
-							className={classes.inputForm}
-						>
-							<InputLabel>Tipo de consulta</InputLabel>
-							<Select
-								native
-								onChange={(e) => {
-									if (e.currentTarget.value) {
-										setConsultType(
-											String(e.currentTarget.value),
-										);
-									}
-								}}
-								label="Tipo de consulta"
-							>
-								<option aria-label="None" value="" />
-								<option value={"consulta1"}>Consulta01</option>
-								<option value={"consulta2"}>Consulta02</option>
-								<option value={"consulta3"}>Consulta03</option>
 							</Select>
 						</FormControl>
 					</Row>

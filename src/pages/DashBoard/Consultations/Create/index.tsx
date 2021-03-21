@@ -8,6 +8,7 @@ import {
 	TextField,
 	Box,
 } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import React from "react";
 import Card from "../../../../components/Card";
 import Form from "../../../../components/Form";
@@ -15,13 +16,51 @@ import Row from "../../../../components/Form/Row";
 import TextRow from "../../../../components/Form/TextRow";
 import { useStyles } from "./style";
 import api from "../../../../services/API";
+import useCreateConsult from "../../../../hooks/useCreateConsult";
+
+interface IItems {
+	age: number;
+	birthdate: string;
+	color: string;
+	companions: string;
+	created_at: string;
+	email: string;
+	gender: string;
+	health_plan: string;
+	how_know: string;
+	id: string;
+	income: string;
+	name: string;
+	nationality: string;
+	observation: string;
+	phone_number_01: string;
+	phone_number_02: string;
+	profession: string;
+	scholarity: string;
+	use_medicines: string;
+	which: string;
+}
+
 
 const Create: React.FC = () => {
+	const [items, setItems] = React.useState<IItems[]>([]);
+	const [patientData, setPatientData] = React.useState<IItems>();
+
+	const {
+		setName,
+		setConsultType,
+		setObservation,
+		setPatientId,
+		setTimeStart,
+		createPatient,
+	} = useCreateConsult();
+
 	React.useEffect(() => {
 		const request = async () => {
 			try {
 				const result = await api.get("patients");
-				console.log(result);
+				console.log(result.data);
+				setItems(result.data);
 			} catch (e) {
 				console.log(e.message);
 			}
@@ -41,7 +80,27 @@ const Create: React.FC = () => {
 				</Typography>
 				<Form>
 					<Row>
-						<TextRow label="Nome" setChange={() => {}} />
+						<Autocomplete
+							className={classes.inputForm}
+							id="name"
+							options={items}
+							getOptionLabel={(option) => option.name}
+							onChange={(event: any, newValue: IItems | null) => {
+								if (newValue) {
+									setPatientId(newValue.id);
+									setName(newValue.name);
+									setPatientData(newValue);
+								}
+							}}
+							style={{ width: 300 }}
+							renderInput={(params) => (
+								<TextField
+									{...params}
+									label="Nome"
+									variant="outlined"
+								/>
+							)}
+						/>
 						<FormControl
 							variant="outlined"
 							className={classes.inputForm}
@@ -50,14 +109,18 @@ const Create: React.FC = () => {
 							<Select
 								native
 								onChange={(e) => {
-									console.log(e.currentTarget.value);
+									if (e.currentTarget.value) {
+										setConsultType(
+											String(e.currentTarget.value),
+										);
+									}
 								}}
-								label="Gênero"
+								label="Tipo de consulta"
 							>
 								<option aria-label="None" value="" />
-								<option value={10}>Primeira</option>
-								<option value={20}>Retorno</option>
-								<option value={30}>Internação</option>
+								<option value={"consulta1"}>Consulta01</option>
+								<option value={"consulta2"}>Consulta02</option>
+								<option value={"consulta3"}>Consulta03</option>
 							</Select>
 						</FormControl>
 
@@ -67,48 +130,67 @@ const Create: React.FC = () => {
 							label="Horário"
 							type="datetime-local"
 							defaultValue="2017-05-24T10:30"
+							onChange={(e) => {
+								setTimeStart(new Date(e.currentTarget.value));
+							}}
 							InputLabelProps={{
 								shrink: true,
 							}}
 							variant="outlined"
 						/>
 					</Row>
-					<Row>
-						<Box className={classes.patientInfo}>
-							<Typography className={classes.patientInfoItems}>
-								Gênero: Masculino
-							</Typography>
-							<Typography className={classes.patientInfoItems}>
-								Nascimento: 15/06/1971
-							</Typography>
-							<Typography className={classes.patientInfoItems}>
-								Plano de saúde: Plano01
-							</Typography>
-						</Box>
-					</Row>
-					<Row>
-						<Box className={classes.patientInfo}>
-							<Typography className={classes.patientInfoItems}>
-								Telefone01: 57912378129
-							</Typography>
-							<Typography className={classes.patientInfoItems}>
-								Telefone02: 57912370953
-							</Typography>
-							<Typography className={classes.patientInfoItems}>
-								E-mail: teste@gmail.com
-							</Typography>
-						</Box>
-					</Row>
+					{patientData && (
+						<>
+							<Row>
+								<Box className={classes.patientInfo}>
+									<Typography
+										className={classes.patientInfoItems}
+									>
+										{patientData.gender}
+									</Typography>
+									<Typography
+										className={classes.patientInfoItems}
+									>
+										{patientData.birthdate}
+									</Typography>
+									<Typography
+										className={classes.patientInfoItems}
+									>
+										{patientData.health_plan}
+									</Typography>
+								</Box>
+							</Row>
+							<Row>
+								<Box className={classes.patientInfo}>
+									<Typography
+										className={classes.patientInfoItems}
+									>
+										{patientData.phone_number_01}
+									</Typography>
+									<Typography
+										className={classes.patientInfoItems}
+									>
+										{patientData.phone_number_02}
+									</Typography>
+									<Typography
+										className={classes.patientInfoItems}
+									>
+										{patientData.email}
+									</Typography>
+								</Box>
+							</Row>
+						</>
+					)}
 					<Row>
 						<TextRow
 							label="Observações"
-							setChange={() => {}}
+							setChange={setObservation}
 							rows={6}
 						/>
 					</Row>
 					<Button
 						className={classes.buttonSave}
-						onClick={() => {}}
+						onClick={createPatient}
 						variant="contained"
 					>
 						Agendar
