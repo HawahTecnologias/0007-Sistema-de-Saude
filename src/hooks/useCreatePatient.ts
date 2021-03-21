@@ -21,7 +21,7 @@ function useCreatePatient() {
 	const [companion, setCompanion] = React.useState("");
 	const [medicine, setMedicine] = React.useState("");
 
-	const createPatient = async() => {
+	const createPatient = async (onSuccess: () => void) => {
 		console.log(birthdate);
 		const data = {
 			name,
@@ -43,14 +43,15 @@ function useCreatePatient() {
 			companions: companion,
 			which: companion,
 			use_medicines: medicine,
-		}
+		};
 		try {
 			const result = await api.post("patients/create", data);
 			console.log(result.data);
+
+			onSuccess();
 		} catch (e) {
 			console.log(e.message);
 		}
-
 	};
 
 	return {
@@ -72,7 +73,7 @@ function useCreatePatient() {
 		setComments,
 		setCompanion,
 		setMedicine,
-        createPatient,
+		createPatient,
 	};
 }
 

@@ -1,3 +1,5 @@
+import React from "react";
+import { useHistory } from "react-router-dom";
 import {
 	Typography,
 	Container,
@@ -9,7 +11,6 @@ import {
 	Box,
 } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import React from "react";
 import Card from "../../../../components/Card";
 import Form from "../../../../components/Form";
 import Row from "../../../../components/Form/Row";
@@ -41,10 +42,11 @@ interface IItems {
 	which: string;
 }
 
-
 const Create: React.FC = () => {
 	const [items, setItems] = React.useState<IItems[]>([]);
 	const [patientData, setPatientData] = React.useState<IItems>();
+
+	const route = useHistory();
 
 	const {
 		setName,
@@ -52,7 +54,7 @@ const Create: React.FC = () => {
 		setObservation,
 		setPatientId,
 		setTimeStart,
-		createPatient,
+		createConsult,
 	} = useCreateConsult();
 
 	React.useEffect(() => {
@@ -190,7 +192,11 @@ const Create: React.FC = () => {
 					</Row>
 					<Button
 						className={classes.buttonSave}
-						onClick={createPatient}
+						onClick={() => {
+							createConsult(() =>
+								route.push("/dashboard/consultations"),
+							);
+						}}
 						variant="contained"
 					>
 						Agendar
