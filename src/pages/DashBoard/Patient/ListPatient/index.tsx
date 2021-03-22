@@ -13,15 +13,10 @@ import {
 } from "@material-ui/core";
 import { Add, Delete, Edit, Visibility } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
-import api from "../../../../services/API";
+import api, { IPatient } from "../../../../services/Api";
 
-interface IData {
-	name: string;
-	email: string;
-	health_plan: string;
-}
 const ListPatient: React.FC = () => {
-	const [data, setData] = React.useState<IData[]>();
+	const [data, setData] = React.useState<IPatient[]>();
 
 	const classes = useStyles();
 	const { push } = useHistory();

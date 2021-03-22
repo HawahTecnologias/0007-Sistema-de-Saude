@@ -1,7 +1,10 @@
 import React from "react";
-import api from "../services/API";
+import api from "../services/Api/API";
+import { ISnackBar } from "./useSnackBar";
+import strings from "../resources/strings";
 
-function useCreatePatient() {
+function useCreatePatient(props: ISnackBar) {
+	const PatientStrings = strings.pages.patient;
 	const [name, setName] = React.useState("");
 	const [age, setAge] = React.useState("");
 	const [gender, setGender] = React.useState("");
@@ -22,7 +25,6 @@ function useCreatePatient() {
 	const [medicine, setMedicine] = React.useState("");
 
 	const createPatient = async (onSuccess: () => void) => {
-		console.log(birthdate);
 		const data = {
 			name,
 			age,
@@ -46,11 +48,12 @@ function useCreatePatient() {
 		};
 		try {
 			const result = await api.post("patients/create", data);
+			props.showSnackBar(PatientStrings.success, "success");
 			console.log(result.data);
-
 			onSuccess();
 		} catch (e) {
 			console.log(e.message);
+			props.showSnackBar(e.message, "error");
 		}
 	};
 

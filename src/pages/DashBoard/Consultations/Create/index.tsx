@@ -10,13 +10,15 @@ import {
 	TextField,
 	Box,
 } from "@material-ui/core";
+
+import { useGlobalContext } from "../../../../contexts";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Card from "../../../../components/Card";
 import Form from "../../../../components/Form";
 import Row from "../../../../components/Form/Row";
 import TextRow from "../../../../components/Form/TextRow";
 import { useStyles } from "./style";
-import api from "../../../../services/API";
+import api from "../../../../services/Api/API";
 import useCreateConsult from "../../../../hooks/useCreateConsult";
 
 interface IItems {
@@ -43,6 +45,7 @@ interface IItems {
 }
 
 const Create: React.FC = () => {
+	const { snackBar } = useGlobalContext();
 	const [items, setItems] = React.useState<IItems[]>([]);
 	const [patientData, setPatientData] = React.useState<IItems>();
 
@@ -55,16 +58,16 @@ const Create: React.FC = () => {
 		setPatientId,
 		setTimeStart,
 		createConsult,
-	} = useCreateConsult();
+	} = useCreateConsult(snackBar);
 
 	React.useEffect(() => {
 		const request = async () => {
 			try {
-				const result = await api.get("patients");
-				console.log(result.data);
+				const result = await api.get("consults");
+				console.log("consulta", result.data);
 				setItems(result.data);
 			} catch (e) {
-				console.log(e.message);
+				console.log("consulta",e.message);
 			}
 		};
 		request();

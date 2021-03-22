@@ -11,7 +11,11 @@ const strings = {
 	pages: {
 		consultations: {
 			title: "Consultas",
+			success: "Consulta Agendada!",
 		},
+		patient: {
+			success: "Paciente Criado!",
+		}
 	},
 };
 
