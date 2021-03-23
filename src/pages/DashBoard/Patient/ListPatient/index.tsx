@@ -13,10 +13,10 @@ import {
 } from "@material-ui/core";
 import { Add, Delete, Edit, Visibility } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
-import api, { IPatient } from "../../../../services/Api";
+import * as api from "../../../../services/Api";
 
 const ListPatient: React.FC = () => {
-	const [data, setData] = React.useState<IPatient[]>();
+	const [data, setData] = React.useState<api.IPatient[]>();
 
 	const classes = useStyles();
 	const { push } = useHistory();
@@ -24,7 +24,7 @@ const ListPatient: React.FC = () => {
 	React.useEffect(() => {
 		const request = async () => {
 			try {
-				const result = await api.get("patients");
+				const result = await api.getPatients();
 				setData(result.data);
 				console.log(result.data);
 			} catch (e) {

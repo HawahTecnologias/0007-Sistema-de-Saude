@@ -2,7 +2,7 @@ import React from "react";
 
 import { useStyles } from "./style";
 
-import api from "../../../../services/Api";
+import * as api from "../../../../services/Api";
 import Table from "../../../../components/Table";
 import StatusButton, {Status} from "../../../../components/StatusButton";
 
@@ -23,7 +23,7 @@ const List: React.FC = () => {
 	React.useEffect(() => {
 		const request = async () => {
 			try {
-				const result = await api.get("consults");
+				const result = await api.getConsults();
 				console.log(result.data);
 			} catch (e) {
 				console.log(e.message);

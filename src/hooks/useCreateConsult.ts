@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../services/Api/API";
+import * as api from "../services/Api";
 import { ISnackBar } from "./useSnackBar";
 import strings from "../resources/strings";
 
@@ -8,20 +8,19 @@ function useCreateConsult(props: ISnackBar) {
 	const [name, setName] = React.useState("");
 	const [consultType, setConsultType] = React.useState("");
 	const [timeStart, setTimeStart] = React.useState<Date>(new Date());
-	const [observation, setObservation] = React.useState("");
 	const [patientId, setPatientId] = React.useState("");
 
 	const createConsult = async (onSuccess: () => void) => {
         console.log(consultType);
-		const data = {
+		const data: api.ICreateConsults = {
 			name,
 			consult_type: consultType,
 			time_start: timeStart,
-			observation,
 			patient_id: patientId,
+			created_at: new Date(),
 		};
 		try {
-			const result = await api.post("consults/create", data);
+			const result = await api.createConsult(data);
 			console.log(result.data);
 			props.showSnackBar(ConsultationsStrings.success, "success");
             onSuccess();
@@ -35,7 +34,6 @@ function useCreateConsult(props: ISnackBar) {
 		setName,
 		setConsultType,
 		setTimeStart,
-		setObservation,
 		setPatientId,
 	};
 }
