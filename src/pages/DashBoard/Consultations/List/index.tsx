@@ -2,9 +2,9 @@ import React from "react";
 
 import { useStyles } from "./style";
 
-import * as api from "../../../../services/Api";
-import Table from "../../../../components/Table";
-import StatusButton, {Status} from "../../../../components/StatusButton";
+import * as api from "services/Api";
+import Table from "components/Table";
+import StatusButton, {Status} from "components/StatusButton";
 
 import {
     Button,
@@ -16,112 +16,24 @@ import { Add, } from "@material-ui/icons";
 
 import { useHistory } from "react-router-dom";
 
+import useTableForm from "hooks/useTableForm";
+
 const List: React.FC = () => {
 	const classes = useStyles();
     const { push } = useHistory();
-
-	React.useEffect(() => {
-		const request = async () => {
-			try {
-				//const result = await api.getConsults();
-				//console.log(result.data);
-			} catch (e) {
-				console.log(e.message);
-			}
-		};
-		request();
-	}, []);
+	const useTable = useTableForm({ getItemsData: api.getConsults});
 
 	return (
 			<Table
 					mainContainerStyles={classes.mainContainer}
-					header={["Data", "Nome", "Tipo de Consulta", "Status"]}
+					header={["Nome", "Id do Paciente", "Tipo de Consulta"]}
 					title="Consultas"
-					rows={[
-						{
-							hour: "8:00",
-							name: "Carlos",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.Confirm,
-						},
-						{
-							hour: "8:30",
-							name: "Marcela",
-							type: "Primeira",
-							date: new Date(),
-							status: Status.Cancel,
-						},
-						{
-							hour: "9:00",
-							name: "Camila",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.Missed,
-						},
-						{
-							hour: "10:00",
-							name: "Rodrigo",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.scheduled,
-						},
-						{
-							hour: "10:30",
-							name: "Marcela rodrigues",
-							type: "internamento",
-							date: new Date(),
-							status: Status.WaitingForService,
-						},
-						{
-							hour: "11:00",
-							name: "Marcela",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.Confirm,
-						},
-						{
-							hour: "11:30",
-							name: "Italo",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.Attended,
-						},
-						{
-							hour: "12:00",
-							name: "Josivaldo",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.Confirm,
-						},
-						{
-							hour: "12:30",
-							name: "Arthur",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.Cancel,
-						},
-						{
-							hour: "13:00",
-							name: "Enzo",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.InAttendance,
-						},
-						{
-							hour: "13:30",
-							name: "Camile",
-							type: "Retorno",
-							date: new Date(),
-							status: Status.Attended,
-						},
-					]}
+					rows={useTable.itemsData}
 					renderItems={(item, index) => (
 						<TableRow key={`${item}-${index}`}>
-							<TableCell align="center">{item.hour}</TableCell>
 							<TableCell align="center">{item.name}</TableCell>
-							<TableCell align="center">{item.type}</TableCell>
-							<TableCell align="center">{<StatusButton  status={item.status}/>}</TableCell>
+							<TableCell align="center">{item.patientId}</TableCell>
+							<TableCell align="center">{item.consultType}</TableCell>
 						</TableRow>
 					)}
 					pageOffset={1}

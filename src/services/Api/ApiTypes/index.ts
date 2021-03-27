@@ -1,20 +1,18 @@
 import API from "../Connection";
 import { AxiosResponse } from "axios";
 export interface IConsults {
-    readonly id: string;
+    id: string;
     name: string;
-    consult_type: string;
-    time_start: Date;
-    patient_id: string;
-    created_at: Date;
+    consultType: string;
+    timeStart: Date;
+    patientId: string;
 }
 
 export interface ICreateConsults {
     name: string;
-    consult_type: string;
-    time_start: Date;
-    patient_id: string;
-    created_at: Date;
+    consultType: string;
+    timeStart: Date;
+    patientId: string;
 }
 
 export interface IPatient {
@@ -73,8 +71,8 @@ export interface ILoginUser {
     password: string;
 }
 
-export const getPatients = async () => await API.get("patients");
-export const getConsults = async () => await API.get("consults");
+export const getPatients = async (): Promise<AxiosResponse<IPatient[]>> => await API.get("patients");
+export const getConsults = async (): Promise<AxiosResponse<IConsults[]>>  => await API.get("consults");
 export const createPatient = async (sendValue: ICreatePatient): Promise<IPatient> => await API.post("patients/create", sendValue);
 export const createConsult = async (sendValue: ICreateConsults) => await API.post("consults/create", sendValue);
 export const login = async (sendValue: ILoginUser): Promise<IUser> => API.post("/login", sendValue);
