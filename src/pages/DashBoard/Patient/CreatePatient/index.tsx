@@ -15,31 +15,15 @@ import Row from "../../../../components/Form/Row";
 import TextRow from "../../../../components/Form/TextRow";
 import Card from "../../../../components/Card";
 import { useStyles } from "./style";
-import useCreatePatient from "../../../../hooks/useCreatePatient";
+import useCreatePatient from "./useCreatePatient";
 
 const CreatePatient: React.FC = () => {
 	const { snackBar } = useGlobalContext();
 	const classes = useStyles();
 	const route = useHistory();
 	const {
-		setName,
-		setAge,
-		setGender,
-		setBirthdate,
-		setColor,
-		setHealthPlan,
-		setNationality,
-		setIncome,
-		setProfession,
-		setPhone,
-		setSecondaryPhone,
-		setEmail,
-		setScholarity,
-		setAdress,
-		setComments,
-		setCompanion,
-		setMedicine,
 		createPatient,
+		handleFilds,
 	} = useCreatePatient(snackBar);
 	return (
 		<Container className={classes.pageContent}>
@@ -53,9 +37,9 @@ const CreatePatient: React.FC = () => {
 				</Typography>
 				<Form>
 					<Row>
-						<TextRow label="Nome" setChange={setName} />
-						<TextRow label="Idade" setChange={setAge} />
-						<FormControl
+						<TextRow {...handleFilds("name")} />
+						<TextRow {...handleFilds("age")} />
+					{/* 	<FormControl
 							variant="outlined"
 							className={classes.inputForm}
 						>
@@ -64,41 +48,35 @@ const CreatePatient: React.FC = () => {
 								native
 								onChange={(e) => {
 									if (e.currentTarget.value) {
-										setGender(
+										handleChange(
 											String(e.currentTarget.value),
 										);
 									}
 								}}
-								label="Gênero"
+								label="genero"
 							>
 								<option aria-label="None" value="" />
 								<option value={"masculino"}>Masculino</option>
 								<option value={"feminino"}>Feminino</option>
 							</Select>
-						</FormControl>
+						</FormControl> */}
 					</Row>
 					<Row>
-						<TextField
+						{/* <TextField
+							{...handleFilds("birthdate")}
 							id="date"
-							label="Data de Nascimento"
 							type="date"
 							variant="outlined"
-							onChange={(e) => {
-								setBirthdate(e.currentTarget.value);
-							}}
 							className={classes.inputForm}
 							InputLabelProps={{
 								shrink: true,
 							}}
-						/>
-						<TextRow label="Cor" setChange={setColor} />
-						<TextRow
-							label="Naturalidade"
-							setChange={setNationality}
-						/>
+						/> */}
+						<TextRow {...handleFilds("color")} />
+						<TextRow {...handleFilds("nationality")} />
 					</Row>
 					<Row>
-						<FormControl
+						{/* <FormControl
 							variant="outlined"
 							className={classes.inputForm}
 						>
@@ -119,27 +97,19 @@ const CreatePatient: React.FC = () => {
 								<option value={"2000-4000"}>2000-4000</option>
 								<option value={"4000-8000"}>4000-8000</option>
 							</Select>
-						</FormControl>
-						<TextRow label="Profissão" setChange={setProfession} />
-						<TextRow label="Telefone 01" setChange={setPhone} />
+						</FormControl> */}
+						<TextRow {...handleFilds("profession")} />
+						<TextRow {...handleFilds("primaryPhone")} />
 					</Row>
 					<Row>
 						<TextRow
-							label="Telefone 02"
-							setChange={setSecondaryPhone}
+							{...handleFilds("secondPhone")}
 						/>
-						<TextRow
-							label="E-mail"
-							setChange={setEmail}
-							type="email"
-						/>
-						<TextRow
-							label="Escolaridade"
-							setChange={setScholarity}
-						/>
+						<TextRow {...handleFilds("email")} type="email" />
+						<TextRow {...handleFilds("scholarity")} />
 					</Row>
 					<Row>
-						<FormControl
+						{/* <FormControl
 							variant="outlined"
 							className={classes.inputForm}
 						>
@@ -160,16 +130,13 @@ const CreatePatient: React.FC = () => {
 								<option value={"instagram"}>Instagram</option>
 								<option value={"outros"}>Outros</option>
 							</Select>
-						</FormControl>
-						<TextField
+						</FormControl> */}
+						{/* <TextField
+							{...handleFilds("")}
 							className={classes.adressInput}
-							label="Endereço"
-							onChange={(e) => {
-								setAdress(e.currentTarget.value);
-							}}
 							variant="outlined"
-						/>
-						<FormControl
+						/> */}
+						{/* <FormControl
 							variant="outlined"
 							className={classes.inputForm}
 						>
@@ -190,7 +157,7 @@ const CreatePatient: React.FC = () => {
 								<option value={"plano2"}>Plano02</option>
 								<option value={"plano3"}>Plano03</option>
 							</Select>
-						</FormControl>
+						</FormControl> */}
 					</Row>
 					<Row>
 						<Button
@@ -217,18 +184,11 @@ const CreatePatient: React.FC = () => {
 					</Row>
 					<Row>
 						<TextRow
-							label="Observações"
-							setChange={setComments}
+							{...handleFilds("observation")}
 							rows={6}
 						/>
-						<TextRow
-							label="Acompanhante"
-							setChange={setCompanion}
-						/>
-						<TextRow
-							label="Remédios em uso"
-							setChange={setMedicine}
-						/>
+						<TextRow {...handleFilds("companions")} />
+						<TextRow {...handleFilds("useMedicines")} />
 					</Row>
 					<Button
 						className={classes.buttonSave}

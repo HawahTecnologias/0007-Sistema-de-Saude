@@ -1,5 +1,5 @@
 import API from "../Connection";
-
+import { AxiosResponse } from "axios";
 export interface IConsults {
     readonly id: string;
     name: string;
@@ -18,35 +18,63 @@ export interface ICreateConsults {
 }
 
 export interface IPatient {
-	name: string;
-	email: string;
-	health_plan: string;
+	id: string;
+    name: string;
+    email: string;
+    gender: string;
+    age: number;
+    color: string;
+    birthdate: Date;
+    scholarity: string;
+    profession: string;
+    nationality: string;
+    income: string;
+    primaryPhone: string;
+    secondPhone: string;
+    howKnow: string;
+    healthPlan: string;
+    which: string;
+    useMedicines: string;
+    companions: string;
+    observation: string;
+    createdAt: Date;
 }
 
 export interface ICreatePatient {
-    name: string,
-    age: string,
-    gender: string,
-    birthdate: string,
-    color: string,
-    health_plan: string,
-    nationality: string,
-    income: string,
-    profession: string,
-    phone_number_01: string,
-    phone_number_02: string,
-    email: string,
-    how_know: string,
-    scholarity: string,
-    adress: string,
-    observation: string,
-    companions: string,
-    which: string,
-    use_medicines: string,
+    name: string;
+    email: string;
+    gender: string;
+    age: number;
+    color: string;
+    birthdate: Date;
+    scholarity: string;
+    profession: string;
+    nationality: string;
+    income: string;
+    primaryPhone: string;
+    secondPhone: string;
+    howKnow: string;
+    healthPlan: string;
+    which: string;
+    useMedicines: string;
+    companions: string;
+    observation: string;
+    createdAt: Date;
+}
+
+export interface IUser {
+    id: string;
+    name: string;
+    email: string;
+}
+
+export interface ILoginUser {
+    email: string;
+    password: string;
 }
 
 export const getPatients = async () => await API.get("patients");
 export const getConsults = async () => await API.get("consults");
-export const createPatient = async (value: ICreatePatient) => await API.post("patients/create", value);
-export const createConsult = async (value: ICreateConsults) => await API.post("consults/create", value);
- 
+export const createPatient = async (sendValue: ICreatePatient): Promise<IPatient> => await API.post("patients/create", sendValue);
+export const createConsult = async (sendValue: ICreateConsults) => await API.post("consults/create", sendValue);
+export const login = async (sendValue: ILoginUser): Promise<IUser> => API.post("/login", sendValue);

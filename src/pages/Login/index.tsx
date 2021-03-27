@@ -1,15 +1,34 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
+import {
+	Avatar,
+	Button,
+	CssBaseline,
+	Typography,
+	Container,
+	CircularProgress,
+} from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import { useStyles } from "./style";
 
-export default function Login() {
+import { useHistory } from "react-router-dom";
+
+import TextField from "components/TextField";
+import { useGlobalContext } from "contexts/GlobalContext";
+import { useStyles } from "./style";
+import useLogin from "./useLogin";
+
+const Login: React.FC = () => {
 	const classes = useStyles();
+	const { authentication, snackBar } = useGlobalContext();
+	const { formValues, handleFilds } = useLogin();
+	const { push } = useHistory();
+
+	const onLogin = () => {
+		authentication.login(formValues,
+			() => {snackBar.showSnackBar("Bem Vindo!", "success");
+				push("/")},
+			(message: string) => snackBar.showSnackBar(message, "error")
+		);
+	};
 
 	return (
 		<Container component="main" maxWidth="xs">
@@ -23,17 +42,17 @@ export default function Login() {
 				</Typography>
 				<form className={classes.form} noValidate>
 					<TextField
+						{...handleFilds("email")}
 						variant="outlined"
 						margin="normal"
 						required
 						fullWidth
-						id="email"
-						label="Endereço de Email"
 						name="email"
 						autoComplete="email"
 						autoFocus
 					/>
 					<TextField
+						{...handleFilds("password")}
 						variant="outlined"
 						margin="normal"
 						required
@@ -41,20 +60,20 @@ export default function Login() {
 						name="password"
 						label="Senha"
 						type="password"
-						id="password"
-						autoComplete="current-password"
 					/>
 					<Button
-						type="submit"
 						fullWidth
 						variant="contained"
 						color="primary"
 						className={classes.submit}
+						onClick={onLogin}
 					>
-						Entrar
+						{authentication.authLoading ? <CircularProgress /> : "Entrar"}
 					</Button>
 				</form>
 			</div>
 		</Container>
 	);
 }
+
+export default Login;

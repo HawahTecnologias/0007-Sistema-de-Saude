@@ -4,28 +4,28 @@ import { useStyles } from "./style";
 
 interface IProps {
 	maxWidth?: number;
-	setChange: (currentTarget: string) => void;
+	handleChange: (element: React.ChangeEvent<HTMLInputElement>) => void;
 	label: string;
 	required?: boolean;
+	value?: string;
 	variant?: "standard" | "filled" | "outlined";
 	type?: string;
 	rows?: number;
 }
 
 const TextRow: React.FC<IProps> = (props) => {
-	const { maxWidth, setChange, label, required, variant, type, rows } = props;
+	const { maxWidth, handleChange, label, required, variant, type, rows, value } = props;
 	const classes = useStyles();
 	return rows ? (
 		<TextField
 			className={classes.inputForm}
 			style={{ maxWidth: maxWidth ? `${maxWidth}px` : "300px" }}
 			label={label}
-			onChange={(e) => {
-				setChange(e.currentTarget.value);
-			}}
+			onChange={handleChange}
 			type={type ? type : "text"}
 			required={required ? required : false}
 			variant={variant ? variant : "outlined"}
+			value={value}
 			multiline
 			rows={rows}
 		/>
@@ -34,12 +34,11 @@ const TextRow: React.FC<IProps> = (props) => {
 			className={classes.inputForm}
 			style={{ maxWidth: maxWidth ? `${maxWidth}px` : "300px" }}
 			label={label}
-			onChange={(e) => {
-				setChange(e.currentTarget.value);
-			}}
+			onChange={handleChange}
 			type={type ? type : "text"}
 			required={required ? required : false}
 			variant={variant ? variant : "outlined"}
+			value={value}
 		/>
 	);
 };

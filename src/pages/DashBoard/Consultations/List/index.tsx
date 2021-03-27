@@ -23,8 +23,8 @@ const List: React.FC = () => {
 	React.useEffect(() => {
 		const request = async () => {
 			try {
-				const result = await api.getConsults();
-				console.log(result.data);
+				//const result = await api.getConsults();
+				//console.log(result.data);
 			} catch (e) {
 				console.log(e.message);
 			}

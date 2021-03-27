@@ -9,6 +9,7 @@ export interface ISnackBar {
 	showSnackBar: (message: string, typeMessage?: Color) => void;
 	typeMessage: Color,
 };
+
 type Color = "info" | "error" | "success" | "warning";
 
 function useSnackBar() {
