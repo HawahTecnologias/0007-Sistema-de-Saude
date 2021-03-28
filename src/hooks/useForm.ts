@@ -4,25 +4,35 @@ function useForm<FormData>(fields: FormData) {
 
     const [formValues, setFormValues] = useState<FormData>(fields);
 
-    const handleChange = (input: keyof FormData) => 
-    (element: ChangeEvent<HTMLInputElement>) => {
-        console.log(element);
-        console.log(element.target.value);
-        const { value }= element.target;
-        setFormValues((old) => ({ ...old, [input]: value }));
-        console.log(formValues);
+    const onChange = (input: keyof FormData) => 
+        (element: ChangeEvent<HTMLInputElement>) => {
+            const { value }= element.target;
+            setFormValues((old) => ({ ...old, [input]: value }));
     }
+
+    const onSelect = (name: string, value: string) => {
+        setFormValues((old) => ({ ...old, [name]: value }));
+    }
+
+    const handleSelectFilds = (input: keyof FormData) => {
+        return {
+            name: input,
+            onSelect: onSelect,
+        };
+    };
 
     const handleFilds = (input: keyof FormData) => {
         return {
             label: input,
-            handleChange: handleChange(input),
+            handleChange: onChange(input),
         };
     };
 	return {
         formValues,
-        handleChange,
+        onChange,
+        onSelect,
         handleFilds,
+        handleSelectFilds,
 	};
 }
 

@@ -1,52 +1,31 @@
-import React from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
 	Typography,
 	Container,
 	Button,
-	FormControl,
-	InputLabel,
-	Select,
-	TextField,
+	TextField as MTextFiled,
 	Box,
 } from "@material-ui/core";
 
-import { useGlobalContext } from "../../../../contexts";
+import { useGlobalContext } from "contexts";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Card from "../../../../components/Card";
-import Form from "../../../../components/Form";
-import Row from "../../../../components/Form/Row";
+import Card from "components/Card";
+import Form from "components/Form";
+import Row from "components/Form/Row";
 import { useStyles } from "./style";
-import * as api from "../../../../services/Api";
+import * as api from "services/Api";
+import useCreateConsultation from "./useCreateConsultation";
 
-interface IItems {
-	age: number;
-	birthdate: string;
-	color: string;
-	companions: string;
-	created_at: string;
-	email: string;
-	gender: string;
-	health_plan: string;
-	how_know: string;
-	id: string;
-	income: string;
-	name: string;
-	nationality: string;
-	observation: string;
-	phone_number_01: string;
-	phone_number_02: string;
-	profession: string;
-	scholarity: string;
-	use_medicines: string;
-	which: string;
-}
+import SelectInputs from "components/SelectInputs";
+
+import TextField from "components/TextField";
 
 const Create: React.FC = () => {
 	const { snackBar } = useGlobalContext();
-	const [items, setItems] = React.useState<IItems[]>([]);
-	const [patientData, setPatientData] = React.useState<IItems>();
+	const useCreate = useCreateConsultation(snackBar);
 
+	const [selectPatient, setSelectPatient] = useState<api.IPatient | null>(null);
 	const route = useHistory();
 
 	const classes = useStyles();
@@ -62,58 +41,57 @@ const Create: React.FC = () => {
 				</Typography>
 				<Form>
 					<Row>
+
+						<TextField
+							{...useCreate.handleFilds("name")}
+							variant="outlined"
+							className={classes.inputForm}
+							margin="normal"
+							required
+							name="name"
+							autoComplete="name"
+							autoFocus
+						/>
+
 						<Autocomplete
 							className={classes.inputForm}
-							id="name"
-							options={items}
+							id="patientId"
+							options={useCreate.patients}
 							getOptionLabel={(option) => option.name}
-							onChange={(event: any, newValue: IItems | null) => {
+							onChange={(event, newValue: api.IPatient | null) => {
 								if (newValue) {
-									/* setPatientId(newValue.id);
-									setName(newValue.name); */
-									setPatientData(newValue);
+									setSelectPatient(newValue);
+									useCreate.onSelect("patientId", newValue.id);
 								}
 							}}
 							style={{ width: 300 }}
 							renderInput={(params) => (
-								<TextField
+								<MTextFiled
 									{...params}
-									label="Nome"
+									name="patient"
+									label="Paciente"
 									variant="outlined"
+									
 								/>
 							)}
 						/>
-						<FormControl
-							variant="outlined"
-							className={classes.inputForm}
-						>
-							<InputLabel>Tipo de consulta</InputLabel>
-							<Select
-								native
-								onChange={(e) => {
-									if (e.currentTarget.value) {
-										/* setConsultType(
-											String(e.currentTarget.value),
-										); */
-									}
-								}}
-								label="Tipo de consulta"
-							>
-								<option aria-label="None" value="" />
-								<option value={"consulta1"}>Consulta01</option>
-								<option value={"consulta2"}>Consulta02</option>
-								<option value={"consulta3"}>Consulta03</option>
-							</Select>
-						</FormControl>
 
-						<TextField
+						<SelectInputs
+							{...useCreate.handleSelectFilds("consultType")}
+							selectAbleItems={[{label: "Consulta1", value: "consulta1"},{label: "Consulta2", value: "consulta2"},{label: "Consulta3", value: "consulta3"}]}
+							label="Tipo de Consulta"
+							variant="outlined"
+							classStyleForm={classes.inputForm}
+						/>
+
+						<MTextFiled
 							className={classes.inputForm}
 							id="datetime-local"
 							label="Horário"
 							type="datetime-local"
 							defaultValue="2017-05-24T10:30"
 							onChange={(e) => {
-								//setTimeStart(new Date(e.currentTarget.value));
+								useCreate.setTimeStart(new Date(e.currentTarget.value));
 							}}
 							InputLabelProps={{
 								shrink: true,
@@ -121,24 +99,24 @@ const Create: React.FC = () => {
 							variant="outlined"
 						/>
 					</Row>
-					{patientData && (
+					{selectPatient && (
 						<>
 							<Row>
 								<Box className={classes.patientInfo}>
 									<Typography
 										className={classes.patientInfoItems}
 									>
-										{patientData.gender}
+										{selectPatient.gender}
 									</Typography>
 									<Typography
 										className={classes.patientInfoItems}
 									>
-										{patientData.birthdate}
+										{selectPatient.birthdate}
 									</Typography>
 									<Typography
 										className={classes.patientInfoItems}
 									>
-										{patientData.health_plan}
+										{selectPatient.healthPlan}
 									</Typography>
 								</Box>
 							</Row>
@@ -147,17 +125,17 @@ const Create: React.FC = () => {
 									<Typography
 										className={classes.patientInfoItems}
 									>
-										{patientData.phone_number_01}
+										{selectPatient.primaryPhone}
 									</Typography>
 									<Typography
 										className={classes.patientInfoItems}
 									>
-										{patientData.phone_number_02}
+										{selectPatient.secondPhone}
 									</Typography>
 									<Typography
 										className={classes.patientInfoItems}
 									>
-										{patientData.email}
+										{selectPatient.email}
 									</Typography>
 								</Box>
 							</Row>
@@ -166,9 +144,7 @@ const Create: React.FC = () => {
 					<Button
 						className={classes.buttonSave}
 						onClick={() => {
-							/* createConsult(() =>
-								route.push("/dashboard/consultations"),
-							); */
+							useCreate.createConsult(() => route.push("/dashboard/consultations"));
 						}}
 						variant="contained"
 					>

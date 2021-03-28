@@ -8,8 +8,9 @@ interface IMTextInput {
 	variant: tVarient;
 	margin: PropTypes.Margin;
 	handleChange: (element: React.ChangeEvent<HTMLInputElement>) => void;
-	required: boolean;
-	fullWidth: boolean
+	className?: string;
+	required?: boolean;
+	fullWidth?: boolean
 	label: string;
 	type?: string;
 	name: string;
@@ -27,10 +28,12 @@ const TextField: React.FC<IMTextInput> = (props) => {
 		variant,
 		autoComplete,
 		type,
+		className,
 		handleChange,
 		autoFocus } = props;
 	return (
 		<MTextField
+			className={className}
 			variant={variant}
 			margin={margin}
 			required={required}

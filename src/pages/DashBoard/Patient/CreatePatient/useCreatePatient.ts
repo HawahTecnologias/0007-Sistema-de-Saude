@@ -6,7 +6,7 @@ import useForm from "hooks/useForm";
 
 function useCreatePatient(props: ISnackBar) {
 	const PatientStrings = strings.pages.patient;
-	const { formValues, handleChange, handleFilds } = useForm({
+	const { formValues, onChange, handleFilds } = useForm({
 		name: "",
 		email: "",
 		gender: "",
@@ -28,7 +28,6 @@ function useCreatePatient(props: ISnackBar) {
 
 	const createPatient = async (onSuccess: () => void) => {
 		try {
-			console.log(formValues);
 			await api.createPatient(
 				{...formValues, createdAt: new Date(),
 					birthdate: new Date(),
@@ -43,7 +42,7 @@ function useCreatePatient(props: ISnackBar) {
 
 	return {
 		createPatient,
-		handleChange,
+		onChange,
 		handleFilds,
 		formValues
 	};

@@ -4,7 +4,6 @@ import { useStyles } from "./style";
 
 import * as api from "services/Api";
 import Table from "components/Table";
-import StatusButton, {Status} from "components/StatusButton";
 
 import {
     Button,

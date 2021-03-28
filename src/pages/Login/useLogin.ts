@@ -3,7 +3,7 @@ import React from "react";
 import useForm from "hooks/useForm";
 
 function useLogin() {
-    const { handleFilds, formValues, handleChange } = useForm({
+    const { handleFilds, formValues } = useForm({
 		email: "",
         password: "",
 	});
@@ -11,7 +11,6 @@ function useLogin() {
 	return {
         formValues,
         handleFilds,
-        handleChange
 	};
 }
 
