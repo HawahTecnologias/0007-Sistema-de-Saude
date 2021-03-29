@@ -6,8 +6,14 @@ const strings = {
 		home: "Home",
 		patient: "Pacientes",
 		consultations: "Consultas",
+		medicalRecord: "Prontuário"
+
 	},
-	components: {},
+	components: {
+		general : {
+			createButtons: "Criar",
+		},
+	},
 	pages: {
 		consultations: {
 			title: "Consultas",
@@ -15,7 +21,11 @@ const strings = {
 		},
 		patient: {
 			success: "Paciente Criado!",
-		}
+		},
+		patientRecord: {
+			title: "Prontuário",
+			success: "Prontuário Criado!",
+		},
 	},
 };
 

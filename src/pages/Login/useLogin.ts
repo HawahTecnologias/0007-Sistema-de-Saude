@@ -1,10 +1,8 @@
-import React from "react";
-
 import useForm from "hooks/useForm";
 
 function useLogin() {
     const { handleFilds, formValues } = useForm({
-		email: "",
+	email: "",
         password: "",
 	});
 

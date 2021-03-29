@@ -13,7 +13,7 @@ import { Box,
 	TableRow,
 	Typography
 } from "@material-ui/core";
-import { PersonAddOutlined, ListAlt } from "@material-ui/icons";
+import { PersonAddOutlined, Alarm, ListAlt } from "@material-ui/icons";
 const Home: React.FC = () => {
 	const classes = useStyles();
 	const { push } = useHistory();
@@ -27,11 +27,18 @@ const Home: React.FC = () => {
 			onClick: () => push("dashboard/patient/createPatient"),
 		},
 		{
-			title:"Agendar Cosnulta",
+			title:"Agendar Consulta",
 			explain:"Agendar",
 			placeHolder:"Agende a consulta de um paciente",
-			Icon: <ListAlt color="disabled" className={classes.MiniCardIcon}/>,
+			Icon: <Alarm color="disabled" className={classes.MiniCardIcon}/>,
 			onClick: () => push("dashboard/consultations/create"),
+		},
+		{
+			title:"Criar Prontuário",
+			explain:"Prontuário",
+			placeHolder:"Contrua um Prontoário",
+			Icon: <ListAlt color="disabled" className={classes.MiniCardIcon}/>,
+			onClick: () => push("dashboard/patientRecord/create"),
 		},
 	]
 

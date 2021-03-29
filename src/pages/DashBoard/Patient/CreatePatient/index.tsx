@@ -1,9 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import {
-	FormControl,
-	InputLabel,
-	Select,
 	TextField,
 	Typography,
 	Container,
@@ -16,6 +13,7 @@ import TextRow from "components/Form/TextRow";
 import Card from "components/Card";
 import { useStyles } from "./style";
 import useCreatePatient from "./useCreatePatient";
+import SelectInputs from "components/SelectInputs";
 
 const CreatePatient: React.FC = () => {
 	const { snackBar } = useGlobalContext();
@@ -24,6 +22,8 @@ const CreatePatient: React.FC = () => {
 	const {
 		createPatient,
 		handleFilds,
+		handleSelectFilds,
+		setBirthDay,
 	} = useCreatePatient(snackBar);
 	return (
 		<Container className={classes.pageContent}>
@@ -39,65 +39,40 @@ const CreatePatient: React.FC = () => {
 					<Row>
 						<TextRow {...handleFilds("name")} />
 						<TextRow {...handleFilds("age")} />
-					{/* 	<FormControl
+						<SelectInputs
+							{...handleSelectFilds("gender")}
+							selectAbleItems={[{label: "Masculino", value: "masculino"},{label: "Feminino", value: "feminino"}]}
+							label="Genêro"
 							variant="outlined"
-							className={classes.inputForm}
-						>
-							<InputLabel>Gênero</InputLabel>
-							<Select
-								native
-								onChange={(e) => {
-									if (e.currentTarget.value) {
-										handleChange(
-											String(e.currentTarget.value),
-										);
-									}
-								}}
-								label="genero"
-							>
-								<option aria-label="None" value="" />
-								<option value={"masculino"}>Masculino</option>
-								<option value={"feminino"}>Feminino</option>
-							</Select>
-						</FormControl> */}
+							classStyleForm={classes.inputForm}
+						/>
 					</Row>
 					<Row>
-						{/* <TextField
-							{...handleFilds("birthdate")}
-							id="date"
-							type="date"
-							variant="outlined"
+						<TextField
 							className={classes.inputForm}
+							id="datetime-local"
+							label="Horário"
+							type="datetime-local"
+							defaultValue="2017-05-24T10:30"
+							onChange={(e) => {
+								setBirthDay(new Date(e.currentTarget.value));
+							}}
 							InputLabelProps={{
 								shrink: true,
 							}}
-						/> */}
+							variant="outlined"
+						/>
 						<TextRow {...handleFilds("color")} />
 						<TextRow {...handleFilds("nationality")} />
 					</Row>
 					<Row>
-						{/* <FormControl
+						<SelectInputs
+							{...handleSelectFilds("income")}
+							selectAbleItems={[{label: "1000-2000", value: "1000-2000"},{label: "2000-4000", value: "2000-4000"},{label: "4000-8000", value: "4000-8000"}]}
+							label="Renda"
 							variant="outlined"
-							className={classes.inputForm}
-						>
-							<InputLabel>Renda</InputLabel>
-							<Select
-								native
-								onChange={(e) => {
-									if (e.currentTarget.value) {
-										setIncome(
-											String(e.currentTarget.value),
-										);
-									}
-								}}
-								label="Renda"
-							>
-								<option aria-label="None" value="" />
-								<option value={"1000-2000"}>1000-2000</option>
-								<option value={"2000-4000"}>2000-4000</option>
-								<option value={"4000-8000"}>4000-8000</option>
-							</Select>
-						</FormControl> */}
+							classStyleForm={classes.inputForm}
+						/>
 						<TextRow {...handleFilds("profession")} />
 						<TextRow {...handleFilds("primaryPhone")} />
 					</Row>
@@ -109,78 +84,25 @@ const CreatePatient: React.FC = () => {
 						<TextRow {...handleFilds("scholarity")} />
 					</Row>
 					<Row>
-						{/* <FormControl
+						<SelectInputs
+							{...handleSelectFilds("knowUs")}
+							selectAbleItems={[{label: "facebook", value: "facebook"},{label: "instagram", value: "instagram"},{label: "outros", value: "outros"}]}
+							label="Como conheceu"
 							variant="outlined"
-							className={classes.inputForm}
-						>
-							<InputLabel>Como conheceu</InputLabel>
-							<Select
-								native
-								onChange={(e) => {
-									if (e.currentTarget.value) {
-										setIncome(
-											String(e.currentTarget.value),
-										);
-									}
-								}}
-								label="Como conheceu"
-							>
-								<option aria-label="None" value="" />
-								<option value={"facebook"}>Facebook</option>
-								<option value={"instagram"}>Instagram</option>
-								<option value={"outros"}>Outros</option>
-							</Select>
-						</FormControl> */}
+							classStyleForm={classes.inputForm}
+						/>
 						{/* <TextField
 							{...handleFilds("")}
 							className={classes.adressInput}
 							variant="outlined"
-						/> */}
-						{/* <FormControl
+						/>  */}
+						<SelectInputs
+							{...handleSelectFilds("healthPlan")}
+							selectAbleItems={[{label: "Plano 1", value: "plano1"},{label: "Plano 2", value: "plano2"},{label: "Plano 3", value: "plano3"}]}
+							label="Plano"
 							variant="outlined"
-							className={classes.inputForm}
-						>
-							<InputLabel>Plano de Saúde</InputLabel>
-							<Select
-								native
-								onChange={(e) => {
-									if (e.currentTarget.value) {
-										setHealthPlan(
-											String(e.currentTarget.value),
-										);
-									}
-								}}
-								label="Plano de Saúde"
-							>
-								<option aria-label="None" value="" />
-								<option value={"plano1"}>Plano01</option>
-								<option value={"plano2"}>Plano02</option>
-								<option value={"plano3"}>Plano03</option>
-							</Select>
-						</FormControl> */}
-					</Row>
-					<Row>
-						<Button
-							className={classes.buttonFile}
-							variant="contained"
-							color="primary"
-						>
-							Anexar exame
-						</Button>
-						<Button
-							className={classes.buttonFile}
-							variant="contained"
-							color="primary"
-						>
-							Anexar fotos
-						</Button>
-						<Button
-							className={classes.buttonFile}
-							variant="contained"
-							color="primary"
-						>
-							Anexar Documentos
-						</Button>
+							classStyleForm={classes.inputForm}
+						/>
 					</Row>
 					<Row>
 						<TextRow
@@ -188,7 +110,6 @@ const CreatePatient: React.FC = () => {
 							rows={6}
 						/>
 						<TextRow {...handleFilds("companions")} />
-						<TextRow {...handleFilds("useMedicines")} />
 					</Row>
 					<Button
 						className={classes.buttonSave}

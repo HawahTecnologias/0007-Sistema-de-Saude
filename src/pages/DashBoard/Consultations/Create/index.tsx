@@ -41,15 +41,14 @@ const Create: React.FC = () => {
 				</Typography>
 				<Form>
 					<Row>
-
 						<TextField
-							{...useCreate.handleFilds("name")}
+							{...useCreate.handleFilds("professional")}
 							variant="outlined"
 							className={classes.inputForm}
 							margin="normal"
 							required
-							name="name"
-							autoComplete="name"
+							name="professional"
+							autoComplete="professional"
 							autoFocus
 						/>
 
@@ -78,7 +77,7 @@ const Create: React.FC = () => {
 
 						<SelectInputs
 							{...useCreate.handleSelectFilds("consultType")}
-							selectAbleItems={[{label: "Consulta1", value: "consulta1"},{label: "Consulta2", value: "consulta2"},{label: "Consulta3", value: "consulta3"}]}
+							selectAbleItems={[{label: "Consulta1", value: "consulta1"}, {label: "Consulta2", value: "consulta2"},{label: "Consulta3", value: "consulta3"}]}
 							label="Tipo de Consulta"
 							variant="outlined"
 							classStyleForm={classes.inputForm}

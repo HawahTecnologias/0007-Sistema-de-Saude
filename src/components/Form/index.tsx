@@ -4,9 +4,12 @@ import {
 import React from "react";
 import { useStyles } from "./style";
 
-const Form: React.FC = (props) => {
+interface IProps {
+	formStyles?: string;
+}
+const Form: React.FC<IProps> = (props) => {
 	const classes = useStyles();
-	return <Box className={classes.formContent}>{props.children}</Box>;
+	return <Box className={ props.formStyles || classes.formContent}>{props.children}</Box>;
 };
 
 export default Form;

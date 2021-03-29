@@ -1,12 +1,17 @@
+import { useState } from "react";
 import * as api from "services/Api";
 import { ISnackBar } from "hooks/useSnackBar";
 import strings from "resources/strings";
 import useForm from "hooks/useForm";
 
+import { useGlobalContext } from "contexts/GlobalContext";
+
 
 function useCreatePatient(props: ISnackBar) {
 	const PatientStrings = strings.pages.patient;
-	const { formValues, onChange, handleFilds } = useForm({
+	const { authentication } = useGlobalContext();
+	const [birthDay, setBirthDay] = useState<Date>(new Date);
+	const { formValues, onChange, handleFilds, handleSelectFilds } = useForm({
 		name: "",
 		email: "",
 		gender: "",
@@ -18,20 +23,27 @@ function useCreatePatient(props: ISnackBar) {
 		income: "",
 		primaryPhone: "",
 		secondPhone: "",
-		howKnow: "",
+		knowUs: "",
 		healthPlan: "",
-		which: "",
-		useMedicines: "",
 		companions: "",
 		observation: "",
+		patientRecordId: [],
 	});
 
 	const createPatient = async (onSuccess: () => void) => {
+		if(!authentication.currentUser){
+			return;
+		}
+
 		try {
 			await api.createPatient(
-				{...formValues, createdAt: new Date(),
-					birthdate: new Date(),
-					age: Number(formValues.age) });
+				{...formValues,
+					birthdate: birthDay,
+					age: Number(formValues.age),
+					createdBy: authentication.currentUser.id,
+					modifiedBy: authentication.currentUser.id
+
+				});
 			props.showSnackBar(PatientStrings.success, "success");
 			onSuccess();
 		} catch (e) {
@@ -44,6 +56,8 @@ function useCreatePatient(props: ISnackBar) {
 		createPatient,
 		onChange,
 		handleFilds,
+		handleSelectFilds,
+		setBirthDay,
 		formValues
 	};
 }

@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import * as api from "services/Api";
 import { ISnackBar } from "hooks/useSnackBar";
 import { useForm, useLoader } from "hooks";
+import { useGlobalContext } from "contexts/GlobalContext";
 
 
 function useCreateConsultation(props: ISnackBar) {
 	const [patients, setPatients] = useState<api.IPatient[]>([]);
+	const { authentication } = useGlobalContext();
 	const [timeStart, setTimeStart] = useState<Date>(new Date);
 	const { formValues, onChange, handleFilds, handleSelectFilds, onSelect } = useForm({
-		name: "",
-		consultType: "",
+		professional: "",
+		consultType: api.ConsultType.first,
+		observation: "",
 		patientId: "",
 	});
 
@@ -36,13 +39,20 @@ function useCreateConsultation(props: ISnackBar) {
 	} , [])
 
 	const createConsult = async (onSuccess: () => void) => {
+		if (!authentication.currentUser) {
+			return;
+		}
 		if (loader.loading) {
 			return;
 		}
 
 		try {
 			loader.start();
-			await api.createConsult({...formValues, timeStart: timeStart});
+			await api.createConsult({...formValues, 
+				createdBy: authentication.currentUser.id,
+				modifiedBy: authentication.currentUser.id,
+				time: timeStart,	
+			});
 			onSuccess();
 		} catch (e) {
 			props.showSnackBar(e.message, "error");

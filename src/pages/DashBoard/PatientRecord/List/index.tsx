@@ -1,5 +1,7 @@
 import React from "react";
 
+import * as api from "services/Api";
+
 import { useStyles } from "./style";
 
 import Table from "components/Table";
@@ -11,21 +13,19 @@ import {
 	TableRow,
 	IconButton,
 } from "@material-ui/core";
-
 import { Add, Delete, Edit, Visibility } from "@material-ui/icons";
 
+import strings from "resources/strings";
+
 import { useHistory } from "react-router-dom";
-
-import * as api from "services/Api";
-
 import useTableForm from "hooks/useTableForm";
 
-const ListPatient: React.FC = () => {
+const List: React.FC = () => {
 	const classes = useStyles();
 	const { push } = useHistory();
 
-	const useTable = useTableForm<api.IPatient>({
-		getItemsData: api.getPatients,
+	const useTable = useTableForm<api.IPatientRecord>({
+		getItemsData: api.getPatientRecords,
 	});
 
 	const pushToCreate = (url: string) => {
@@ -39,9 +39,10 @@ const ListPatient: React.FC = () => {
 					tableFooter={
 						<Button
 							onClick={() => {
-								pushToCreate("patient/createPatient");
+								pushToCreate("patientRecord/create");
 							}}
 						>
+							{" "}
 							<Add />
 							Criar
 						</Button>
@@ -55,15 +56,15 @@ const ListPatient: React.FC = () => {
 						"Editar",
 						"Deletar",
 					]}
-					title="Pacientes"
+					title={strings.pages.patientRecord.title}
 					rows={useTable.itemsData}
 					pageOffset={1}
 					renderItems={(item, index) => (
 						<TableRow key={`${item}-${index}`}>
-							<TableCell align="center">{item.email}</TableCell>
-							<TableCell align="center">{item.name}</TableCell>
+							<TableCell align="center">{`item${index}`}</TableCell>
+							<TableCell align="center">{`item${index}`}</TableCell>
 							<TableCell align="center">
-								{item.healthPlan}
+								{`item${index}`}
 							</TableCell>
 							<TableCell align="center">
 								<IconButton>
@@ -88,4 +89,4 @@ const ListPatient: React.FC = () => {
 	);
 };
 
-export default ListPatient;
+export default List;

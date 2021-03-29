@@ -20,6 +20,7 @@ function useTableForm<TableData> (props: ITable<TableData>) {
 			loader.start();
 			const results = await props.getItemsData();
 			setItemsData(results.data);
+			console.log("results", results);
 		} catch (e) {
 			console.log(e.message);
 		} finally {

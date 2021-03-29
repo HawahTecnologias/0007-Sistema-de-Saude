@@ -13,6 +13,7 @@ const Authentic: React.FC = () => {
 	const history = useHistory();
 
 	useEffect(() => {
+		authentication.checkCurrentUser();
 	}, [authentication.currentUser]);
 
 	if (!authentication.currentUser) {

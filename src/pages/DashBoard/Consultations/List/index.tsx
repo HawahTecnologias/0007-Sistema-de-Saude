@@ -24,25 +24,25 @@ const List: React.FC = () => {
 
 	return (
 			<Table
-					mainContainerStyles={classes.mainContainer}
-					header={["Nome", "Id do Paciente", "Tipo de Consulta"]}
-					title="Consultas"
-					rows={useTable.itemsData}
-					renderItems={(item, index) => (
-						<TableRow key={`${item}-${index}`}>
-							<TableCell align="center">{item.name}</TableCell>
-							<TableCell align="center">{item.patientId}</TableCell>
-							<TableCell align="center">{item.consultType}</TableCell>
-						</TableRow>
-					)}
-					pageOffset={1}
-					tableFooter={(
-						<Button
-							className={classes.createButton}
-							onClick={() => push("/dashboard/consultations/create")}
-						><Add/> Agendar</Button>
-					)}
-				/>
+				mainContainerStyles={classes.mainContainer}
+				header={["Profisional", "Id do Paciente", "Tipo de Consulta"]}
+				title="Consultas"
+				rows={useTable.itemsData}
+				renderItems={(item, index) => (
+					<TableRow key={`${item}-${index}`}>
+						<TableCell align="center">{item.professional}</TableCell>
+						<TableCell align="center">{item.patientId}</TableCell>
+						<TableCell align="center">{item.consultType}</TableCell>
+					</TableRow>
+				)}
+				pageOffset={1}
+				tableFooter={(
+					<Button
+						className={classes.createButton}
+						onClick={() => push("/dashboard/consultations/create")}
+					><Add/> Agendar</Button>
+				)}
+			/>
 	);
 };
 
