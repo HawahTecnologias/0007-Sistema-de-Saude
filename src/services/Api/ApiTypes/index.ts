@@ -65,7 +65,7 @@ interface IConsult {
 export interface ICreateConsults {
     professional: string;
     consultType: ConsultType;
-    time: Date;
+    time: string;
     observation: string;
     patientId: string;
     createdBy: string;

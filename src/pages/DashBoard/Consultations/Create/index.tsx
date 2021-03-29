@@ -52,6 +52,17 @@ const Create: React.FC = () => {
 							autoFocus
 						/>
 
+						<TextField
+							{...useCreate.handleFilds("observation")}
+							variant="outlined"
+							className={classes.inputForm}
+							margin="normal"
+							required
+							name="observation"
+							autoComplete="professional"
+							autoFocus
+						/>
+
 						<Autocomplete
 							className={classes.inputForm}
 							id="patientId"
@@ -87,10 +98,10 @@ const Create: React.FC = () => {
 							className={classes.inputForm}
 							id="datetime-local"
 							label="Horário"
-							type="datetime-local"
-							defaultValue="2017-05-24T10:30"
+							type="date"
+							defaultValue="2017-05-24"
 							onChange={(e) => {
-								useCreate.setTimeStart(new Date(e.currentTarget.value));
+								useCreate.onSelect("time", "2017-05-24");
 							}}
 							InputLabelProps={{
 								shrink: true,

@@ -8,12 +8,12 @@ import { useGlobalContext } from "contexts/GlobalContext";
 function useCreateConsultation(props: ISnackBar) {
 	const [patients, setPatients] = useState<api.IPatient[]>([]);
 	const { authentication } = useGlobalContext();
-	const [timeStart, setTimeStart] = useState<Date>(new Date);
 	const { formValues, onChange, handleFilds, handleSelectFilds, onSelect } = useForm({
 		professional: "",
 		consultType: api.ConsultType.first,
 		observation: "",
 		patientId: "",
+		time: "",
 	});
 
 	const loader = useLoader();
@@ -39,6 +39,7 @@ function useCreateConsultation(props: ISnackBar) {
 	} , [])
 
 	const createConsult = async (onSuccess: () => void) => {
+		console.log("entrou");
 		if (!authentication.currentUser) {
 			return;
 		}
@@ -51,7 +52,6 @@ function useCreateConsultation(props: ISnackBar) {
 			await api.createConsult({...formValues, 
 				createdBy: authentication.currentUser.id,
 				modifiedBy: authentication.currentUser.id,
-				time: timeStart,	
 			});
 			onSuccess();
 		} catch (e) {
@@ -69,8 +69,6 @@ function useCreateConsultation(props: ISnackBar) {
 		handleSelectFilds,
 		patients,
 		formValues,
-		timeStart,
-		setTimeStart,
 		onSelect,
 	};
 }
