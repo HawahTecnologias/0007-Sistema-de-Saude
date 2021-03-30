@@ -101,7 +101,7 @@ const Create: React.FC = () => {
 							type="date"
 							defaultValue="2017-05-24"
 							onChange={(e) => {
-								useCreate.onSelect("time", "2017-05-24");
+								useCreate.onSelect("time", e.currentTarget.value);
 							}}
 							InputLabelProps={{
 								shrink: true,

@@ -26,6 +26,7 @@ const List: React.FC = () => {
 			<Table
 				mainContainerStyles={classes.mainContainer}
 				header={["Profisional", "Id do Paciente", "Tipo de Consulta"]}
+				loading={useTable.loading}
 				title="Consultas"
 				rows={useTable.itemsData}
 				renderItems={(item, index) => (

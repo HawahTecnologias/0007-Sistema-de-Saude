@@ -13,7 +13,11 @@ import {
 	Typography,
 	Box,
 	Divider,
+	LinearProgress,
+	IconButton,
 } from "@material-ui/core";
+
+import { Delete, Edit, Visibility } from "@material-ui/icons";
 
 import Pagination from "../Pagination";
 
@@ -22,12 +26,16 @@ interface ITableProps<ItemType> {
 	header: string[],
 	rows: ItemType[],
 	renderItems: (row: ItemType, index: number) => React.ReactElement;
+	loading: boolean;
 	tableTop?: React.ReactElement;
 	pageOffset?: number;
 	onNextClick?: () => void;
 	onPrevClick?: () => void;
 	tableFooter?: React.ReactElement;
     mainContainerStyles?: string;
+	onEdit?: () => void;
+	onDetails?: () => void;
+	onDelete?: () => void;
 }
 
 function Table<ItemType> (props: ITableProps<ItemType>) {
@@ -43,10 +51,10 @@ function Table<ItemType> (props: ITableProps<ItemType>) {
 		onPrevClick,
 		tableFooter,
 		mainContainerStyles,
+		loading,
 	} = props;
 
 	React.useEffect(()=>{
-		
 	},[]);
 
 	return (
@@ -58,6 +66,9 @@ function Table<ItemType> (props: ITableProps<ItemType>) {
 				{tableTop && tableTop}
 			</Box>
 			<Divider/>
+			{loading && (
+				<LinearProgress />
+			)}
 			<TableContainer className={classes.tableContainer}>
 				<MTable stickyHeader={true}>
 					<TableHead>
@@ -70,7 +81,7 @@ function Table<ItemType> (props: ITableProps<ItemType>) {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-							{rows.map((rowItem, index) => renderItems(rowItem, index))}
+							{!loading && rows.map((rowItem, index) => renderItems(rowItem, index))}
 					</TableBody>
 				</MTable>
 			</TableContainer>

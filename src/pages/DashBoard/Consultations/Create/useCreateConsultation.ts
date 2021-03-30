@@ -39,7 +39,6 @@ function useCreateConsultation(props: ISnackBar) {
 	} , [])
 
 	const createConsult = async (onSuccess: () => void) => {
-		console.log("entrou");
 		if (!authentication.currentUser) {
 			return;
 		}

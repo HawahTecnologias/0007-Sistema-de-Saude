@@ -155,12 +155,22 @@ export interface ILoginUser {
 }
 
 export interface IPatientRecord {
-    id: string;
-    patientId: IPatient;
-    createdBy: string;
-    modifiedBy: string;
-    createdAt: Date;
-    updatedAt: Date;
+    patients_birthdate: string; 
+    patients_color: string; 
+    patients_companions: string;
+    patients_createdAt: string; 
+    patients_createdBy: string;
+    patients_email: string; 
+    patients_gender: string; 
+    patients_healthPlan: string; 
+    patients_id: string;
+    patients_income: string; 
+    patients_knowUs: string; 
+    patients_modifiedBy: string; 
+    patients_name: string;
+    patients_nationality: string;
+    patients_observation: string; 
+    patients_primaryPhone: string;
 }
 
 export interface ICreatePatientRecord {

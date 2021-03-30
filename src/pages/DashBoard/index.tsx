@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route} from "react-router-dom";
 import MainLayout from "../../layout/MainLayout";
+
+import { useGlobalContext } from "contexts/GlobalContext";
 
 import Home from "./Home";
 import Patient from "./Patient";
@@ -9,6 +11,9 @@ import PatientRecord from "./PatientRecord";
 import Users from "./Users";
 
 const Dashboard: React.FC = () => {
+
+	//const { authentication } = useGlobalContext();
+
 	return (
 		<MainLayout>
 			<Switch>

@@ -7,6 +7,7 @@ export const useStyles = makeStyles((theme: Theme) =>
             margin: "0 auto",
         },
         tableContainer: {
+            minHeight: 500,
             maxHeight:500,
         },
         tableTop: {

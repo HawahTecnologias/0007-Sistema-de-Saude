@@ -46,6 +46,8 @@ const ListPatient: React.FC = () => {
 							Criar
 						</Button>
 					}
+					
+					loading={useTable.loading}
 					mainContainerStyles={classes.tableStyle}
 					header={[
 						"E-Mail",

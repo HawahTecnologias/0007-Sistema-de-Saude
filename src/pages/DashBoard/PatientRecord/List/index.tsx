@@ -47,10 +47,11 @@ const List: React.FC = () => {
 							Criar
 						</Button>
 					}
+					loading={useTable.loading}
 					mainContainerStyles={classes.tableStyle}
 					header={[
-						"E-Mail",
-						"Nome",
+						"Nome do Paciente",
+						"Email",
 						"Plano",
 						"Visualizar",
 						"Editar",
@@ -61,10 +62,10 @@ const List: React.FC = () => {
 					pageOffset={1}
 					renderItems={(item, index) => (
 						<TableRow key={`${item}-${index}`}>
-							<TableCell align="center">{`item${index}`}</TableCell>
-							<TableCell align="center">{`item${index}`}</TableCell>
+							<TableCell align="center">{item.patients_name}</TableCell>
+							<TableCell align="center">{item.patients_email}</TableCell>
 							<TableCell align="center">
-								{`item${index}`}
+								{item.patients_healthPlan}
 							</TableCell>
 							<TableCell align="center">
 								<IconButton>

@@ -59,6 +59,7 @@ const Home: React.FC = () => {
 			</Box>
 			<Box className={classes.twoCardBox}>
 				<Table
+					loading={false}
 					mainContainerStyles={classes.tableStyle}
 					header={["Horario", "Nome", "Tipo de Consulta"]}
 					title="Consultas do dia"

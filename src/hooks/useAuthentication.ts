@@ -13,6 +13,7 @@ export interface IAuthentication {
 
 function useAuthentication() {
 	const loader = useLoader();
+	const authLoader = useLoader();
 	const [currentUser, setCurrentUser] = useState<api.IUser | null>(null);
 	const currentuserToken = "CLINIC_TO_K";
 
@@ -48,6 +49,23 @@ function useAuthentication() {
 			onFailed && onFailed(e.message);
 		} finally {
 			loader.end();
+		}
+	};
+
+	const authentic = async (currentUser: api.IUser) => {
+		if (authLoader.loading) return;
+
+		authLoader.start();
+		try {
+			setCurrentUser(currentUser);
+			setToken(currentUser.token);
+			//localStorage.setItem(currentuserToken, JSON.stringify(user.data));
+		}
+		catch (e) {
+			localStorage.removeItem(currentuserToken);
+			console.error(e.message);
+		} finally {
+			authLoader.end();
 		}
 	};
 
