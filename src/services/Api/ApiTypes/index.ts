@@ -138,6 +138,17 @@ export interface IUser {
     updatedAt: Date;
 }
 
+export interface ICreateUser {
+    name: string;
+    password: string;
+    cpf: string;
+    certificate: string;
+    speciality: string;
+    permission: string; // AQUI ALGUM VALOR DO ENUM PERMISSION QUE ESTÁ ACIMA DA INTERFACE
+    profession: string;
+    email: string;
+}
+
 export interface ILoginUser {
     email: string;
     password: string;
@@ -181,6 +192,7 @@ export interface ICreatePatientRecord {
     hps: string;
     hf: string;
 }
+export const createUser = async (sendValue: ICreateUser): Promise<IUser> => await API.post("/users/create", sendValue, config);
 
 export const getPatients = async (): Promise<AxiosResponse<IPatient[]>> => await API.get("patients", config);
 export const createPatient = async (sendValue: ICreatePatient): Promise<IPatient> => await API.post("patients/create", sendValue, config);
