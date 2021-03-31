@@ -16,8 +16,9 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Card from "../../../../components/Card";
 import Form from "../../../../components/Form";
 import Row from "../../../../components/Form/Row";
+import TextRow from "../../../../components/Form/TextRow";
 import { useStyles } from "./style";
-import * as api from "../../../../services/Api";
+import api from "../../../../services/Api/API";
 import useCreateConsult from "../../../../hooks/useCreateConsult";
 
 interface IItems {
@@ -53,6 +54,7 @@ const Create: React.FC = () => {
 	const {
 		setName,
 		setConsultType,
+		setObservation,
 		setPatientId,
 		setTimeStart,
 		createConsult,
@@ -61,7 +63,7 @@ const Create: React.FC = () => {
 	React.useEffect(() => {
 		const request = async () => {
 			try {
-				const result = await api.getConsults();
+				const result = await api.get("consults");
 				console.log("consulta", result.data);
 				setItems(result.data);
 			} catch (e) {
@@ -205,6 +207,13 @@ const Create: React.FC = () => {
 							</Row>
 						</>
 					)}
+					<Row>
+						<TextRow
+							label="Observações"
+							setChange={setObservation}
+							rows={6}
+						/>
+					</Row>
 					<Button
 						className={classes.buttonSave}
 						onClick={() => {

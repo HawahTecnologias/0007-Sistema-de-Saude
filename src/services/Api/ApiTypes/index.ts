@@ -1,5 +1,3 @@
-import API from "../Connection";
-
 export interface IConsults {
     readonly id: string;
     name: string;
@@ -9,6 +7,7 @@ export interface IConsults {
     created_at: Date;
 }
 
+<<<<<<< HEAD
 export interface ICreateConsults {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -35,12 +34,15 @@ export interface ICreateConsults {
     created_at: Date;
 >>>>>>> parent of 691138f... useTableForm
 }
+=======
+>>>>>>> parent of f042707... apiType
 
 export interface IPatient {
 	name: string;
 	email: string;
 	health_plan: string;
 }
+<<<<<<< HEAD
 
 export interface ICreatePatient {
 <<<<<<< HEAD
@@ -190,3 +192,5 @@ export const createPatient = async (value: ICreatePatient) => await API.post("pa
 export const createConsult = async (value: ICreateConsults) => await API.post("consults/create", value);
  
 >>>>>>> parent of 6a18160... login
+=======
+>>>>>>> parent of f042707... apiType

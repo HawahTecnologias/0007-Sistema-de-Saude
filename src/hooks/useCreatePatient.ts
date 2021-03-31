@@ -1,5 +1,5 @@
 import React from "react";
-import * as api from "../services/Api";
+import api from "../services/Api/API";
 import { ISnackBar } from "./useSnackBar";
 import strings from "../resources/strings";
 
@@ -47,7 +47,7 @@ function useCreatePatient(props: ISnackBar) {
 			use_medicines: medicine,
 		};
 		try {
-			const result = await api.createPatient(data);
+			const result = await api.post("patients/create", data);
 			props.showSnackBar(PatientStrings.success, "success");
 			console.log(result.data);
 			onSuccess();
