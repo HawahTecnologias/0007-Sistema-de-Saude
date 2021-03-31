@@ -75,6 +75,9 @@ export interface IUser {
     token: string;
     createdAt: Date;
     updatedAt: Date;
+<<<<<<< HEAD
+>>>>>>> parent of 12c856e (create users INCOMPLETE)
+=======
 >>>>>>> parent of 12c856e (create users INCOMPLETE)
 }
 

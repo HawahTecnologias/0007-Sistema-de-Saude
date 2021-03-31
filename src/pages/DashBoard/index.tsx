@@ -8,6 +8,9 @@ import Consultations from "./Consultations";
 <<<<<<< HEAD
 =======
 import PatientRecord from "./PatientRecord";
+<<<<<<< HEAD
+>>>>>>> parent of 12c856e (create users INCOMPLETE)
+=======
 >>>>>>> parent of 12c856e (create users INCOMPLETE)
 
 const Dashboard: React.FC = () => {
