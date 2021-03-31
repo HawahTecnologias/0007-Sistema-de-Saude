@@ -1,10 +1,7 @@
 import React from "react";
-import api from "../services/Api/API";
-import { ISnackBar } from "./useSnackBar";
-import strings from "../resources/strings";
+import api from "../services/API";
 
-function useCreateConsult(props: ISnackBar) {
-	const ConsultationsStrings = strings.pages.consultations;
+function useCreateConsult() {
 	const [name, setName] = React.useState("");
 	const [consultType, setConsultType] = React.useState("");
 	const [timeStart, setTimeStart] = React.useState<Date>(new Date());
@@ -23,7 +20,6 @@ function useCreateConsult(props: ISnackBar) {
 		try {
 			const result = await api.post("consults/create", data);
 			console.log(result.data);
-			props.showSnackBar(ConsultationsStrings.success, "success");
             onSuccess();
 		} catch (e) {
 			console.log(e.message);

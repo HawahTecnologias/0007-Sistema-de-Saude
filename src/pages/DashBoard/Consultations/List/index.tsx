@@ -2,7 +2,6 @@ import React from "react";
 
 import { useStyles } from "./style";
 
-import api from "../../../../services/Api";
 import Table from "../../../../components/Table";
 import StatusButton, {Status} from "../../../../components/StatusButton";
 
@@ -19,18 +18,6 @@ import { useHistory } from "react-router-dom";
 const List: React.FC = () => {
 	const classes = useStyles();
     const { push } = useHistory();
-
-	React.useEffect(() => {
-		const request = async () => {
-			try {
-				const result = await api.get("consults");
-				console.log(result.data);
-			} catch (e) {
-				console.log(e.message);
-			}
-		};
-		request();
-	}, []);
 
 	return (
 			<Table

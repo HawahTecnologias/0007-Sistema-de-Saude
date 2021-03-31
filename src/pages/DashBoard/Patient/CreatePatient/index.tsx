@@ -9,7 +9,6 @@ import {
 	Container,
 	Button,
 } from "@material-ui/core";
-import { useGlobalContext } from "../../../../contexts";
 import Form from "../../../../components/Form";
 import Row from "../../../../components/Form/Row";
 import TextRow from "../../../../components/Form/TextRow";
@@ -18,7 +17,6 @@ import { useStyles } from "./style";
 import useCreatePatient from "../../../../hooks/useCreatePatient";
 
 const CreatePatient: React.FC = () => {
-	const { snackBar } = useGlobalContext();
 	const classes = useStyles();
 	const route = useHistory();
 	const {
@@ -40,7 +38,7 @@ const CreatePatient: React.FC = () => {
 		setCompanion,
 		setMedicine,
 		createPatient,
-	} = useCreatePatient(snackBar);
+	} = useCreatePatient();
 	return (
 		<Container className={classes.pageContent}>
 			<Card>
@@ -234,7 +232,7 @@ const CreatePatient: React.FC = () => {
 						className={classes.buttonSave}
 						onClick={() => {
 							createPatient(() =>
-								route.push("/dashboard/patient"),
+								route.push("/dashboard/patients"),
 							);
 						}}
 						variant="contained"
