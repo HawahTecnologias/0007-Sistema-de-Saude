@@ -14,13 +14,27 @@ import {
 import { Add, Delete, Edit, Visibility } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 import * as api from "services/Api";
-import useTableForm from "hooks/useTableForm";
 
 const ListPatient: React.FC = () => {
+	const [data, setData] = React.useState<api.IPatient[]>([]);
+
 	const classes = useStyles();
 	const { push } = useHistory();
 
-	const useTable = useTableForm<api.IPatient>({getItemsData: api.getPatients});
+	React.useEffect(() => {
+		const request = async () => {
+			
+			console.log("ENTROU");
+			try {
+				const result = await api.getPatients();
+				setData(result.data);
+				console.log(result.data);
+			} catch (e) {
+				console.log(e.message);
+			}
+		};
+		request();
+	}, []);
 
 	const pushToCreate = (url: string) => {
 		push(url);
@@ -29,7 +43,7 @@ const ListPatient: React.FC = () => {
 	return (
 		<Box>
 			<Box className={classes.mainContainer}>
-				{useTable.loading ? (
+				{!data ? (
 					<h1>CARREGANDO...</h1>
 				) : (
 					<Table
@@ -54,7 +68,7 @@ const ListPatient: React.FC = () => {
 							"Deletar",
 						]}
 						title="Pacientes"
-						rows={useTable.itemsData}
+						rows={data}
 						pageOffset={1}
 						renderItems={(item, index) => (
 							<TableRow key={`${item}-${index}`}>

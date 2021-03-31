@@ -18,6 +18,7 @@ import Form from "../../../../components/Form";
 import Row from "../../../../components/Form/Row";
 import { useStyles } from "./style";
 import * as api from "../../../../services/Api";
+import useCreateConsult from "../../../../hooks/useCreateConsult";
 
 interface IItems {
 	age: number;
@@ -49,6 +50,26 @@ const Create: React.FC = () => {
 
 	const route = useHistory();
 
+	const {
+		setName,
+		setConsultType,
+		setPatientId,
+		setTimeStart,
+		createConsult,
+	} = useCreateConsult(snackBar);
+
+	React.useEffect(() => {
+		const request = async () => {
+			try {
+				const result = await api.getConsults();
+				console.log("consulta", result.data);
+				setItems(result.data);
+			} catch (e) {
+				console.log("consulta",e.message);
+			}
+		};
+		request();
+	}, []);
 	const classes = useStyles();
 	return (
 		<Container className={classes.pageContent}>
@@ -90,8 +111,8 @@ const Create: React.FC = () => {
 							getOptionLabel={(option) => option.name}
 							onChange={(event: any, newValue: IItems | null) => {
 								if (newValue) {
-									/* setPatientId(newValue.id);
-									setName(newValue.name); */
+									setPatientId(newValue.id);
+									setName(newValue.name);
 									setPatientData(newValue);
 								}
 							}}
@@ -113,9 +134,9 @@ const Create: React.FC = () => {
 								native
 								onChange={(e) => {
 									if (e.currentTarget.value) {
-										/* setConsultType(
+										setConsultType(
 											String(e.currentTarget.value),
-										); */
+										);
 									}
 								}}
 								label="Tipo de consulta"
@@ -134,7 +155,7 @@ const Create: React.FC = () => {
 							type="datetime-local"
 							defaultValue="2017-05-24T10:30"
 							onChange={(e) => {
-								//setTimeStart(new Date(e.currentTarget.value));
+								setTimeStart(new Date(e.currentTarget.value));
 							}}
 							InputLabelProps={{
 								shrink: true,
@@ -187,9 +208,9 @@ const Create: React.FC = () => {
 					<Button
 						className={classes.buttonSave}
 						onClick={() => {
-							/* createConsult(() =>
+							createConsult(() =>
 								route.push("/dashboard/consultations"),
-							); */
+							);
 						}}
 						variant="contained"
 					>

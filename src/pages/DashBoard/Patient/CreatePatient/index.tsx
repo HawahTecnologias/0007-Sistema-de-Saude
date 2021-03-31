@@ -9,11 +9,11 @@ import {
 	Container,
 	Button,
 } from "@material-ui/core";
-import { useGlobalContext } from "contexts";
-import Form from "components/Form";
-import Row from "components/Form/Row";
-import TextRow from "components/Form/TextRow";
-import Card from "components/Card";
+import { useGlobalContext } from "../../../../contexts";
+import Form from "../../../../components/Form";
+import Row from "../../../../components/Form/Row";
+import TextRow from "../../../../components/Form/TextRow";
+import Card from "../../../../components/Card";
 import { useStyles } from "./style";
 import useCreatePatient from "./useCreatePatient";
 

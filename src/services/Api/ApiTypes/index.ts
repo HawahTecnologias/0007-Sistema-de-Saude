@@ -1,17 +1,19 @@
 import API from "../Connection";
 import { AxiosResponse } from "axios";
 export interface IConsults {
-    id: string;
+    readonly id: string;
     name: string;
-    consultType: string;
-    timeStart: Date;
-    patientId: string;
+    consult_type: string;
+    time_start: Date;
+    patient_id: string;
+    created_at: Date;
 }
 
 export interface ICreateConsults {
 <<<<<<< HEAD
 <<<<<<< HEAD
     name: string;
+<<<<<<< HEAD
     consultType: string;
     timeStart: Date;
 =======
@@ -26,6 +28,12 @@ export interface ICreateConsults {
     timeStart: Date;
 >>>>>>> parent of 8f548b9... Prontuario
     patientId: string;
+=======
+    consult_type: string;
+    time_start: Date;
+    patient_id: string;
+    created_at: Date;
+>>>>>>> parent of 691138f... useTableForm
 }
 
 export interface IPatient {
@@ -105,10 +113,15 @@ export interface ILoginUser {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 8f548b9... Prontuario
 export const getPatients = async (): Promise<AxiosResponse<IPatient[]>> => await API.get("patients");
 export const getConsults = async (): Promise<AxiosResponse<IConsults[]>>  => await API.get("consults");
+=======
+export const getPatients = async () => await API.get("patients");
+export const getConsults = async () => await API.get("consults");
+>>>>>>> parent of 691138f... useTableForm
 export const createPatient = async (sendValue: ICreatePatient): Promise<IPatient> => await API.post("patients/create", sendValue);
 export const createConsult = async (sendValue: ICreateConsults) => await API.post("consults/create", sendValue);
 export const login = async (sendValue: ILoginUser): Promise<IUser> => API.post("/login", sendValue);
