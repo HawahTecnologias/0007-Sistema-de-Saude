@@ -18,13 +18,12 @@ import useCreatePatient from "../../../../hooks/useCreatePatient";
 const CreatePatient: React.FC = () => {
 	const {
 		setName,
-		setAge,
-		setGender,
-		setBirthdate,
 		setColor,
+<<<<<<< HEAD
 		setHealthPlan,
+=======
+>>>>>>> parent of 0dae834... list and create patient
 		setNationality,
-		setIncome,
 		setProfession,
 		setPhone,
 		setSecondaryPhone,
@@ -50,7 +49,6 @@ const CreatePatient: React.FC = () => {
 				<Form>
 					<Row>
 						<TextRow label="Nome" setChange={setName} />
-						<TextRow label="Idade" setChange={setAge} />
 						<FormControl
 							variant="outlined"
 							className={classes.inputForm}
@@ -59,19 +57,17 @@ const CreatePatient: React.FC = () => {
 							<Select
 								native
 								onChange={(e) => {
-									if (e.currentTarget.value) {
-										setGender(
-											String(e.currentTarget.value),
-										);
-									}
+									console.log(e.currentTarget.value);
 								}}
 								label="Gênero"
 							>
 								<option aria-label="None" value="" />
-								<option value={"masculino"}>Masculino</option>
-								<option value={"feminino"}>Feminino</option>
+								<option value={10}>Ten</option>
+								<option value={20}>Twenty</option>
+								<option value={30}>Thirty</option>
 							</Select>
 						</FormControl>
+						<TextRow label="Cor" setChange={setColor} />
 					</Row>
 					<Row>
 						<TextField
@@ -80,14 +76,31 @@ const CreatePatient: React.FC = () => {
 							type="date"
 							variant="outlined"
 							onChange={(e) => {
-								setBirthdate(e.currentTarget.value);
+								console.log(e.currentTarget.value);
 							}}
 							className={classes.inputForm}
 							InputLabelProps={{
 								shrink: true,
 							}}
 						/>
-						<TextRow label="Cor" setChange={setColor} />
+						<FormControl
+							variant="outlined"
+							className={classes.inputForm}
+						>
+							<InputLabel>Plano de Saúde</InputLabel>
+							<Select
+								native
+								onChange={(e) => {
+									console.log(e.currentTarget.value);
+								}}
+								label="Plano de Saúde"
+							>
+								<option aria-label="None" value="" />
+								<option value={10}>Ten</option>
+								<option value={20}>Twenty</option>
+								<option value={30}>Thirty</option>
+							</Select>
+						</FormControl>
 						<TextRow
 							label="Naturalidade"
 							setChange={setNationality}
@@ -102,18 +115,14 @@ const CreatePatient: React.FC = () => {
 							<Select
 								native
 								onChange={(e) => {
-									if (e.currentTarget.value) {
-										setIncome(
-											String(e.currentTarget.value),
-										);
-									}
+									console.log(e.currentTarget.value);
 								}}
 								label="Renda"
 							>
 								<option aria-label="None" value="" />
-								<option value={"1000-2000"}>1000-2000</option>
-								<option value={"2000-4000"}>2000-4000</option>
-								<option value={"4000-8000"}>4000-8000</option>
+								<option value={10}>Ten</option>
+								<option value={20}>Twenty</option>
+								<option value={30}>Thirty</option>
 							</Select>
 						</FormControl>
 						<TextRow label="Profissão" setChange={setProfession} />
@@ -143,18 +152,14 @@ const CreatePatient: React.FC = () => {
 							<Select
 								native
 								onChange={(e) => {
-									if (e.currentTarget.value) {
-										setIncome(
-											String(e.currentTarget.value),
-										);
-									}
+									console.log(e.currentTarget.value);
 								}}
 								label="Como conheceu"
 							>
 								<option aria-label="None" value="" />
-								<option value={"facebook"}>Facebook</option>
-								<option value={"instagram"}>Instagram</option>
-								<option value={"outros"}>Outros</option>
+								<option value={10}>Ten</option>
+								<option value={20}>Twenty</option>
+								<option value={30}>Thirty</option>
 							</Select>
 						</FormControl>
 						<TextField
@@ -165,6 +170,7 @@ const CreatePatient: React.FC = () => {
 							}}
 							variant="outlined"
 						/>
+<<<<<<< HEAD
 						<FormControl
 							variant="outlined"
 							className={classes.inputForm}
@@ -187,6 +193,8 @@ const CreatePatient: React.FC = () => {
 								<option value={"plano3"}>Plano03</option>
 							</Select>
 						</FormControl>
+=======
+>>>>>>> parent of 0dae834... list and create patient
 					</Row>
 					<Row>
 						<Button

@@ -1,72 +1,66 @@
 import React from "react";
-import api from "../services/API";
 
 function useCreatePatient() {
 	const [name, setName] = React.useState("");
-	const [age, setAge] = React.useState("");
-	const [gender, setGender] = React.useState("");
-	const [birthdate, setBirthdate] = React.useState("");
 	const [color, setColor] = React.useState("");
+<<<<<<< HEAD:src/hooks/useCreatePatient.ts
 	const [healthPlan, setHealthPlan] = React.useState("");
+=======
+>>>>>>> parent of 0dae834... list and create patient:src/hooks/useCreatePatient.tsx
 	const [nationality, setNationality] = React.useState("");
-	const [income, setIncome] = React.useState("");
 	const [profession, setProfession] = React.useState("");
 	const [phone, setPhone] = React.useState("");
 	const [secondaryPhone, setSecondaryPhone] = React.useState("");
 	const [email, setEmail] = React.useState("");
-	const [howKnow, setHowKnow] = React.useState("");
 	const [scholarity, setScholarity] = React.useState("");
 	const [adress, setAdress] = React.useState("");
 	const [comments, setComments] = React.useState("");
 	const [companion, setCompanion] = React.useState("");
 	const [medicine, setMedicine] = React.useState("");
 
+<<<<<<< HEAD:src/hooks/useCreatePatient.ts
 	const createPatient = async() => {
 		console.log(birthdate);
 		const data = {
+=======
+	const createPatient = () => {
+		console.log(
+>>>>>>> parent of 0dae834... list and create patient:src/hooks/useCreatePatient.tsx
 			name,
-			age,
-			gender,
-			birthdate,
 			color,
+<<<<<<< HEAD:src/hooks/useCreatePatient.ts
 			health_plan: healthPlan,
+=======
+>>>>>>> parent of 0dae834... list and create patient:src/hooks/useCreatePatient.tsx
 			nationality,
-			income,
 			profession,
-			phone_number_01: phone,
-			phone_number_02: secondaryPhone,
+			phone,
+			secondaryPhone,
 			email,
+<<<<<<< HEAD:src/hooks/useCreatePatient.ts
 			how_know: howKnow,
+=======
+>>>>>>> parent of 0dae834... list and create patient:src/hooks/useCreatePatient.tsx
 			scholarity,
 			adress,
-			observation: comments,
-			companions: companion,
-			which: companion,
-			use_medicines: medicine,
-		}
-		try {
-			const result = await api.post("patients/create", data);
-			console.log(result.data);
-		} catch (e) {
-			console.log(e.message);
-		}
-
+			comments,
+			companion,
+			medicine,
+		);
 	};
 
 	return {
 		setName,
-		setAge,
-		setGender,
-		setBirthdate,
 		setColor,
+<<<<<<< HEAD:src/hooks/useCreatePatient.ts
 		setHealthPlan,
+=======
+>>>>>>> parent of 0dae834... list and create patient:src/hooks/useCreatePatient.tsx
 		setNationality,
-		setIncome,
 		setProfession,
 		setPhone,
 		setSecondaryPhone,
 		setEmail,
-		setHowKnow,
 		setScholarity,
 		setAdress,
 		setComments,
