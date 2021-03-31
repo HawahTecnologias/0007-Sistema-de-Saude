@@ -9,9 +9,16 @@ export interface IConsults {
 }
 
 export interface ICreateConsults {
+<<<<<<< HEAD
     name: string;
     consultType: string;
     timeStart: Date;
+=======
+    professional: string;
+    consultType: ConsultType;
+    time: Date;
+    observation: string;
+>>>>>>> parent of c9fd591... consulta is working
     patientId: string;
 }
 

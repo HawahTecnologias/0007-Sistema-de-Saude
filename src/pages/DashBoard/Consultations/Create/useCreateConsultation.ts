@@ -6,6 +6,10 @@ import { useForm, useLoader } from "hooks";
 
 function useCreateConsultation(props: ISnackBar) {
 	const [patients, setPatients] = useState<api.IPatient[]>([]);
+<<<<<<< HEAD
+=======
+	const { authentication } = useGlobalContext();
+>>>>>>> parent of c9fd591... consulta is working
 	const [timeStart, setTimeStart] = useState<Date>(new Date);
 	const { formValues, onChange, handleFilds, handleSelectFilds, onSelect } = useForm({
 		name: "",
@@ -36,13 +40,27 @@ function useCreateConsultation(props: ISnackBar) {
 	} , [])
 
 	const createConsult = async (onSuccess: () => void) => {
+<<<<<<< HEAD
+=======
+		if (!authentication.currentUser) {
+			return;
+		}
+>>>>>>> parent of c9fd591... consulta is working
 		if (loader.loading) {
 			return;
 		}
 
 		try {
 			loader.start();
+<<<<<<< HEAD
 			await api.createConsult({...formValues, timeStart: timeStart});
+=======
+			await api.createConsult({...formValues, 
+				createdBy: authentication.currentUser.id,
+				modifiedBy: authentication.currentUser.id,
+				time: timeStart,	
+			});
+>>>>>>> parent of c9fd591... consulta is working
 			onSuccess();
 		} catch (e) {
 			props.showSnackBar(e.message, "error");

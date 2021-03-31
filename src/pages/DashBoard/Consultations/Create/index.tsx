@@ -42,6 +42,7 @@ const Create: React.FC = () => {
 				<Form>
 					<Row>
 
+<<<<<<< HEAD
 						<TextField
 							{...useCreate.handleFilds("name")}
 							variant="outlined"
@@ -53,6 +54,8 @@ const Create: React.FC = () => {
 							autoFocus
 						/>
 
+=======
+>>>>>>> parent of c9fd591... consulta is working
 						<Autocomplete
 							className={classes.inputForm}
 							id="patientId"
