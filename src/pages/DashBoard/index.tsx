@@ -5,6 +5,10 @@ import MainLayout from "../../layout/MainLayout";
 import Home from "./Home";
 import Patient from "./Patient";
 import Consultations from "./Consultations";
+<<<<<<< HEAD
+=======
+import PatientRecord from "./PatientRecord";
+>>>>>>> parent of 12c856e (create users INCOMPLETE)
 
 const Dashboard: React.FC = () => {
 	return (
