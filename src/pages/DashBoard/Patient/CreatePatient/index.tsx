@@ -1,5 +1,3 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
 import {
 	FormControl,
 	InputLabel,
@@ -9,6 +7,7 @@ import {
 	Container,
 	Button,
 } from "@material-ui/core";
+import React from "react";
 import Form from "../../../../components/Form";
 import Row from "../../../../components/Form/Row";
 import TextRow from "../../../../components/Form/TextRow";
@@ -17,8 +16,6 @@ import { useStyles } from "./style";
 import useCreatePatient from "../../../../hooks/useCreatePatient";
 
 const CreatePatient: React.FC = () => {
-	const classes = useStyles();
-	const route = useHistory();
 	const {
 		setName,
 		setAge,
@@ -39,6 +36,7 @@ const CreatePatient: React.FC = () => {
 		setMedicine,
 		createPatient,
 	} = useCreatePatient();
+	const classes = useStyles();
 	return (
 		<Container className={classes.pageContent}>
 			<Card>
@@ -230,11 +228,7 @@ const CreatePatient: React.FC = () => {
 					</Row>
 					<Button
 						className={classes.buttonSave}
-						onClick={() => {
-							createPatient(() =>
-								route.push("/dashboard/patients"),
-							);
-						}}
+						onClick={createPatient}
 						variant="contained"
 					>
 						Criar
