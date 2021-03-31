@@ -2,7 +2,7 @@ import React from "react";
 
 import { useStyles } from "./style";
 
-import Table from "components/Table";
+import Table from "../../../../components/Table";
 
 import {
 	Box,
@@ -13,18 +13,16 @@ import {
 } from "@material-ui/core";
 import { Add, Delete, Edit, Visibility } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
-import * as api from "services/Api";
+import * as api from "../../../../services/Api";
 
 const ListPatient: React.FC = () => {
-	const [data, setData] = React.useState<api.IPatient[]>([]);
+	const [data, setData] = React.useState<api.IPatient[]>();
 
 	const classes = useStyles();
 	const { push } = useHistory();
 
 	React.useEffect(() => {
 		const request = async () => {
-			
-			console.log("ENTROU");
 			try {
 				const result = await api.getPatients();
 				setData(result.data);
@@ -39,7 +37,6 @@ const ListPatient: React.FC = () => {
 	const pushToCreate = (url: string) => {
 		push(url);
 	};
-
 	return (
 		<Box>
 			<Box className={classes.mainContainer}>
@@ -79,7 +76,7 @@ const ListPatient: React.FC = () => {
 									{item.name}
 								</TableCell>
 								<TableCell align="center">
-									{item.healthPlan}
+									{item.health_plan}
 								</TableCell>
 								<TableCell align="center">
 									<IconButton>
