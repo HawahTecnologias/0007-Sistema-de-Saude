@@ -43,6 +43,9 @@ const Create: React.FC = () => {
 					<Row>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 8f548b9... Prontuario
 						<TextField
 							{...useCreate.handleFilds("name")}
 							variant="outlined"

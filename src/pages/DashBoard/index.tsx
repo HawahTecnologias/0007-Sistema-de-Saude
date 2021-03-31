@@ -6,12 +6,15 @@ import Home from "./Home";
 import Patient from "./Patient";
 import Consultations from "./Consultations";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import PatientRecord from "./PatientRecord";
 <<<<<<< HEAD
 >>>>>>> parent of 12c856e (create users INCOMPLETE)
 =======
 >>>>>>> parent of 12c856e (create users INCOMPLETE)
+=======
+>>>>>>> parent of 8f548b9... Prontuario
 
 const Dashboard: React.FC = () => {
 	return (

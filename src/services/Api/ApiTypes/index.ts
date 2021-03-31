@@ -10,6 +10,7 @@ export interface IConsults {
 
 export interface ICreateConsults {
 <<<<<<< HEAD
+<<<<<<< HEAD
     name: string;
     consultType: string;
     timeStart: Date;
@@ -19,6 +20,11 @@ export interface ICreateConsults {
     time: Date;
     observation: string;
 >>>>>>> parent of c9fd591... consulta is working
+=======
+    name: string;
+    consultType: string;
+    timeStart: Date;
+>>>>>>> parent of 8f548b9... Prontuario
     patientId: string;
 }
 
@@ -71,6 +77,7 @@ export interface IUser {
     id: string;
     name: string;
 <<<<<<< HEAD
+<<<<<<< HEAD
     email: string;
 =======
     cpf: string;
@@ -86,6 +93,9 @@ export interface IUser {
 >>>>>>> parent of 12c856e (create users INCOMPLETE)
 =======
 >>>>>>> parent of 12c856e (create users INCOMPLETE)
+=======
+    email: string;
+>>>>>>> parent of 8f548b9... Prontuario
 }
 
 export interface ILoginUser {
@@ -94,11 +104,15 @@ export interface ILoginUser {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 8f548b9... Prontuario
 export const getPatients = async (): Promise<AxiosResponse<IPatient[]>> => await API.get("patients");
 export const getConsults = async (): Promise<AxiosResponse<IConsults[]>>  => await API.get("consults");
 export const createPatient = async (sendValue: ICreatePatient): Promise<IPatient> => await API.post("patients/create", sendValue);
 export const createConsult = async (sendValue: ICreateConsults) => await API.post("consults/create", sendValue);
 export const login = async (sendValue: ILoginUser): Promise<IUser> => API.post("/login", sendValue);
+<<<<<<< HEAD
 =======
 export interface IPatientRecord {
     id: string;
@@ -150,3 +164,5 @@ export const login = async (sendValue: ILoginUser): Promise<AxiosResponse<IUser>
 export const getPatientRecords = async (): Promise<AxiosResponse<IPatientRecord[]>> => await API.get("patientRecords", config);
 export const createPatientRecord = async (sendValue: ICreatePatientRecord): Promise<IPatientRecord> => await API.post("patientRecords/create", sendValue, config);
 >>>>>>> parent of 12c856e (create users INCOMPLETE)
+=======
+>>>>>>> parent of 8f548b9... Prontuario
