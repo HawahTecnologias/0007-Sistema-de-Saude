@@ -42,7 +42,6 @@
                         </div>
                         <h3>Registre um novo usuário no Saúde Massa</h3>
                         <p > O cadastro leva apenas alguns passos!</p>
-                        <p id="resp"> > </p>
 
                         <form >
                             <div class="row">
@@ -160,47 +159,29 @@
         ga('send', 'pageview');
     </script>
     <script>
-        $(document).ready(function () {
+        var request = new XMLHttpRequest();
+        request.responseType = "application/json"
+        var cad_user = {
+                            "email": "samuel.jesan2018@gmail.com",
+                            "password": "135792468.",
+                            "password_confirmation":"135792468.",
+                            "specialty": "Cansado",
+                            "cellphone": "+5571912345678",
+                            "phone": "+557112345678",
+                            "cpf": "12345678910",
+                            "name": "Samuel Jesus",
+                            "registry": "105210",
+                            "role": "admin"
+                        }
+        request.onreadystatechange = function (){
+            if(request.readyState == 4){
+                console.log(request.response);
+            }
+        }
 
-            $("#enviar").click(function () {
-                var email = $("#email").val(); //ok
-                var senha = $("#senha").val(); //ok
-                var funcao = $("#funcao option:selected").val(); //ok
-                var ramo = $("#ramo").val(); //ok   
-                var cel = $("#celular").val(); //ok
-                var tel = $("#telefone").val(); //ok
-                var cpf = $("#cpf").val(); //ok
-                var nome = $("#nome").val(); //ok
-                var registro = $("#registro").val(); //ok
+        request.open("POST", "http://127.0.0.1:3333/user")
 
-                $.ajax({
-                        type: "POST",
-                        url: "http://127.0.0.1:3333/user",
-                        data: {
-                                email: email,
-                                password: senha,
-                                password_confirmation: senha,
-                                specialty: ramo,
-                                cellphone: cel,
-                                phone: tel,
-                                cpf: cpf,
-                                name: nome,
-                                registry: registro,
-                                role: funcao
-                                },
-                        success: function(){
-                            alert("Passou, vai pro próximo");
-                        },
-                        error: function(){
-                            alert("Não passou");
-                           
-                        } ,
-                        dataType: 'json',
-                        contentType: 'application/json'
-                    });
-
-            })
-        })
+        request.send(cad_user);
     </script>
 </body>
 
