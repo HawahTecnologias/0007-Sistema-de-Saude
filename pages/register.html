@@ -159,29 +159,49 @@
         ga('send', 'pageview');
     </script>
     <script>
-        var request = new XMLHttpRequest();
-        request.responseType = "application/json"
-        var cad_user = {
-                            "email": "samuel.jesan2018@gmail.com",
-                            "password": "135792468.",
-                            "password_confirmation":"135792468.",
-                            "specialty": "Cansado",
-                            "cellphone": "+5571912345678",
-                            "phone": "+557112345678",
-                            "cpf": "12345678910",
-                            "name": "Samuel Jesus",
-                            "registry": "105210",
-                            "role": "admin"
+    $(document).ready(function () {
+
+        $("#enviar").click(function () {
+            var email = $("#email").val(); //ok
+            var senha = $("#senha").val(); //ok
+            var funcao = $("#funcao option:selected").val(); //ok
+            var ramo = $("#ramo").val(); //ok   
+            var cel = $("#celular").val(); //ok
+            var tel = $("#telefone").val(); //ok
+            var cpf = $("#cpf").val(); //ok
+            var nome = $("#nome").val(); //ok
+            var registro = $("#registro").val(); //ok
+
+            var request = new XMLHttpRequest();
+            request.responseType = "json"
+
+            var cad_user = {
+                            email: email,
+                            password: senha,
+                            password_confirmation: senha,
+                            specialty: ramo,
+                            cellphone: cel,
+                            phone: tel,
+                            cpf: cpf,
+                            name: nome,
+                            registry: registro,
+                            role: funcao
+                            }
+        
+        request.open("POST", "http://127.0.0.1:3333/user", true);
+        
+        // Envia a informação do cabeçalho junto com a requisição.
+        request.setRequestHeader("Content-Type", "application/json");
+
+        request.onreadystatechange = function() { // Chama a função quando o estado mudar.
+                        if (this.readyState === XMLHttpRequest.DONE) {
+                            alert("Cadastro efeituado com sucesso!!");
                         }
-        request.onreadystatechange = function (){
-            if(request.readyState == 4){
-                console.log(request.response);
-            }
-        }
+                    }
 
-        request.open("POST", "http://127.0.0.1:3333/user")
-
-        request.send(cad_user);
+        request.send(JSON.stringify(cad_user));
+        })
+    })
     </script>
 </body>
 
