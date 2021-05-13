@@ -45,11 +45,11 @@
                             <p>Feliz em ver você de novo, ótimo trabalho para você!</p>
                             <form action="/">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email" required="" >
+                                    <input type="email" class="form-control" placeholder="Email" required id="email" name="email">
                                     <i class="ik ik-user"></i>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Senha" required="" >
+                                    <input type="password" class="form-control" placeholder="Senha" required id="senha" name="senha" >
                                     <i class="ik ik-lock"></i>
                                 </div>
                                 <div class="row">
@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                                 <div class="sign-btn text-center">
-                                    <button class="btn btn-theme">Entrar</button>
+                                    <button class="btn btn-theme" id="entrar" name="entrar">Entrar</button>
                                 </div>
                             </form>
                         </div>
@@ -88,6 +88,36 @@
             e.src='https://www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+
+        <script>
+        $(document).ready(function () {
+            $("#entrar").click(function () {
+                var email = $("#email").val(); //ok
+                var senha = $("#senha").val(); //ok
+
+                var request = new XMLHttpRequest();
+                request.responseType = "json"
+
+                var login_user = {
+                                email: email,
+                                password: senha
+                                }
+
+            request.open("POST", "http://127.0.0.1:3333/auth", true);
+
+            // Envia a informação do cabeçalho junto com a requisição.
+            request.setRequestHeader("Content-Type", "application/json");
+
+            request.onreadystatechange = function() { // Chama a função quando o estado mudar.
+                            if (this.readyState === request.DONE) {
+                                alert("Logado com sucesso!!");
+                            }
+                        }
+
+            request.send(JSON.stringify(login_user));
+            })
+            })
         </script>
         
     </body>
