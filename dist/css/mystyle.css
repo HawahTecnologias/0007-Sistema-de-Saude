@@ -1,0 +1,18 @@
+.j-content-center{
+    justify-content: center;
+}
+.j-items-center{
+    justify-items: center;
+}
+.j-self-center{
+    justify-self: center;
+}
+.a-content-center{
+    align-content: center;
+}
+.a-items-center{
+    align-items: center;
+}
+.a-self-center{
+    align-self: center;
+}
