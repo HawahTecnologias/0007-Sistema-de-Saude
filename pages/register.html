@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Sign Up | ThemeKit - Admin Template</title>
+    <title>Registro | Saúde Massa</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
     <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="../dist/css/theme.min.css">
+    <link rel="stylesheet" href="../dist/css/mystyle.css"><!-- Meu estilo de CSS (Criado para colocar meus proprios css) -->
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -29,19 +30,19 @@
 
     <div class="auth-wrapper">
         <div class="container-fluid h-100">
-            <div class="row flex-row h-100 bg-blue">
+            <div class="row flex-row h-100 bg-aqua">
                 <div class="col-xl-6 col-lg-6 col-md-5 p-0 d-md-block d-lg-block d-sm-none d-none">
-                    <div class="lavalite-bg" style="background-image: url('../img/auth/register-bg.jpg')">
+                    <div class="lavalite-bg" style="background-image: url('../img/auth/img_register.jpg')">
                         <div class="lavalite-overlay"></div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-7 my-auto p-0">
                     <div class="authentication-form mx-auto">
-                        <div class="logo-centered">
-                            <a href="../index.html"><img src="#" alt="Logo"></a>
+                        <div class="logo-centered d-flex j-content-center">
+                            <a href="#"><img src="../img/icons/logo_sm.svg" alt="Logo"></a>
                         </div>
-                        <h3>Registre um novo usuário no Saúde Massa</h3>
-                        <p > O cadastro leva apenas alguns passos!</p>
+                        <h3>Registre um novo usuário no Saúde Massa <i class="ik ik-user-plus f-40 ml-30" ></i> </h3> 
+                        <div class="mb-30" id="cad_user_msg" > O cadastro leva apenas alguns passos!</div>
 
                         <form >
                             <div class="row">
@@ -123,7 +124,7 @@
                             </div>
 
                             <div class="sign-btn text-center">
-                                <button id="enviar" class="btn btn-theme">Registrar Usuário</button>
+                                <button id="enviar" class="btn btn-inverse">Registrar Usuário</button>
                             </div>
                         </form>
                     </div>
@@ -194,11 +195,18 @@
         request.setRequestHeader("Content-Type", "application/json");
 
         request.onreadystatechange = function() { // Chama a função quando o estado mudar.
-                        if (this.readyState === XMLHttpRequest.DONE) {
-                            alert("Cadastro efeituado com sucesso!!");
+                        if (this.readyState === XMLHttpRequest.DONE && this.status === 201) {
+                            $("#cad_user_msg").html('<div class="alert bg-success alert-success text-white" role="alert"> Usuário <b> Cadastrado(a)!!</b> com sucesso!! </div>');
+                                console.log(request);
+                                setTimeout(function(){ window.location.href = '../index.html'; }, 35000); 
+                            console.log(request.response);
+                        }else{
+                            $("#cad_user_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> Algo deu <b> errado</b> no bagulho! </div>');
+                            alert("Cadastro não realizado!");
+                            console.log(request.response);
                         }
                     }
-
+                    console.log(request);
         request.send(JSON.stringify(cad_user));
         })
     })
