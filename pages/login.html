@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Login | ThemeKit - Admin Template</title>
-        <meta name="description" content="">
+        <title>Login | Saúde Massa</title>
+        <meta name="description" content="Faça login para ter acesso ao Sistema | Saúde Massa">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
         <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
         <link rel="stylesheet" href="../dist/css/theme.min.css">
+        <link rel="stylesheet" href="../dist/css/mystyle.css"><!-- Meu estilo de CSS (Criado para colocar meus proprios css) -->
         <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
 
          
@@ -30,20 +31,20 @@
 
         <div class="auth-wrapper">
             <div class="container-fluid h-100">
-                <div class="row flex-row h-100 bg-blue">
+                <div class="row flex-row h-100 bg-aqua">
                     <div class="col-xl-8 col-lg-6 col-md-5 p-0 d-md-block d-lg-block d-sm-none d-none">
-                        <div class="lavalite-bg" style="background-image: url('../img/auth/login-bg.jpg')">
+                        <div class="lavalite-bg" style="background-image: url('../img/auth/login_bg2.png')">
                             <div class="lavalite-overlay"></div>
                         </div>
                     </div>
                     <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
                         <div class="authentication-form mx-auto">
-                            <div class="logo-centered">
-                                <a href="../index.html"><img src="" alt="Logo Marca"></a>
+                            <div class="logo-centered d-flex j-content-center">
+                                <a href="../index.html"><img src="../img/icons/logo_sm.svg" alt="Logo Marca"></a>
                             </div>
-                            <h3>Entrar Saude Massa</h3>
-                            <p>Feliz em ver você de novo, ótimo trabalho para você!</p>
-                            <form action="/">
+                            <h3>Entrar em Saúde Massa <i class="ik ik-arrow-right-circle f-30 ml-20" ></i></h3>
+                            <div id="login_msg" class="mb-30">Feliz em ver você de novo, ótimo trabalho para você!</div>
+                            <form id="form_login">
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Email" required id="email" name="email">
                                     <i class="ik ik-user"></i>
@@ -64,7 +65,7 @@
                                     </div>
                                 </div>
                                 <div class="sign-btn text-center">
-                                    <button class="btn btn-theme" id="entrar" name="entrar">Entrar</button>
+                                    <button onclick="login()" class="btn btn-inverse" >Entrar</button>
                                 </div>
                             </form>
                         </div>
@@ -91,34 +92,93 @@
         </script>
 
         <script>
-        $(document).ready(function () {
-            $("#entrar").click(function () {
-                var email = $("#email").val(); //ok
-                var senha = $("#senha").val(); //ok
+        function login() {
+    
+            let email = $("#email").val();
+            let pass = $("#senha").val();
+            let form_login = document.querySelector("#form_login");
 
-                var request = new XMLHttpRequest();
-                request.responseType = "json"
-
-                var login_user = {
-                                email: email,
-                                password: senha
-                                }
-
-            request.open("POST", "http://127.0.0.1:3333/auth", true);
-
-            // Envia a informação do cabeçalho junto com a requisição.
-            request.setRequestHeader("Content-Type", "application/json");
-
-            request.onreadystatechange = function() { // Chama a função quando o estado mudar.
-                            if (this.readyState === request.DONE) {
-                                alert("Logado com sucesso!!");
-                            }
+            form_login.addEventListener("submit", function(event){
+                    event.preventDefault();
+                let request = $.ajax({
+                    type: "POST",
+                    url: "http://127.0.0.1:3333/login",
+                    xhrFields: { withCredentials: true },
+                    data: {
+                        email: email,
+                        password: pass,
+                    },
+                    
+                    cache: false,
+                    success: function(xhr, ajaxOptions, thrownError){
+                        $("#login_msg").html('<div class="alert bg-success alert-success text-white" role="alert"> <b> Seja bem vindo(a)!!</b> Estamos lhe direcionando... </div>');
+                        // setTimeout(function(){ window.location.href = '../index.html'; }, 200000);
+                        setTimeout(function(){ window.location.replace("../index.html"); }, 200000);
+                        console.log(xhr, ajaxOptions, thrownError);
+                        
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        if(request.status == 400 ){
+                           $("#login_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Algo está errado(a)!!</b> confira os dados inseridos e tente novamente! </div>');
+                            setInterval(function(){ $("#login_msg").html(''); }, 5000); 
+                        }else if(request.status == 500 ){
+                            $("#login_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Erro no servidor(a)!!</b> Aguarde ou contate o suporte! </div>');
+                            setInterval(function(){ $("#login_msg").html(''); }, 5000); 
                         }
-
-            request.send(JSON.stringify(login_user));
-            })
-            })
+                    console.log(xhr, ajaxOptions, thrownError);
+                 
+                }
+                });
+            });
+            }
         </script>
+        
+        <!-- <script>  ERRO AO TENTAR PASSAR AS CREDENCIAS PARA OUTRAS PAGINAS.
+             
+                let email = document.querySelector("#email");
+                let senha = document.querySelector("#senha");
+                let form_login = document.querySelector("#form_login")
+
+                form_login.addEventListener("submit", function(event){
+                    event.preventDefault();
+
+                    let user = {
+                                email: email.value,
+                                password: senha.value
+                                }
+                     
+                    fetch('http://localhost:3333/login', {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        mode: 'cors',
+                        credentials: 'include',
+                        body: JSON.stringify(user)
+                    })
+                    
+                    .then(function(response){
+                        return response
+                    })
+                    .then(function(response){
+                        const cookieValue = document.cookie; 
+                        
+                        if (response.status == 200){
+                            $("#login_msg").html('<div class="alert bg-success alert-success text-white" role="alert"> <b> Seja bem vindo(a)!!</b> Estamos lhe direcionando... </div>');
+                            setTimeout(function(){ window.location.href = '../index.html'; }, 200000); 
+                        }else{
+                            setInterval(function(){ $("#login_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Algo está errado(a)!!</b> confira os dados inseridos e tente novamente! </div>'); }, 5000); 
+                        }
+                        console.log(cookieValue);
+                    })
+                    .catch(function(response){
+                       
+                        console.log(response);
+                    })
+                   
+                })
+
+        </script> -->
         
     </body>
 </html>
