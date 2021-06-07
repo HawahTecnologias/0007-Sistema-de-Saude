@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Sistema de Saúde</title>
+    <title>Home - Saúde Massa </title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,12 +25,10 @@
     <link rel="stylesheet" href="plugins/c3/c3.min.css">
     <link rel="stylesheet" href="plugins/owl.carousel/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="plugins/owl.carousel/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="plugins/jquery-toast-plugin/dist/jquery.toast.min.css">
     <link rel="stylesheet" href="dist/css/theme.min.css">
-    <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
-
     <link rel="stylesheet" href="plugins/fullcalendar/dist/fullcalendar.min.css">
-
-
+    <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
 <body>
@@ -54,13 +52,13 @@
                         <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
                     </div>
                     <div class="top-menu d-flex align-items-center">
+                        <!-- Ícone de Notificações (Dropdown) -->
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ik ik-bell"></i>
                                 <span class="badge bg-danger">0</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right notification-dropdown"
-                                aria-labelledby="notiDropdown">
+                            <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
                                 <h4 class="header">Notificações</h4>
                                 <div class="notifications-wrap">
                                     <a href="#" class="media">
@@ -94,78 +92,60 @@
                                 <div class="footer"><a href="javascript:void(0);">Veja todas as atividades</a></div>
                             </div>
                         </div>
+                        <!-- Botão para acesso ao (Modal) Chat -->
                         <button type="button" class="nav-link ml-10 right-sidebar-toggle">
                             <i class="ik ik-message-square"></i>
                             <span class="badge bg-success">0</span></button>
+                        <!-- Ícone de mapa de páginas minificado (Dropdown) -->
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="menuDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="ik ik-plus"></i></a>
+                            <a class="nav-link dropdown-toggle" href="#" id="menuDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ik ik-plus"></i>
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right menu-grid" aria-labelledby="menuDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Dashboard"><i class="ik ik-bar-chart-2"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Message"><i class="ik ik-mail"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Accounts"><i class="ik ik-users"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Sales"><i class="ik ik-shopping-cart"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Purchase"><i class="ik ik-briefcase"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Pages"><i class="ik ik-clipboard"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Chats"><i class="ik ik-message-square"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Contacts"><i class="ik ik-map-pin"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Blocks"><i class="ik ik-inbox"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Events"><i class="ik ik-calendar"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="Notifications"><i class="ik ik-bell"></i></a>
-                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top"
-                                    title="More"><i class="ik ik-more-horizontal"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Dashboard"><i class="ik ik-bar-chart-2"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Message"><i class="ik ik-mail"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Accounts"><i class="ik ik-users"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Sales"><i class="ik ik-shopping-cart"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Purchase"><i class="ik ik-briefcase"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Pages"><i class="ik ik-clipboard"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Chats"><i class="ik ik-message-square"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Contacts"><i class="ik ik-map-pin"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Blocks"><i class="ik ik-inbox"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Events"><i class="ik ik-calendar"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="Notifications"><i class="ik ik-bell"></i></a>
+                                <a class="dropdown-item" href="#" data-toggle="tooltip" data-placement="top" title="More"><i class="ik ik-more-horizontal"></i></a>
                             </div>
                         </div>
-                        <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal"
-                            data-target="#appsModal"><i class="ik ik-grid"></i></button>
+                        <!-- Botão para acesso ao (Modal) de mapa de páginas -->
+                        <button type="button" class="nav-link ml-10" id="apps_modal_btn" data-toggle="modal" data-target="#appsModal"><i class="ik ik-grid"></i></button>
+                        <!-- Icone de Perfil (Dropdown)-->
                         <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/user.jpg"
-                                    alt=""></a>
+                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/user.jpg" alt=""></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i>
-                                    Perfil</a>
-                                <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i>
-                                    Configuração</a>
-                                <a class="dropdown-item" href="#"><span class="float-right"><span
-                                            class="badge badge-primary">6</span></span><i
-                                        class="ik ik-mail dropdown-icon"></i> Inbox</a>
-                                <a class="dropdown-item" href="#"><i class="ik ik-navigation dropdown-icon"></i>
-                                    Messagem</a>
-                                <a class="dropdown-item" href="login.html"><i class="ik ik-power dropdown-icon"></i>
-                                    Sair</a>
+                                <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Perfil</a>
+                                <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Configuração</a>
+                                <a class="dropdown-item" href="#"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="ik ik-mail dropdown-icon"></i> Inbox</a>
+                                <a class="dropdown-item" href="#"><i class="ik ik-navigation dropdown-icon"></i> Messagem</a>
+                                <a class="dropdown-item" href="login.html"><i class="ik ik-power dropdown-icon"></i> Sair</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </header>
 
         <div class="page-wrap">
+            <!-- Barra de menu lateral -->
             <div class="app-sidebar colored">
                 <div class="sidebar-header">
                     <a class="header-brand" href="index.html">
                         <div class="logo-img">
-                            <img src="" class="header-brand-img" alt=".">
+                            <img src="img/icons/logo_sm.svg" class="header-brand-img" alt="." width="100%">
                             <!-- colocar no alt texto indicando q é a logo -->
                         </div>
-                        <span class="text">My Saúde</span>
+                        <span class="text"> Saúde Masssa</span>
                     </a>
-                    <button type="button" class="nav-toggle"><i data-toggle="expanded"
-                            class="ik ik-toggle-right toggle-icon"></i></button>
+                    <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
                     <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
                 </div>
 
@@ -205,13 +185,13 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Conteúdo Principal da página -->
             <div class="main-content">
                 <div class="container-fluid">
                     <div class="row clearfix">
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="widget">
-                                <a href="" data-toggle="modal" data-target="#fullwindowModal">
+                                <a href="" data-toggle="modal" data-target="#cad_pacit">
                                     <div class="widget-body">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="state">
@@ -311,256 +291,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal" id="editEvent" tabindex="-1" role="dialog"
-                                            aria-labelledby="editEventLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <form class="editEventForm">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="editEventLabel">Edit Event</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close"><span
-                                                                    aria-hidden="true">&times;</span></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="editEname">Event Title</label>
-                                                                <input type="text" class="form-control" id="editEname"
-                                                                    name="editEname"
-                                                                    placeholder="Please enter event title">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="editStarts">Start</label>
-                                                                <input type="text"
-                                                                    class="form-control datetimepicker-input"
-                                                                    id="editStarts" name="editStarts"
-                                                                    data-toggle="datetimepicker"
-                                                                    data-target="#editStarts">
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Close</button>
-                                                            <button class="btn btn-danger delete-event"
-                                                                type="submit">Delete</button>
-                                                            <button class="btn btn-success save-event"
-                                                                type="submit">Save</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-
-                                        <div class="modal" id="addEvent" tabindex="-1" role="dialog"
-                                            aria-labelledby="addEventLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="addEventLabel">Agendar Consulta</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close"><span
-                                                                aria-hidden="true">&times;</span></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form id="addEventForm">
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <div class="form-group">
-                                                                        <label for="eventName">Buscar</label>
-                                                                        <input type="text" class="form-control"
-                                                                            id="eventName" name="eventName"
-                                                                            placeholder="Buscar por nome ou telefone">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleSelectGender">Tipo de
-                                                                            Consulta</label>
-                                                                        <select class="form-control"
-                                                                            id="exampleSelectGender">
-                                                                            <option>Primeira</option>
-                                                                            <option>Retorno</option>
-                                                                            <option>Internação</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputName1">Nome </label>
-                                                                        <input type="text" class="form-control"
-                                                                            id="exampleInputName1"
-                                                                            placeholder="Nome completo">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleSelectGender">Gênero</label>
-                                                                        <select class="form-control"
-                                                                            id="exampleSelectGender">
-                                                                            <option>Masculino</option>
-                                                                            <option>Feminino</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label
-                                                                            for="exampleInputEmail3">Nascimento</label>
-                                                                        <input type="date" class="form-control"
-                                                                            id="exampleInputEmail3"
-                                                                            placeholder="Nascimento">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleSelectGender">Plano de
-                                                                            saúde</label>
-                                                                        <select class="form-control"
-                                                                            id="exampleSelectGender">
-                                                                            <option>Plano O1</option>
-                                                                            <option>Plano 02</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputPassword4">Telefone
-                                                                            01</label>
-                                                                        <input type="tel" class="form-control"
-                                                                            id="exampleInputPassword4"
-                                                                            placeholder="Contato 01">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputPassword4">Telefone
-                                                                            02</label>
-                                                                        <input type="tel" class="form-control"
-                                                                            id="exampleInputPassword4"
-                                                                            placeholder="Contato 02">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-5">
-                                                                    <div class="form-group">
-                                                                        <label
-                                                                            for="exampleInputPassword4">E-mail</label>
-                                                                        <input type="email" class="form-control"
-                                                                            id="exampleInputPassword4"
-                                                                            placeholder="E-mail">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label for="eventStarts">Horário</label>
-                                                                        <input type="text"
-                                                                            class="form-control datetimepicker-input"
-                                                                            id="eventStarts" name="eventStarts"
-                                                                            data-toggle="datetimepicker"
-                                                                            data-target="#eventStarts">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-9 ">
-                                                                    <div class="modal-header">
-                                                                        <h4>Observações</h4>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="exampleTextarea1">Anotar</label>
-                                                                        <textarea class="form-control"
-                                                                            id="exampleTextarea1" rows="4"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group mb-0" id="addColor">
-                                                                <label for="colors">Nivel de atendimento</label>
-                                                                <ul class="color-selector">
-                                                                    <li class="bg-aqua">
-                                                                        <input type="radio" data-color="bg-aqua" checked
-                                                                            name="colorChosen" id="addColorAqua">
-                                                                        <label for="addColorAqua"></label>
-                                                                    </li>
-                                                                    <li class="bg-blue">
-                                                                        <input type="radio" data-color="bg-blue"
-                                                                            name="colorChosen" id="addColorBlue">
-                                                                        <label for="addColorBlue"></label>
-                                                                    </li>
-                                                                    <li class="bg-light-blue">
-                                                                        <input type="radio" data-color="bg-light-blue"
-                                                                            name="colorChosen" id="addColorLightblue">
-                                                                        <label for="addColorLightblue"></label>
-                                                                    </li>
-                                                                    <li class="bg-teal">
-                                                                        <input type="radio" data-color="bg-teal"
-                                                                            name="colorChosen" id="addColorTeal">
-                                                                        <label for="addColorTeal"></label>
-                                                                    </li>
-                                                                    <li class="bg-yellow">
-                                                                        <input type="radio" data-color="bg-yellow"
-                                                                            name="colorChosen" id="addColorYellow">
-                                                                        <label for="addColorYellow"></label>
-                                                                    </li>
-                                                                    <li class="bg-orange">
-                                                                        <input type="radio" data-color="bg-orange"
-                                                                            name="colorChosen" id="addColorOrange">
-                                                                        <label for="addColorOrange"></label>
-                                                                    </li>
-                                                                    <li class="bg-green">
-                                                                        <input type="radio" data-color="bg-green"
-                                                                            name="colorChosen" id="addColorGreen">
-                                                                        <label for="addColorGreen"></label>
-                                                                    </li>
-                                                                    <li class="bg-lime">
-                                                                        <input type="radio" data-color="bg-lime"
-                                                                            name="colorChosen" id="addColorLime">
-                                                                        <label for="addColorLime"></label>
-                                                                    </li>
-                                                                    <li class="bg-red">
-                                                                        <input type="radio" data-color="bg-red"
-                                                                            name="colorChosen" id="addColorRed">
-                                                                        <label for="addColorRed"></label>
-                                                                    </li>
-                                                                    <li class="bg-purple">
-                                                                        <input type="radio" data-color="bg-purple"
-                                                                            name="colorChosen" id="addColorPurple">
-                                                                        <label for="addColorPurple"></label>
-                                                                    </li>
-                                                                    <li class="bg-fuchsia">
-                                                                        <input type="radio" data-color="bg-fuchsia"
-                                                                            name="colorChosen" id="addColorFuchsia">
-                                                                        <label for="addColorFuchsia"></label>
-                                                                    </li>
-                                                                    <li class="bg-muted">
-                                                                        <input type="radio" data-color="bg-muted"
-                                                                            name="colorChosen" id="addColorMuted">
-                                                                        <label for="addColorMuted"></label>
-                                                                    </li>
-                                                                    <li class="bg-navy">
-                                                                        <input type="radio" data-color="bg-navy"
-                                                                            name="colorChosen" id="addColorNavy">
-                                                                        <label for="addColorNavy"></label>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Close</button>
-                                                        <button type="button"
-                                                            class="btn btn-success save-event">Save</button>
-                                                        <button type="button" class="btn btn-danger delete-event"
-                                                            data-dismiss="modal">Delete</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -611,7 +341,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>002</td>
-                                                                <td><img src="../img/users/2.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td><img src="img/users/2.jpg" class="table-user-thumb" alt=""></td>
                                                                 <td>Abraham Douglas</td>
                                                                 <td>jgraham@example.com</td>
                                                                 <td>Em atendimento</td>
@@ -626,7 +356,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>003</td>
-                                                                <td><img src="../img/users/3.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td><img src="img/users/3.jpg" class="table-user-thumb" alt=""></td>
                                                                 <td>Roderick Simonis</td>
                                                                 <td>grant.simonis@example.com</td>
                                                                 <td>Faltou</td>
@@ -641,7 +371,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>004</td>
-                                                                <td><img src="../img/users/4.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td><img src="img/users/4.jpg" class="table-user-thumb" alt=""></td>
                                                                 <td>Christopher Henry</td>
                                                                 <td>henry.chris@example.com</td>
                                                                 <td>Cancelado</td>
@@ -656,7 +386,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>005</td>
-                                                                <td><img src="../img/users/5.jpg" class="table-user-thumb" alt=""></td>
+                                                                <td><img src="img/users/5.jpg" class="table-user-thumb" alt=""></td>
                                                                 <td>Sonia Wilkinson</td>
                                                                 <td>boyle.aglea@example.com</td>
                                                                 <td>Teleconsulta</td>
@@ -842,8 +572,7 @@
                     <form action="javascript:void(0)" class="card-footer" method="post">
                         <div class="d-flex justify-content-end">
                             <textarea class="border-0 flex-1" rows="1" placeholder="Type your message here"></textarea>
-                            <button class="btn btn-icon" type="submit"><i
-                                    class="ik ik-arrow-right text-success"></i></button>
+                            <button class="btn btn-icon" type="submit"><i class="ik ik-arrow-right text-success"></i></button>
                         </div>
                     </form>
                 </div>
@@ -851,11 +580,8 @@
 
             <footer class="footer">
                 <div class="w-100 clearfix">
-                    <span class="text-center text-sm-left d-md-inline-block">Copyright © 2018 ThemeKit v2.0. All Rights
-                        Reserved.</span>
-                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i
-                            class="fa fa-heart text-danger"></i> by <a href="http://lavalite.org/" class="text-dark"
-                            target="_blank">Lavalite</a></span>
+                    <span class="text-center text-sm-left d-md-inline-block">Copyright © 2018 ThemeKit v2.0. All Rights Reserved.</span>
+                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i class="fa fa-heart text-danger"></i> by <a href="http://lavalite.org/" class="text-dark" target="_blank">Lavalite</a></span>
                 </div>
             </footer>
 
@@ -869,12 +595,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="fullwindowModalLabel">Consultas</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -883,10 +606,8 @@
         </div>
     </div>
 
-    <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel"
-        aria-hidden="true" data-backdrop="false">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i
-                class="ik ik-x-circle"></i></button>
+    <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="quick-search">
@@ -908,9 +629,9 @@
                                 <a href="#"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
                             </div>
                             <div class="app-item dropdown">
-                                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                        class="ik ik-command"></i><span>Ui</span></a>
+                                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="ik ik-command"></i><span>Ui</span>
+                                </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
@@ -973,9 +694,241 @@
     </div>
 
 
+<!-- MODAIS -->
+  <!-- Modal Edit de agendamento -->
+    <div class="modal" id="editEvent" tabindex="-1" role="dialog" aria-labelledby="editEventLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form class="editEventForm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editEventLabel">Edit Event</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="editEname">Event Title</label>
+                            <input type="text" class="form-control" id="editEname" name="editEname" placeholder="Please enter event title">
+                        </div>
+                        <div class="form-group">
+                            <label for="editStarts">Start</label>
+                            <input type="text" class="form-control datetimepicker-input" id="editStarts" name="editStarts" data-toggle="datetimepicker" data-target="#editStarts">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger delete-event" type="submit">Delete</button>
+                        <button class="btn btn-success save-event" type="submit">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  <!-- Modal Cadastro de agedandamento -->
+    <div class="modal" id="addEvent" tabindex="-1" role="dialog"
+    aria-labelledby="addEventLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEventLabel">Agendar Consulta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="eventName">Buscar</label>
+                                <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Buscar por nome ou telefone">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Tipo de Consulta: </label>
+                                <div><p class="badge badge-pill badge-info">Primeira</p></div>
+                                <!-- <select class="form-control"
+                                    id="exampleSelectGender">
+                                    <option>Primeira</option>
+                                    <option>Retorno</option>
+                                    <option>Internação</option>
+                                </select> -->
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Nome: </label>
+                                <p>Paciente sobre nome</p>
+                                <!-- <input type="text" class="form-control" id="exampleInputName1" placeholder="Nome completo"> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Gênero: </label>
+                                <p>Masculino</p>
+                                <!-- <select class="form-control"
+                                    id="exampleSelectGender">
+                                    <option>Masculino</option>
+                                    <option>Feminino</option>
+                                </select> -->
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="exampleInputEmail3">Nascimento: </label>
+                                    <p>10/12/1995</p>
+                                <!-- <input type="date" class="form-control" id="exampleInputEmail3" placeholder="Nascimento"> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputPassword4">Telefone 01: </label>
+                                <p>(71) 9 8455-9568</p>
+                                <!-- <input type="tel" class="form-control" id="exampleInputPassword4" placeholder="Contato 01"> -->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputPassword4">Telefone 02: </label>
+                                <p>(71) 9 8455-9568</p>
+                                <!-- <input type="tel" class="form-control" id="exampleInputPassword4" placeholder="Contato 02"> -->
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputPassword4">E-mail: </label>
+                                <p>email@hotmail.com</p>
+                                <!-- <input type="email" class="form-control" id="exampleInputPassword4" placeholder="E-mail"> -->
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Plano de saúde: </label>
+                                <p>Plaserv</p>
+                                <!-- <select class="form-control"
+                                    id="exampleSelectGender">
+                                    <option>Plano O1</option>
+                                    <option>Plano 02</option>
+                                </select> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="agd_data">Horário da consulta</label>
+                                <!-- <input type="text" class="form-control datetimepicker-input" id="eventStarts" name="eventStarts" data-toggle="datetimepicker" data-target="#eventStarts"> -->
+                                <div><small>Início:</small></div>
+                                <input type="datetime-local" class="form-control" name="agd_data" id="agd_data">
+                                <div><small>Final:</small></div>
+                                <input type="datetime-local" class="form-control" name="agd_data_fim" id="agd_data_fim">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="agd_tipo">Tipo de consulta:</label>
+                                <select class="form-control" id="agr_tipo" name="agr_tipo">
+                                    <option value="teleconsultation">Teleconsulta</option>
+                                    <option value="presential">Presencial</option>
+                                </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="agd_status">Status do Agendamento:</label>
+                                <select class="form-control" id="agd_status" name="agd_status">
+                                    <option value="scheduled">Agendado</option>
+                                    <option value="waiting">Em espera</option>
+                                    <option value="inProgress">Em andamento</option>
+                                    <option value="canceled">Cancelado</option>
+                                    <option value="done">Concluído</option>
+                                    <option value="confirmed">Confirmado</option>
+                                    <option value="missed ">Perdido</option>
+                                </select>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <div class="modal-header">
+                                <h4>Observações:</h4>
+                            </div>
+                            <div class="form-group">
+                                <label for="agd_nota">Anotar</label>
+                                <textarea class="form-control" rows="3" id="agd_nota" name="agd_nota"></textarea>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="modal fade full-window-modal" id="fullwindowModal" tabindex="-1" role="dialog"
+                    <div class="form-group mb-0" id="addColor">
+                        <label for="colors">Nível de atendimento</label>
+                        <ul class="color-selector">
+                            <li class="bg-aqua">
+                                <input type="radio" data-color="bg-aqua" name="colorChosen" id="addColorAqua">
+                                <label for="addColorAqua"></label>
+                            </li>
+                            <li class="bg-blue">
+                                <input type="radio" data-color="bg-blue" name="colorChosen" id="addColorBlue">
+                                <label for="addColorBlue"></label>
+                            </li>
+                            <li class="bg-light-blue">
+                                <input type="radio" data-color="bg-light-blue" name="colorChosen" id="addColorLightblue">
+                                <label for="addColorLightblue"></label>
+                            </li>
+                            <li class="bg-teal">
+                                <input type="radio" data-color="bg-teal" name="colorChosen" id="addColorTeal">
+                                <label for="addColorTeal"></label>
+                            </li>
+                            <li class="bg-yellow">
+                                <input type="radio" data-color="bg-yellow" name="colorChosen" id="addColorYellow">
+                                <label for="addColorYellow"></label>
+                            </li>
+                            <!-- <li class="bg-orange">
+                                <input type="radio" data-color="bg-orange" name="colorChosen" id="addColorOrange">
+                                <label for="addColorOrange"></label>
+                            </li>
+                            <li class="bg-green">
+                                <input type="radio" data-color="bg-green" name="colorChosen" id="addColorGreen">
+                                <label for="addColorGreen"></label>
+                            </li>
+                            <li class="bg-lime">
+                                <input type="radio" data-color="bg-lime" name="colorChosen" id="addColorLime">
+                                <label for="addColorLime"></label>
+                            </li>
+                            <li class="bg-red">
+                                <input type="radio" data-color="bg-red" name="colorChosen" id="addColorRed">
+                                <label for="addColorRed"></label>
+                            </li>
+                            <li class="bg-purple">
+                                <input type="radio" data-color="bg-purple" name="colorChosen" id="addColorPurple">
+                                <label for="addColorPurple"></label>
+                            </li>
+                            <li class="bg-fuchsia">
+                                <input type="radio" data-color="bg-fuchsia" name="colorChosen" id="addColorFuchsia">
+                                <label for="addColorFuchsia"></label>
+                            </li>
+                            <li class="bg-muted">
+                                <input type="radio" data-color="bg-muted" name="colorChosen" id="addColorMuted">
+                                <label for="addColorMuted"></label>
+                            </li>
+                            <li class="bg-navy">
+                                <input type="radio" data-color="bg-navy" name="colorChosen" id="addColorNavy">
+                                <label for="addColorNavy"></label>
+                            </li> -->
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger delete-event" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                <button type="button" class="btn btn-success save-event" value="Agendando" id="agendar_pacit" name="agendar_pacit">Agendar</button>
+            </div>
+        </div>
+    </div>
+    </div>
+  <!-- Modal Cadastro Paciente -->
+    <div class="modal fade full-window-modal" id="cad_pacit" tabindex="-1" role="dialog"
         aria-labelledby="fullwindowModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -986,130 +939,142 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form class="forms-sample">
+                        <form id="form_cad_pacit" class="forms-sample">
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label for="exampleInputName1">Nome </label>
-                                                <input type="text" class="form-control" id="exampleInputName1"
-                                                    placeholder="Nome completo">
+                                                <label for="cad_nome"> Nome </label>
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                      <input type="text" class="form-control" placeholder="Nome" id="cad_nome" name="cad_nome" >
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" placeholder="Sobrenome" id="cad_sobrenome" name="cad_sobrenome" >
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="exampleSelectGender">Gênero</label>
-                                                <select class="form-control" id="exampleSelectGender">
-                                                    <option>Masculino</option>
-                                                    <option>Feminino</option>
+                                                <label for="cad_genero">Gênero</label>
+                                                <select class="form-control" id="cad_genero" name="cad_genero">
+                                                    <option value="male">Masculino</option>
+                                                    <option value="female">Feminino</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail3">Cor</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail3"
-                                                    placeholder="Cor">
+                                                <label for="cad_etnia">Etinia</label>
+                                                <select class="form-control" id="cad_etnia" name="cad_etnia">
+                                                    <option value="white">Branco</option>
+                                                    <option value="black">Marrom</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail3">Nascimento</label>
-                                                <input type="date" class="form-control" id="exampleInputEmail3"
-                                                    placeholder="Nascimento">
+                                                <label for="cad_nasci">Nascimento</label>
+                                                <input type="date" class="form-control" placeholder="Nascimento" id="cad_nasci" name="cad_nasci">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleSelectGender">Plano de saúde</label>
-                                                <select class="form-control" id="exampleSelectGender">
-                                                    <option>Plano O1</option>
-                                                    <option>Plano 02</option>
-                                                </select>
+                                                <label for="cad_plano">Plano de Saúde</label>
+                                                <input type="text" class="form-control" placeholder="Plano de saúde" id="cad_plano" name="cad_plano">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail3">Naturalidade</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail3"
-                                                    placeholder="Naturalidade">
+                                                <label for="cad_natural">Naturalidade</label>
+                                                <input type="text" class="form-control" placeholder="Naturalidade" id="cad_natural" name="cad_natural">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="exampleSelectGender">Renda</label>
-                                                <select class="form-control" id="exampleSelectGender">
-                                                    <option value="Select"></option>
-                                                    <option>Não informado </option>
-                                                    <option>Sem renda</option>
-                                                    <option>Salário Mínimo</option>
-                                                    <option>1 a 3 Salários</option>
-                                                    <option>3 a 5 Salários</option>
-                                                    <option>Mais de 5 Salários</option>
-                                                </select>
+                                                <div class="form-group">
+                                                    <label for="cad_renda">Renda</label>
+                                                    <input type="number" class="form-control" placeholder="Renda" id="cad_renda" name="cad_renda">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail3">Profissão</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail3"
-                                                    placeholder="Profissão">
+                                                <label for="cad_profi">Profissão</label>
+                                                <input type="text" class="form-control" placeholder="Profissão" id="cad_profi" name="cad_profi">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword4">Telefone 01</label>
-                                                <input type="tel" class="form-control" id="exampleInputPassword4"
-                                                    placeholder="Contato 01">
+                                                <label for="cad_tel_1">Telefone 1</label>
+                                                <input type="tel" class="form-control" placeholder="Contado principal" id="cad_tel_1" name="cad_tel_1">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword4">Telefone 02</label>
-                                                <input type="tel" class="form-control" id="exampleInputPassword4"
-                                                    placeholder="Contato 02">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword4">E-mail</label>
-                                                <input type="email" class="form-control" id="exampleInputPassword4"
-                                                    placeholder="Seu melhor e-mail">
+                                                <label for="cad_tel_2">Telefone 2</label>
+                                                <input type="tel" class="form-control"  placeholder="Contato secundário" id="cad_tel_2" name="cad_tel_2">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword4">Escolaridade</label>
-                                                <input type="text" class="form-control" id="exampleInputPassword4"
-                                                    placeholder="Escolaridade">
+                                                <label for="cad_cel">Tel Celular</label>
+                                                <input type="text" class="form-control" placeholder="Como conheceu" id="cad_cel" name="cad_cel">
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="exampleSelectGender">Como conheceu</label>
-                                                <select class="form-control" id="exampleSelectGender">
-                                                    <option value="Select"></option>
-                                                    <option>Na internet </option>
-                                                    <option>Instagran</option>
-                                                    <option>Facebook</option>
-                                                    <option>Indicação</option>
-                                                    <option>Fundação Neurologia</option>
-                                                    <option>Outro</option>
-                                                </select>
+                                                <label for="cad_email">E-mail</label>
+                                                <input type="email" class="form-control" placeholder="Seu melhor e-mail" id="cad_email" name="cad_email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="cad_escolar">Escolaridade</label>
+                                                <input type="text" class="form-control" placeholder="Escolaridade" id="cad_escolar" name="cad_escolar">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="exampleInputPassword4">Endereço</label>
-                                                <input type="text" class="form-control" id="exampleInputPassword4"
-                                                    placeholder="Enderenço">
+                                                <label for="cad_rua">Endereço</label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <input type="text" class="form-control" placeholder="Minha rua, nº 23(apt)" id="cad_rua" name="cad_rua">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" placeholder="Cidade" id="cad_cidade" name="cad_cidade">
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" placeholder="Estado" id="cad_estado" name="cad_estado" >
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <input type="text" class="form-control" placeholder="Pais" id="cad_pais" name="cad_pais">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top: 5px;">
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" placeholder="complemento" id="cad_complemento" name="cad_complemento">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="text" class="form-control" placeholder="Vizinhos" id="cad_vizinhos" name="cad_vizinhos">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="cad_conheceu">Como conheceu?</label>
+                                                <input type="text" class="form-control" placeholder="Como conheceu" id="cad_conheceu" name="cad_conheceu">
                                             </div>
                                         </div>
                                     </div>
@@ -1159,7 +1124,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4 offset-8">
+                                <div class="col-md-4 ">
                                     <div class="modal-header">
                                         <h4>Observações</h4>
                                     </div>
@@ -1168,14 +1133,14 @@
                                         <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-4 offset-8">
+                                <div class="col-md-4 ">
                                     <div class="form-group">
                                         <label for="exampleInputPassword4">Acompanhante</label>
                                         <input type="text" class="form-control" id="exampleInputPassword4"
                                             placeholder="Nome Completo">
                                     </div>
                                 </div>
-                                <div class="col-md-4 offset-8">
+                                <div class="col-md-4 ">
                                     <div class="form-group">
                                         <label for="exampleInputPassword4">Remédios em uso</label>
                                         <input type="text" class="form-control" id="exampleInputPassword4"
@@ -1188,18 +1153,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Cadastrar</button>
+                    <button onclick="cad_pacit()" type="button" class="btn btn-primary" id="cad_pacit" name="cad_pacit">Cadastrar</button>
                 </div>
             </div>
         </div>
     </div>
 
-
-
-
-    
-    
-    
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -1215,10 +1174,11 @@
     <script src="plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
     <script src="plugins/jvectormap/jquery-jvectormap.min.js"></script>
-    <script src="plugins/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- <script src="plugins/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js"></script> -->
     <script src="plugins/moment/moment.js"></script>
     <script src="plugins/fullcalendar/dist/fullcalendar.min.js"></script>
     <script src="plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="plugins/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
     <script src="plugins/d3/dist/d3.min.js"></script>
     <script src="plugins/c3/c3.min.js"></script>
     <script src="js/tables.js"></script>
@@ -1227,6 +1187,7 @@
     <script src="dist/js/theme.min.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/datatables.js"></script>
+    <script src="js/alerts.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function (b, o, i, l, e, r) {
@@ -1244,6 +1205,246 @@
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
     </script>
+<script>
+    // Funcção de cadastro do paciente
+    function cad_pacit() {
+            var nome = $("#cad_nome").val(); 
+            var sobrenome = $("#cad_sobrenome").val(); 
+            var genero = $("#cad_genero option:selected").val(); 
+            var etnia = $("#cad_etnia option:selected").val(); 
+            var niver = $("#cad_nasci").val(); 
+            var plano = $("#cad_plano").val(); 
+            var natural = $("#cad_natural").val(); 
+            var renda = $("#cad_renda").val();
+            var ocupacao = $("#cad_profi").val();  
+            var tel_1 = $("#cad_tel_1").val();
+            var tel_2 = $("#cad_tel_2").val();
+            var cel = $("#cad_cel").val();
+            var email = $("#cad_email").val();
+            var escolar = $("#cad_escolar").val();
+            var conheceu = $("#cad_conheceu").val();
+            var rua = $("#cad_rua").val();
+            var pais = $("#cad_cidade").val();
+            var estado = $("#cad_estado").val();
+            var cidade = $("#cad_pais").val();
+            var vizinhos = $("#cad_complemento").val();
+            var complemento = $("#cad_vizinhos").val();
+       
+
+           let request =  $.ajax({
+                
+                type: "POST",
+                url: "http://127.0.0.1:3333/patient",
+                xhrFields: { withCredentials: true },
+                data: {
+                    first_name: nome,
+                    last_name: sobrenome,
+                    gender: genero,
+                    ethnicity: etnia,
+                    birthdate: niver,
+                    health_insurance: plano,
+                    nationality: natural,
+                    income: renda,
+                    occupation: ocupacao,
+                    phone: tel_1,
+                    second_phone: tel_2,
+                    cellphone: cel,
+                    email: email,
+                    schooling: escolar,
+                    street_address: rua,
+                    country: pais,
+                    state: estado,
+                    city: cidade,
+                    neighborhood: vizinhos,
+                    complement: complemento,
+                    how_met: conheceu
+                },
+                cache: false,
+                success: function(response){
+                    console.log(response);
+                    
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    if (request.status = 401){
+                        showErrorToast();
+                    }else if(request.status = 400){
+                        showAlertaToast();
+                    }
+                    
+                console.log(xhr, ajaxOptions, thrownError);
+                
+            }
+            });
+        }
+
+        // Função de agendamento do paciente
+
+    $("#agendar_pacit").click(function () {
+            var data_init = $("#agd_data").val(); 
+            var data_fim = $("#agd_data_fim").val(); 
+            var etapa = 1; // Não lembro pra que serve
+            var consulta_tipo = $("#agd_tipo option:selected").val();
+            var agd_status = $("#agd_status  option:selected").val();
+            var pacit_id = 1; //Tem que fazer a busca pra pegar ID 
+            var user_id = 1; //Tem que fazer a busca pra pegar ID 
+            var record_id = 1; // Oq é isso?
+
+        let request = $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:3333/appointment",
+                xhrFields: { withCredentials: true },
+                data: {
+                    patientId: pacit_id,
+                    startDate: data_init,
+                    endDate: data_fim,
+                    stage: etapa,
+                    type: consulta_tipo,
+                    userId: user_id,
+                    recordId: record_id,
+                    status: agd_status
+                },
+                cache: false,
+                success: function(response){
+                    console.log(response);
+                    showCadAgendaToast()
+                    
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    if (request.status = 401){
+                        showCadAgendaToast()
+                        // showErrorToast();
+                    }else if(request.status = 400){
+                        showAlertaToast();
+                    }
+                    
+                console.log(xhr, ajaxOptions, thrownError);
+                }
+
+        });
+           
+    });
+    </script>
+<!-- <script>
+    $(document).ready(function () {
+
+        $("#cad_pacit").click(function () {
+            let nome = document.querySelector("#cad_nome"); 
+            let sobrenome = document.querySelector("#cad_sobrenome"); 
+            let genero = document.querySelector("#cad_genero option:selected"); 
+            let etnia = document.querySelector("#cad_etnia option:selected"); 
+            let niver = document.querySelector("#cad_nasci"); 
+            let plano = document.querySelector("#cad_plano"); 
+            let natural = document.querySelector("#cad_natural"); 
+            let renda = document.querySelector("#cad_renda");
+            let ocupacao = document.querySelector("#cad_profi");  
+            let tel_1 = document.querySelector("#cad_tel_1");
+            let tel_2 = document.querySelector("#cad_tel_2");
+            let cel = document.querySelector("#cad_cel");
+            let email = document.querySelector("#cad_email");
+            let escolar = document.querySelector("#cad_escolar");
+            let conheceu = document.querySelector("#cad_conheceu");
+            let rua = document.querySelector("#cad_rua");
+            let pais = document.querySelector("#cad_cidade");
+            let estado = document.querySelector("#cad_estado");
+            let cidade = document.querySelector("#cad_pais");
+            let vizinhos = document.querySelector("#cad_complemento");
+            let complemento = document.querySelector("#cad_vizinhos");
+            
+            form_cad_pacit.addEventListener("submit", function(event){
+                event.preventDefault();
+
+                let cad_pacit = {
+                            first_name: nome,
+                            last_name: sobrenome,
+                            gender: genero,
+                            ethnicity: etnia,
+                            birthdate: niver,
+                            health_insurance: plano,
+                            nationality: natural,
+                            income: renda,
+                            occupation: ocupacao,
+                            phone: tel_1,
+                            second_phone: tel_2,
+                            cellphone: cel,
+                            email: email,
+                            schooling: escolar,
+                            street_address: rua,
+                            country: pais,
+                            state: estado,
+                            city: cidade,
+                            neighborhood: vizinhos,
+                            complement: complemento,
+                            how_met: conheceu
+                            }
+                
+                fetch('"http://127.0.0.1:3333/patient', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    mode: 'cors',
+                    credentials: 'include',
+                    body: JSON.stringify(cad_pacit)
+                })
+
+                .then(function(response){
+                    return response
+                })
+                .then(function(response){
+                    console,log(response);
+                    showInfoToast();
+                })
+
+            })
+
+        })
+
+        $("#agendar_pacit").click(function () {
+            var data_init = $("#agd_data").val(); 
+            var data_fim = $("#agd_data_fim").val(); 
+            var etapa = 1; // Não lembro pra que serve
+            var consulta_tipo = $("#agd_tipo option:selected").val();
+            var agd_status = $("#agd_status  option:selected").val();
+            var pacit_id = 1; //Tem que fazer a busca pra pegar ID 
+            var user_id = 1; //Tem que fazer a busca pra pegar ID 
+            var record_id = 1; // Oq é isso?
+            var request = new XMLHttpRequest();
+            request.responseType = "json"
+
+            var login_user = {
+                                patientId: pacit_id,
+                                startDate: data_init,
+                                endDate: data_fim,
+                                stage: etapa,
+                                type: consulta_tipo,
+                                userId: user_id,
+                                recordId: record_id,
+                                status: agd_status
+                            }
+
+        request.open("POST", "http://127.0.0.1:3333/appointment", true);
+
+        // Envia a informação do cabeçalho junto com a requisição.
+        request.setRequestHeader("Content-Type", "application/json");
+
+        request.onreadystatechange = function() { // Chama a função quando o estado mudar.
+                        if (this.readyState === this.DONE && this.status == 201) {
+                            
+                            alert("Usuário agendado com sucesso!!");
+                            console.log(request.response);
+                        }else if (this.readyState === this.DONE){
+                            showInfoToast();
+                           
+                            console.log(request.response);
+
+                        }
+                    }
+
+        request.send(JSON.stringify(login_user));
+        })
+    })
+</script> -->
+
 </body>
 
 </html>
