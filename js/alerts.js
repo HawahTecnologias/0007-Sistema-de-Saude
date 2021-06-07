@@ -1,4 +1,40 @@
 (function($) {
+  showCadAgendaToast = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Agendado(a)',
+      text: 'Agendamento foi efetuado com sucesso!',
+      showHideTransition: 'slide',
+      icon: 'success',
+      loaderBg: '#57c7d4',
+      position: 'top-right'
+    })
+  };
+  showErrorToast = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Alerta!',
+      text: 'Você não tem autorização completar esta atividade, por favor contate o suporte.',
+      showHideTransition: 'slide',
+      icon: 'error',
+      loaderBg: '#57c7d4',
+      position: 'top-right'
+    })
+  };
+  showAlertaToast = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Erro ao cadastrar!',
+      text: 'Confira os campos preenchidos, se persistir contate o suporte.',
+      showHideTransition: 'slide',
+      icon: 'warning',
+      loaderBg: '#57c7d4',
+      position: 'top-right'
+    })
+  };
   showSuccessToast = function() {
     'use strict';
     resetToastPosition();
@@ -39,8 +75,8 @@
     'use strict';
     resetToastPosition();
     $.toast({
-      heading: 'Danger',
-      text: 'And these were just the basic demos! Scroll down to check further details on how to customize the output.',
+      heading: 'Alerta!',
+      text: 'Você não tem autorização para completar esta atividade, por favor contate o suporte.',
       showHideTransition: 'slide',
       icon: 'error',
       loaderBg: '#f2a654',
