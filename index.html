@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="plugins/jquery-toast-plugin/dist/jquery.toast.min.css">
     <link rel="stylesheet" href="dist/css/theme.min.css">
     <link rel="stylesheet" href="plugins/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui-1.11.4.custom/jquery-ui.min.css">
+    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui-1.11.4.custom/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
     <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -56,36 +59,27 @@
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="ik ik-bell"></i>
-                                <span class="badge bg-danger">0</span>
+                                <span class="badge bg-danger">2</span> <!-- Quantidade de notificação -->
                             </a>
                             <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
-                                <h4 class="header">Notificações</h4>
+                                <h4 class="header"> Notificações </h4>
                                 <div class="notifications-wrap">
-                                    <a href="#" class="media">
-                                        <span class="d-flex">
-                                            <i class="ik ik-check"></i>
+                                    <a href="#" class="media"> <!-- Elemento notificação -->
+                                        <span class="d-flex"> <!-- Foto/Cabeçalho da notificação-->
+                                            <i class="ik ik-check"></i> 
                                         </span>
-                                        <span class="media-body">
+                                        <span class="media-body"> <!-- Corpo da notificação -->
                                             <span class="heading-font-family media-heading">Ação feita</span>
                                             <span class="media-content">Descrição da ação ...</span>
                                         </span>
                                     </a>
-                                    <a href="#" class="media">
-                                        <span class="d-flex">
+                                    <a href="#" class="media"><!-- Elemento notificação -->
+                                        <span class="d-flex"><!-- Foto/Cabeçalho da notificação-->
                                             <img src="img/users/1.jpg" class="rounded-circle" alt="">
                                         </span>
-                                        <span class="media-body">
+                                        <span class="media-body"><!-- Corpo da notificação -->
                                             <span class="heading-font-family media-heading">Usuário</span>
                                             <span class="media-content">Atividade feita por ele</span>
-                                        </span>
-                                    </a>
-                                    <a href="#" class="media">
-                                        <span class="d-flex">
-                                            <i class="ik ik-calendar"></i>
-                                        </span>
-                                        <span class="media-body">
-                                            <span class="heading-font-family media-heading">Atividade</span>
-                                            <span class="media-content">A descrição ou observação dessa atividade</span>
                                         </span>
                                     </a>
                                 </div>
@@ -449,44 +443,65 @@
                             <a href="javascript:void(0)" class="list-group-item" data-chat-user="Gene Newman">
                                 <figure class="user--online">
                                     <img src="img/users/1.jpg" class="rounded-circle" alt="">
-                                </figure><span><span class="name">Gene Newman</span> <span
-                                        class="username">@gene_newman</span> </span>
+                                </figure> 
+                                <span> 
+                                    <span class="name">Gene Newman</span> 
+                                    <span class="username">@gene_newman</span> 
+                                </span>
                             </a>
                             <a href="javascript:void(0)" class="list-group-item" data-chat-user="Billy Black">
                                 <figure class="user--online">
                                     <img src="img/users/2.jpg" class="rounded-circle" alt="">
-                                </figure><span><span class="name">Billy Black</span> <span
-                                        class="username">@billyblack</span> </span>
+                                </figure> 
+                                <span> 
+                                    <span class="name">Billy Black</span> 
+                                    <span class="username">@billyblack</span> 
+                                </span>
                             </a>
                             <a href="javascript:void(0)" class="list-group-item" data-chat-user="Herbert Diaz">
                                 <figure class="user--online">
                                     <img src="img/users/3.jpg" class="rounded-circle" alt="">
-                                </figure><span><span class="name">Herbert Diaz</span> <span
-                                        class="username">@herbert</span> </span>
+                                </figure> 
+                                <span> 
+                                    <span class="name">Herbert Diaz</span> 
+                                    <span class="username">@herbert</span> 
+                                </span>
                             </a>
                             <a href="javascript:void(0)" class="list-group-item" data-chat-user="Sylvia Harvey">
                                 <figure class="user--busy">
                                     <img src="img/users/4.jpg" class="rounded-circle" alt="">
-                                </figure><span><span class="name">Sylvia Harvey</span> <span
-                                        class="username">@sylvia</span> </span>
+                                </figure> 
+                                <span> 
+                                    <span class="name">Sylvia Harvey</span> 
+                                    <span class="username">@sylvia</span> 
+                                </span>
                             </a>
                             <a href="javascript:void(0)" class="list-group-item active" data-chat-user="Marsha Hoffman">
                                 <figure class="user--busy">
                                     <img src="img/users/5.jpg" class="rounded-circle" alt="">
-                                </figure><span><span class="name">Marsha Hoffman</span> <span
-                                        class="username">@m_hoffman</span> </span>
+                                </figure> 
+                                <span> 
+                                    <span class="name">Marsha Hoffman</span> 
+                                    <span class="username">@m_hoffman</span> 
+                                </span>
                             </a>
                             <a href="javascript:void(0)" class="list-group-item" data-chat-user="Mason Grant">
                                 <figure class="user--offline">
                                     <img src="img/users/1.jpg" class="rounded-circle" alt="">
-                                </figure><span><span class="name">Mason Grant</span> <span
-                                        class="username">@masongrant</span> </span>
+                                </figure> 
+                                <span> 
+                                    <span class="name">Mason Grant</span> 
+                                    <span class="username">@masongrant</span> 
+                                </span>
                             </a>
                             <a href="javascript:void(0)" class="list-group-item" data-chat-user="Shelly Sullivan">
                                 <figure class="user--offline">
                                     <img src="img/users/2.jpg" class="rounded-circle" alt="">
-                                </figure><span><span class="name">Shelly Sullivan</span> <span
-                                        class="username">@shelly</span></span>
+                                </figure> 
+                                <span> 
+                                    <span class="name">Shelly Sullivan</span> 
+                                    <span class="username">@shelly</span>
+                                </span>
                             </a>
                         </div>
                     </div>
@@ -737,13 +752,13 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
-                                <label for="eventName">Buscar</label>
-                                <input type="text" class="form-control" id="eventName" name="eventName" placeholder="Buscar por nome ou telefone">
+                                <label for="agd_nome">Buscar</label>
+                                <input type="text" class="form-control" id="agd_nome" name="agd_nome" placeholder="Buscar por paciente cadastrado">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleSelectGender">Tipo de Consulta: </label>
+                                <label for="agd_consulta">Tipo de Consulta: </label>
                                 <div><p class="badge badge-pill badge-info">Primeira</p></div>
                                 <!-- <select class="form-control"
                                     id="exampleSelectGender">
@@ -758,14 +773,14 @@
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label for="exampleInputName1">Nome: </label>
+                                <label for="agd_info_nome">Nome: </label>
                                 <p>Paciente sobre nome</p>
                                 <!-- <input type="text" class="form-control" id="exampleInputName1" placeholder="Nome completo"> -->
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="exampleSelectGender">Gênero: </label>
+                                <label for="agd_info_gene">Gênero: </label>
                                 <p>Masculino</p>
                                 <!-- <select class="form-control"
                                     id="exampleSelectGender">
@@ -776,7 +791,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="exampleInputEmail3">Nascimento: </label>
+                                <label for="agd_info_nasc">Nascimento: </label>
                                     <p>10/12/1995</p>
                                 <!-- <input type="date" class="form-control" id="exampleInputEmail3" placeholder="Nascimento"> -->
                             </div>
@@ -785,28 +800,28 @@
                     <div class="row"> 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="exampleInputPassword4">Telefone 01: </label>
+                                <label for="agd_info_tel1">Telefone 01: </label>
                                 <p>(71) 9 8455-9568</p>
                                 <!-- <input type="tel" class="form-control" id="exampleInputPassword4" placeholder="Contato 01"> -->
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="exampleInputPassword4">Telefone 02: </label>
+                                <label for="agd_info_tel2">Telefone 02: </label>
                                 <p>(71) 9 8455-9568</p>
                                 <!-- <input type="tel" class="form-control" id="exampleInputPassword4" placeholder="Contato 02"> -->
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="exampleInputPassword4">E-mail: </label>
+                                <label for="agd_info_email">E-mail: </label>
                                 <p>email@hotmail.com</p>
                                 <!-- <input type="email" class="form-control" id="exampleInputPassword4" placeholder="E-mail"> -->
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="exampleSelectGender">Plano de saúde: </label>
+                                <label for="agd_info_plano">Plano de saúde: </label>
                                 <p>Plaserv</p>
                                 <!-- <select class="form-control"
                                     id="exampleSelectGender">
@@ -829,7 +844,7 @@
                         </div>
                         <div class="col-md-4">
                             <label for="agd_tipo">Tipo de consulta:</label>
-                                <select class="form-control" id="agr_tipo" name="agr_tipo">
+                                <select class="form-control" id="agd_tipo" name="agd_tipo">
                                     <option value="teleconsultation">Teleconsulta</option>
                                     <option value="presential">Presencial</option>
                                 </select>
@@ -934,8 +949,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="fullwindowModalLabel">Cadastro de Paciente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
@@ -1089,11 +1103,9 @@
                                         <label>Anexar exame</label>
                                         <input type="file" name="img[]" class="file-upload-default">
                                         <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled
-                                                placeholder="Adicionar apenas exames">
+                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Adicionar apenas exames">
                                             <span class="input-group-append">
-                                                <button class="file-upload-browse btn btn-primary"
-                                                    type="button">Adicionar</button>
+                                                <button class="file-upload-browse btn btn-primary" type="button">Adicionar</button>
                                             </span>
                                         </div>
                                     </div>
@@ -1101,11 +1113,9 @@
                                         <label>Anexar Fotos</label>
                                         <input type="file" name="img[]" class="file-upload-default">
                                         <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled
-                                                placeholder="Adicionar apenas fotos">
+                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Adicionar apenas fotos">
                                             <span class="input-group-append">
-                                                <button class="file-upload-browse btn btn-primary"
-                                                    type="button">Adicionar</button>
+                                                <button class="file-upload-browse btn btn-primary" type="button">Adicionar</button>
                                             </span>
                                         </div>
                                     </div>
@@ -1113,11 +1123,9 @@
                                         <label>Anexar Documentos</label>
                                         <input type="file" name="img[]" class="file-upload-default">
                                         <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled
-                                                placeholder="Adicionar : pedidos médicos, receitas enviadas, relatórios...">
+                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Adicionar : pedidos médicos, receitas enviadas, relatórios...">
                                             <span class="input-group-append">
-                                                <button class="file-upload-browse btn btn-primary"
-                                                    type="button">Adicionar</button>
+                                                <button class="file-upload-browse btn btn-primary" type="button"> Adicionar</button>
                                             </span>
                                         </div>
                                     </div>
@@ -1135,16 +1143,14 @@
                                 </div>
                                 <div class="col-md-4 ">
                                     <div class="form-group">
-                                        <label for="exampleInputPassword4">Acompanhante</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4"
-                                            placeholder="Nome Completo">
+                                        <label for="cad_acomp">Acompanhante</label>
+                                        <input type="text" class="form-control" id="cad_acomp" placeholder="Nome Completo">
                                     </div>
                                 </div>
                                 <div class="col-md-4 ">
                                     <div class="form-group">
-                                        <label for="exampleInputPassword4">Remédios em uso</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4"
-                                            placeholder="Remédios">
+                                        <label for="cad_remedios">Remédios em uso</label>
+                                        <input type="text" class="form-control" id="cad_remedios" placeholder="Remédios">
                                     </div>
                                 </div>
                             </div>
@@ -1153,7 +1159,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button onclick="cad_pacit()" type="button" class="btn btn-primary" id="cad_pacit" name="cad_pacit">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary" id="cad_pacit" name="cad_pacit">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -1188,6 +1194,8 @@
     <script src="js/calendar.js"></script>
     <script src="js/datatables.js"></script>
     <script src="js/alerts.js"></script>
+    <script src="js/requests.js"></script>
+    <script src="plugins/jquery-ui/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function (b, o, i, l, e, r) {
@@ -1205,245 +1213,6 @@
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
     </script>
-<script>
-    // Funcção de cadastro do paciente
-    function cad_pacit() {
-            var nome = $("#cad_nome").val(); 
-            var sobrenome = $("#cad_sobrenome").val(); 
-            var genero = $("#cad_genero option:selected").val(); 
-            var etnia = $("#cad_etnia option:selected").val(); 
-            var niver = $("#cad_nasci").val(); 
-            var plano = $("#cad_plano").val(); 
-            var natural = $("#cad_natural").val(); 
-            var renda = $("#cad_renda").val();
-            var ocupacao = $("#cad_profi").val();  
-            var tel_1 = $("#cad_tel_1").val();
-            var tel_2 = $("#cad_tel_2").val();
-            var cel = $("#cad_cel").val();
-            var email = $("#cad_email").val();
-            var escolar = $("#cad_escolar").val();
-            var conheceu = $("#cad_conheceu").val();
-            var rua = $("#cad_rua").val();
-            var pais = $("#cad_cidade").val();
-            var estado = $("#cad_estado").val();
-            var cidade = $("#cad_pais").val();
-            var vizinhos = $("#cad_complemento").val();
-            var complemento = $("#cad_vizinhos").val();
-       
-
-           let request =  $.ajax({
-                
-                type: "POST",
-                url: "http://127.0.0.1:3333/patient",
-                xhrFields: { withCredentials: true },
-                data: {
-                    first_name: nome,
-                    last_name: sobrenome,
-                    gender: genero,
-                    ethnicity: etnia,
-                    birthdate: niver,
-                    health_insurance: plano,
-                    nationality: natural,
-                    income: renda,
-                    occupation: ocupacao,
-                    phone: tel_1,
-                    second_phone: tel_2,
-                    cellphone: cel,
-                    email: email,
-                    schooling: escolar,
-                    street_address: rua,
-                    country: pais,
-                    state: estado,
-                    city: cidade,
-                    neighborhood: vizinhos,
-                    complement: complemento,
-                    how_met: conheceu
-                },
-                cache: false,
-                success: function(response){
-                    console.log(response);
-                    
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    if (request.status = 401){
-                        showErrorToast();
-                    }else if(request.status = 400){
-                        showAlertaToast();
-                    }
-                    
-                console.log(xhr, ajaxOptions, thrownError);
-                
-            }
-            });
-        }
-
-        // Função de agendamento do paciente
-
-    $("#agendar_pacit").click(function () {
-            var data_init = $("#agd_data").val(); 
-            var data_fim = $("#agd_data_fim").val(); 
-            var etapa = 1; // Não lembro pra que serve
-            var consulta_tipo = $("#agd_tipo option:selected").val();
-            var agd_status = $("#agd_status  option:selected").val();
-            var pacit_id = 1; //Tem que fazer a busca pra pegar ID 
-            var user_id = 1; //Tem que fazer a busca pra pegar ID 
-            var record_id = 1; // Oq é isso?
-
-        let request = $.ajax({
-            type: "POST",
-            url: "http://127.0.0.1:3333/appointment",
-                xhrFields: { withCredentials: true },
-                data: {
-                    patientId: pacit_id,
-                    startDate: data_init,
-                    endDate: data_fim,
-                    stage: etapa,
-                    type: consulta_tipo,
-                    userId: user_id,
-                    recordId: record_id,
-                    status: agd_status
-                },
-                cache: false,
-                success: function(response){
-                    console.log(response);
-                    showCadAgendaToast()
-                    
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    if (request.status = 401){
-                        showCadAgendaToast()
-                        // showErrorToast();
-                    }else if(request.status = 400){
-                        showAlertaToast();
-                    }
-                    
-                console.log(xhr, ajaxOptions, thrownError);
-                }
-
-        });
-           
-    });
-    </script>
-<!-- <script>
-    $(document).ready(function () {
-
-        $("#cad_pacit").click(function () {
-            let nome = document.querySelector("#cad_nome"); 
-            let sobrenome = document.querySelector("#cad_sobrenome"); 
-            let genero = document.querySelector("#cad_genero option:selected"); 
-            let etnia = document.querySelector("#cad_etnia option:selected"); 
-            let niver = document.querySelector("#cad_nasci"); 
-            let plano = document.querySelector("#cad_plano"); 
-            let natural = document.querySelector("#cad_natural"); 
-            let renda = document.querySelector("#cad_renda");
-            let ocupacao = document.querySelector("#cad_profi");  
-            let tel_1 = document.querySelector("#cad_tel_1");
-            let tel_2 = document.querySelector("#cad_tel_2");
-            let cel = document.querySelector("#cad_cel");
-            let email = document.querySelector("#cad_email");
-            let escolar = document.querySelector("#cad_escolar");
-            let conheceu = document.querySelector("#cad_conheceu");
-            let rua = document.querySelector("#cad_rua");
-            let pais = document.querySelector("#cad_cidade");
-            let estado = document.querySelector("#cad_estado");
-            let cidade = document.querySelector("#cad_pais");
-            let vizinhos = document.querySelector("#cad_complemento");
-            let complemento = document.querySelector("#cad_vizinhos");
-            
-            form_cad_pacit.addEventListener("submit", function(event){
-                event.preventDefault();
-
-                let cad_pacit = {
-                            first_name: nome,
-                            last_name: sobrenome,
-                            gender: genero,
-                            ethnicity: etnia,
-                            birthdate: niver,
-                            health_insurance: plano,
-                            nationality: natural,
-                            income: renda,
-                            occupation: ocupacao,
-                            phone: tel_1,
-                            second_phone: tel_2,
-                            cellphone: cel,
-                            email: email,
-                            schooling: escolar,
-                            street_address: rua,
-                            country: pais,
-                            state: estado,
-                            city: cidade,
-                            neighborhood: vizinhos,
-                            complement: complemento,
-                            how_met: conheceu
-                            }
-                
-                fetch('"http://127.0.0.1:3333/patient', {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    mode: 'cors',
-                    credentials: 'include',
-                    body: JSON.stringify(cad_pacit)
-                })
-
-                .then(function(response){
-                    return response
-                })
-                .then(function(response){
-                    console,log(response);
-                    showInfoToast();
-                })
-
-            })
-
-        })
-
-        $("#agendar_pacit").click(function () {
-            var data_init = $("#agd_data").val(); 
-            var data_fim = $("#agd_data_fim").val(); 
-            var etapa = 1; // Não lembro pra que serve
-            var consulta_tipo = $("#agd_tipo option:selected").val();
-            var agd_status = $("#agd_status  option:selected").val();
-            var pacit_id = 1; //Tem que fazer a busca pra pegar ID 
-            var user_id = 1; //Tem que fazer a busca pra pegar ID 
-            var record_id = 1; // Oq é isso?
-            var request = new XMLHttpRequest();
-            request.responseType = "json"
-
-            var login_user = {
-                                patientId: pacit_id,
-                                startDate: data_init,
-                                endDate: data_fim,
-                                stage: etapa,
-                                type: consulta_tipo,
-                                userId: user_id,
-                                recordId: record_id,
-                                status: agd_status
-                            }
-
-        request.open("POST", "http://127.0.0.1:3333/appointment", true);
-
-        // Envia a informação do cabeçalho junto com a requisição.
-        request.setRequestHeader("Content-Type", "application/json");
-
-        request.onreadystatechange = function() { // Chama a função quando o estado mudar.
-                        if (this.readyState === this.DONE && this.status == 201) {
-                            
-                            alert("Usuário agendado com sucesso!!");
-                            console.log(request.response);
-                        }else if (this.readyState === this.DONE){
-                            showInfoToast();
-                           
-                            console.log(request.response);
-
-                        }
-                    }
-
-        request.send(JSON.stringify(login_user));
-        })
-    })
-</script> -->
 
 </body>
 
