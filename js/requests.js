@@ -1,6 +1,35 @@
 
+// -------------------------------------------- CONTROLE DE CONEXÃO/VARIÁVEIS -----------------------------------------------------------
+let url = "http://localhost:3333/";
+let auth = localStorage.getItem('Acess');
+function conect() {
+    if(auth == null ){
+        window.location.replace("0007-Sistema-de-Saude/../pages/login.html"); 
+    }
+}
+function conect2() {
+    if(auth == null ){
+        window.location.replace("login.html"); 
+    }
+}
+function desconect() {
+    localStorage.removeItem('Acess');
+}
+function clearStorage() {
+    localStorage.clear();
+}
+
+let msg = {
+    400 : '<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Algo está errado(a)!!</b> confira os dados inseridos e tente novamente! </div>',
+    401 : '<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Alerta(a)!!</b> Você não tem autorização para fazer isso! </div>',
+    404 : '<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Algo está errado(a)!!</b> confira os dados inseridos e tente novamente! </div>',
+    500 : '<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Erro no servidor(a)!!</b> Aguarde ou contate o suporte! </div>',
+    200 : '<div class="alert bg-success alert-success text-white" role="alert"> <b> Seja bem vindo(a)!!</b> Estamos lhe direcionando... </div>'
+}
+
+//---------------------------------------------- REQUISIÇÔES MÉTODO > POST ----------------------------------------------------
 // REQUEST PARA LOGIN NO SISTEMA (Jquery>Ajax).
-$("#logar").click(function () { 
+function login() { 
     let email = $("#email").val();
     let pass = $("#senha").val();
     let form_login = document.querySelector("#form_login");
@@ -9,88 +38,49 @@ $("#logar").click(function () {
             event.preventDefault();
         let request = $.ajax({
             type: "POST",
-            url: "http://127.0.0.1:3333/auth/login",
+            url: url+"auth/login",
             xhrFields: { withCredentials: true },
             data: {
                 email: email,
                 password: pass,
-            },    
-            // cache: false,
+            },  
+            cache: false,
         beforeSend: function(){
           $('#preloader .inner').fadeOut();
           $('#preloader').delay(350).fadeOut('slow'); 
           $('body').delay(350).css({'overflow': 'visible'});
-           
         },
         success: function(xhr, ajaxOptions, thrownError){
-            $("#login_msg").html('<div class="alert bg-success alert-success text-white" role="alert"> <b> Seja bem vindo(a)!!</b> Estamos lhe direcionando... </div>');
+            $("#login_msg").html(msg[200]);
             // setTimeout(function(){ window.location.href = '../index.html'; }, 2000);
-            setTimeout(function(){ window.location.replace("../index.html"); }, 20000);
-            console.log(xhr, ajaxOptions, thrownError);  
+            let token = request.responseText;
+            localStorage.setItem('Acess', token);
+            setTimeout(function(){ window.location.replace("../index.html"); }, 2000);
+            console.log(token);  
         },
         error: function(xhr, ajaxOptions, thrownError) {
             if(request.status == 400 ){
-               $("#login_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Algo está errado(a)!!</b> confira os dados inseridos e tente novamente! </div>');
+               $("#login_msg").html(msg[400]);
                 setInterval(function(){ $("#login_msg").html(''); }, 5000); 
             }else if(request.status == 500 ){
-                $("#login_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Erro no servidor(a)!!</b> Aguarde ou contate o suporte! </div>');
+                $("#login_msg").html(msg[500]);
                 setInterval(function(){ $("#login_msg").html(''); }, 5000); 
             }
-            $("#login_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Error!</b> Algo de errado está occorendo! </div>');
-            setInterval(function(){ $("#login_msg").html(''); }, 5000); 
+            else if(request.status == 404 ){
+                $("#login_msg").html(msg[404]);
+                setInterval(function(){ $("#login_msg").html(''); }, 5000); 
+            }
+            
         console.log(xhr, ajaxOptions, thrownError);
         }
         });
     });
-}); 
+}
+//_________________________________________________________________________________________________________________________________ 
        
-// REQUEST PARA LOGIN NO SISTEMA (Fetch) (ERRO AO TENTAR PASSAR AS CREDENCIAS PARA OUTRAS PAGINAS).
-// $("#logar").click(function () {
-//     let email = document.querySelector("#email");
-//     let senha = document.querySelector("#senha");
-//     let form_login = document.querySelector("#form_login")
-
-//     form_login.addEventListener("submit", function(event){
-//         event.preventDefault();
-
-//         let user = {
-//                     email: email.value,
-//                     password: senha.value
-//                     }
-                     
-//         fetch('http://localhost:3333/auth/login', {
-//             method: 'POST',
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             mode: 'cors',
-//             credentials: 'include',
-//             body: JSON.stringify(user)
-//         })
-                    
-//         .then(function(response){
-//             return response
-//         })
-//         .then(function(response){
-            
-//             if (response.status == 200){
-//                 $("#login_msg").html('<div class="alert bg-success alert-success text-white" role="alert"> <b> Seja bem vindo(a)!!</b> Estamos lhe direcionando... </div>');
-//                 setTimeout(function(){ window.location.href = '../index.html'; }, 20000); 
-//             }else{
-//                 setInterval(function(){ $("#login_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Algo está errado(a)!!</b> confira os dados inseridos e tente novamente! </div>'); }, 5000); 
-//             }
-//             console.log(response);
-//         })
-//         .catch(function(response){
-           
-//             console.log(response);
-//         })      
-//     });
-// });
 
 // REQUEST PARA CADASTRAR PACIENTE (Jquery>Ajax)  
-$("#cad_pacit").click(function () { 
-    
+function cad_pacit() { 
             let nome = $("#cad_nome").val(); 
             let sobrenome = $("#cad_sobrenome").val(); 
             let genero = $("#cad_genero option:selected").val(); 
@@ -114,11 +104,10 @@ $("#cad_pacit").click(function () {
             let complemento = $("#cad_vizinhos").val();
 
             let form_cad_pacit = document.querySelector("#form_cad_pacit");
-
-        
             let request = $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:3333/patient",
+                url: url+"patient",
+                headers: { 'Authorization': 'Bearer ' + auth },
                 xhrFields: { withCredentials: true },
                 data: {
                     first_name: nome,
@@ -143,7 +132,7 @@ $("#cad_pacit").click(function () {
                     complement: complemento,
                     how_met: conheceu
                 },
-                // cache: false,
+                cache: false,
                 success: function(response){
                     console.log(response);
                 },
@@ -152,90 +141,17 @@ $("#cad_pacit").click(function () {
                         showErrorToast();
                     }else if(request.status = 400){
                         showAlertaToast();
+                    }else if(request.status = 500){
+                        showError500Toast();
                     }      
                     console.log(xhr, ajaxOptions, thrownError);
                 }   
             })
-       
-});
-
-
-
-// REQUEST PARA CADASTRAR PACIENTE (Fetch).
-// $("#cad_pacit").click(function () {
-//     let nome = document.querySelector("#cad_nome"); 
-//     let sobrenome = document.querySelector("#cad_sobrenome"); 
-//     let genero = document.querySelector("#cad_genero option:selected"); 
-//     let etnia = document.querySelector("#cad_etnia option:selected"); 
-//     let niver = document.querySelector("#cad_nasci"); 
-//     let plano = document.querySelector("#cad_plano"); 
-//     let natural = document.querySelector("#cad_natural"); 
-//     let renda = document.querySelector("#cad_renda");
-//     let ocupacao = document.querySelector("#cad_profi");  
-//     let tel_1 = document.querySelector("#cad_tel_1");
-//     let tel_2 = document.querySelector("#cad_tel_2");
-//     let cel = document.querySelector("#cad_cel");
-//     let email = document.querySelector("#cad_email");
-//     let escolar = document.querySelector("#cad_escolar");
-//     let conheceu = document.querySelector("#cad_conheceu");
-//     let rua = document.querySelector("#cad_rua");
-//     let pais = document.querySelector("#cad_cidade");
-//     let estado = document.querySelector("#cad_estado");
-//     let cidade = document.querySelector("#cad_pais");
-//     let vizinhos = document.querySelector("#cad_complemento");
-//     let complemento = document.querySelector("#cad_vizinhos");
-    
-// form_cad_pacit.addEventListener("submit", function(event){
-//     event.preventDefault();
-
-//     let cad_pacit = {
-//                 first_name: nome,
-//                 last_name: sobrenome,
-//                 gender: genero,
-//                 ethnicity: etnia,
-//                 birthdate: niver,
-//                 health_insurance: plano,
-//                 nationality: natural,
-//                 income: renda,
-//                 occupation: ocupacao,
-//                 phone: tel_1,
-//                 second_phone: tel_2,
-//                 cellphone: cel,
-//                 email: email,
-//                 schooling: escolar,
-//                 street_address: rua,
-//                 country: pais,
-//                 state: estado,
-//                 city: cidade,
-//                 neighborhood: vizinhos,
-//                 complement: complemento,
-//                 how_met: conheceu
-//         }
-                
-//     fetch('"http://127.0.0.1:3333/patient', {
-//         method: 'POST',
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         mode: 'cors',
-//         credentials: 'include',
-//         body: JSON.stringify(cad_pacit)
-//     })
-
-//     .then(function(response){
-//         return response
-//     })
-//     .then(function(response){
-//         console,log(response);
-//         showInfoToast();
-//     })
-
-//     })
-// })
-
+}
+//_________________________________________________________________________________________________________________________________
 
 // REQUEST PARA AGENDAR PACIENTE (Jquery>Ajax)  
-$("#agend_pacit").click(function () {
+function agend_pacit () {
     let data_init = $("#agd_data").val(); 
     let data_fim = $("#agd_data_fim").val(); 
     let etapa = 1; // Não lembro pra que serve
@@ -274,69 +190,141 @@ $("#agend_pacit").click(function () {
             }
             console.log(xhr, ajaxOptions, thrownError);
             }
-    });
-           
-});
+    });      
+}
+//_________________________________________________________________________________________________________________________________
 
-// REQUEST PARA AGENDAR PACIENTE (XMLhttp)  
-// $("#agendar_pacit").click(function () {
-//     var data_init = $("#agd_data").val(); 
-//     var data_fim = $("#agd_data_fim").val(); 
-//     var etapa = 1; // Não lembro pra que serve
-//     var consulta_tipo = $("#agd_tipo option:selected").val();
-//     var agd_status = $("#agd_status  option:selected").val();
-//     var pacit_id = 1; //Tem que fazer a busca pra pegar ID 
-//     var user_id = 1; //Tem que fazer a busca pra pegar ID 
-//     var record_id = 1; // Oq é isso?
+
+
+//---------------------------------------------- REQUISIÇÕES MÉTODO > GET ----------------------------------------------------
+function allPacits(){
+  
+    let request = $.ajax({
+        type: "GET",
+        url: url+"patient",
+        headers: { 'Authorization': 'Bearer ' + auth },
+        xhrFields: { withCredentials: true },
+        data: {
+            page : 1,
+            perPage: 10
+        },    
+        cache: false,
+        dataType:"json",
+    success: function (response) {
+        let dados = request.responseText
+        let dado = JSON.parse(dados)
+        let body = document.getElementById('pacits');
+        dado.data.forEach(paciente => {
+            let tr = body.insertRow();
+
+            let td_id = tr.insertCell();
+            let td_foto = tr.insertCell();
+            let td_nome = tr.insertCell();
+            let td_idade = tr.insertCell();
+            let td_email = tr.insertCell();
+            let td_tel = tr.insertCell();
+            let td_cad = tr.insertCell();
+            let td_actions = tr.insertCell();
+            let div = document.createElement("div");
+            let a = document.createElement("a");
+            let aa = document.createElement("a");
+            let aaa = document.createElement("a");
+            let i = document.createElement("i");
+            let ii = document.createElement("i");
+            let iii = document.createElement("i");
+
+            td_actions.appendChild(div);
+            div.appendChild(a);
+            div.appendChild(aa);
+            div.appendChild(aaa);
+            a.appendChild(i);
+            aa.appendChild(ii);
+            aaa.appendChild(iii);
+
+            td_id.innerText = paciente.id
+            td_foto.innerText = "foto"
+            td_nome.innerText = paciente.first_name +" "+ paciente.last_name
+            td_idade.innerText = paciente.birthdate
+            td_email.innerText = paciente.email
+            td_tel.innerText = paciente.cellphone
+            td_cad.innerText = paciente.updated_at
+            
+            div.classList.add('table-actions');
+            i.classList.add('ik', 'ik-eye');
+            ii.classList.add('ik', 'ik-edit-2'); 
+            iii.classList.add('ik', 'ik-trash-2');
+            a.setAttribute("href","#")
+            aa.setAttribute("href","#")
+            aaa.setAttribute("href","#")
+            tr.setAttribute("rule", "row");
+        });
+        
+        
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+        //Aqui vai o corpo da função caso obtenha erro na requisição
+        console.log(xhr, ajaxOptions, thrownError);
+    }
+    })
+
+}
+
+//____________________________________________________________________________________________________________________________
+//REQUEST PARA BUSCAR PACIENTE AGENDA (Jquery>Ajax)
+
+function focando(){
     
-
-//     var login_user = {
-//                         patientId: pacit_id,
-//                         startDate: data_init,
-//                         endDate: data_fim,
-//                         stage: etapa,
-//                         type: consulta_tipo,
-//                         userId: user_id,
-//                         recordId: record_id,
-//                         status: agd_status
-//                     }
-//     var request = new XMLHttpRequest();
-//     request.open("POST", "http://127.0.0.1:3333/appointment", true);
-//     request.setRequestHeader("Content-Type", "application/json");
-//     request.responseType = "json";
-
-//     request.onreadystatechange = function() { // Chama a função quando o estado mudar.
-//         if (this.readyState === this.DONE && this.status == 201) {
-//             alert("Usuário agendado com sucesso!!");
-//             console.log(request.response);
-//         }else if (this.readyState === this.DONE){
-//             showInfoToast();
-//             console.log(request.response);
-//         }
-//     }
-//     request.send(JSON.stringify(login_user));
-// });
-
-// REQUEST PARA BUSCAR PACIENTE (Jquery>Ajax)
-$("#agd_nome").autocomplete({
-    soruce: function (request, response) {
-        let request = $.ajax({
+    let request = $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:3333/patient",
+            url: url+"patient",
+            headers: { 'Authorization': 'Bearer ' + auth },
             xhrFields: { withCredentials: true },
             data: {
-                'termo': request.term
+                page : 1,
+                perPage: 10
             },    
             cache: false,
             dataType:"json",
-            success: function (data) {
-                response(data);
+            success: function (response, xhr, ajaxOptions, thrownError) {
+                let dados = request.responseText
+                let dado = JSON.parse(dados)
+                console.log(dado.data[0].city)
+                $("#agd_nome").autocomplete({source: dado.data[0].city})
+                
+            },
+            error: function (xhr, ajaxOptions, thrownError){
+                console.log(xhr, ajaxOptions, thrownError);
             }
         });
-    },
-    minLength: 3,
-    autoFocus: true,
-});  
+    
+}
+//_________________________________________________________________________________________________________________________________
+
+// $(document).load(function () {
+//     form_name.addEventListener("submit", function(event){
+//         event.preventDefault();
+//         let request = $.ajax({
+//             type: "GET",
+//             url: url+"/appointment",
+//             xhrFields: { withCredentials: true },
+//             data: {
+//                 dado1: valor1,
+//                 dado2: valor2,
+//             },    
+//             cache: false,
+//             dataType:"json",
+//         success: function (response) {
+//             //Aqui vai o corpo da função caso obtenha sucesso na requisição.
+//             console.log(response)
+//         },
+//         error: function () {
+//             //Aqui vai o corpo da função caso obtenha erro na requisição
+//         }
+//         })
+//     });
+// });  
+//_________________________________________________________________________________________________________________________________
+//---------------------------------------------------------------------------------------------------------------------------------
 
 
 // PADRÃO REQUEST
@@ -344,7 +332,7 @@ $("#agd_nome").autocomplete({
 //     form_name.addEventListener("submit", function(event){
 //         event.preventDefault();
 //         let request = $.ajax({
-//             type: "POST",
+//             type: "POST" aqui vai o tipo de requisição, pode ser GET, POST, PUT, DELETE,
 //             url: "link_da_requisição(endpoint)",
 //             xhrFields: { withCredentials: true },
 //             data: {
@@ -356,7 +344,7 @@ $("#agd_nome").autocomplete({
 //         success: function () {
 //             //Aqui vai o corpo da função caso obtenha sucesso na requisição.
 //         },
-//         error: function () {
+//         error: function (xhr, ajaxOptions, thrownError) {
 //             //Aqui vai o corpo da função caso obtenha erro na requisição
 //         }
 //         })
