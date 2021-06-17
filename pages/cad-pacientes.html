@@ -23,6 +23,13 @@
     <link rel="stylesheet" href="../plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../dist/css/theme.min.css">
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')
+    </script>
+    <script src="../js/requests.js"></script>
+    <script>allPacits()</script>
+    <script>conect2(); </script>
 </head>
 
 <body>
@@ -241,23 +248,8 @@
                                                 <th class="nosort">&nbsp;</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>001</td>
-                                                <td><img src="../img/users/1.jpg" class="table-user-thumb" alt=""></td>
-                                                <td>Samuel Jesus</td>
-                                                <td>20</td>
-                                                <td>erich@example.com</td>
-                                                <td>(71) 9 8188-0959</td>
-                                                <td>01/02/2021</td>
-                                                <td>
-                                                    <div class="table-actions">
-                                                        <a href="#"><i class="ik ik-eye"></i></a>
-                                                        <a href="#"><i class="ik ik-edit-2"></i></a>
-                                                        <a href="#"><i class="ik ik-trash-2"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="pacits" >
+                                            <!-- Code em request.js GET pacits -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -726,10 +718,7 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')
-    </script>
+    
     <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
     <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
