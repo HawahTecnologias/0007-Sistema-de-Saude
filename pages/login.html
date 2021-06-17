@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="../dist/css/theme.min.css">
         <link rel="stylesheet" href="../dist/css/mystyle.css"><!-- Meu estilo de CSS (Criado para colocar meus proprios css) -->
         <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="../js/requests.js"></script>
 
          
     </head>
@@ -74,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="sign-btn text-center">
-                                    <button type="submit" id="logar" class="btn btn-inverse" >Entrar</button>
+                                    <button onclick="login()" type="submit" id="logar" class="btn btn-inverse" >Entrar</button>
                                 </div>
                             </form>
                         </div>
@@ -90,7 +91,7 @@
     <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
     <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <script src="../dist/js/theme.js"></script>
-    <script src="../js/requests.js"></script>
+    
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -108,6 +109,10 @@
           $('body').delay(350).css({'overflow': 'visible'});
         })
         //]]>
+
+        if(auth){
+            window.location.replace("../index.html");
+        }
     </script>
 
     </body>
