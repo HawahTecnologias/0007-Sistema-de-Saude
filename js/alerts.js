@@ -1,4 +1,16 @@
 (function($) {
+  showValidationToast = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Epa!',
+      text: 'Prencha todos os campos corretamente antes de enviar!',
+      showHideTransition: 'slide',
+      icon: 'warning',
+      loaderBg: '#57c7d4',
+      position: 'top-right'
+    })
+  };
   showCadAgendaToast = function() {
     'use strict';
     resetToastPosition();
@@ -7,6 +19,18 @@
       text: 'Agendamento foi efetuado com sucesso!',
       showHideTransition: 'slide',
       icon: 'success',
+      loaderBg: '#57c7d4',
+      position: 'top-right'
+    })
+  };
+  showError500Toast = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Falha!',
+      text: 'O servidor não conseguiu completar sua solicitação de cadastro, <b>aguarde</b> ou contate o <b>suporte</b>.',
+      showHideTransition: 'slide',
+      icon: 'warning',
       loaderBg: '#57c7d4',
       position: 'top-right'
     })
