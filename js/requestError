@@ -1,0 +1,207 @@
+// REQUEST PARA LOGIN NO SISTEMA (Fetch) (ERRO AO TENTAR PASSAR AS CREDENCIAS PARA OUTRAS PAGINAS).
+// $("#logar").click(function () {
+//     let email = document.querySelector("#email");
+//     let senha = document.querySelector("#senha");
+//     let form_login = document.querySelector("#form_login")
+
+//     form_login.addEventListener("submit", function(event){
+//         event.preventDefault();
+
+//         let user = {
+//                     email: email.value,
+//                     password: senha.value
+//                     }
+                     
+//         fetch('http://localhost:3333/auth/login', {
+//             method: 'POST',
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             mode: 'cors',
+//             credentials: 'include',
+//             body: JSON.stringify(user)
+//         })
+                    
+//         .then(function(response){
+//             return response
+//         })
+//         .then(function(response){
+            
+//             if (response.status == 200){
+//                 $("#login_msg").html('<div class="alert bg-success alert-success text-white" role="alert"> <b> Seja bem vindo(a)!!</b> Estamos lhe direcionando... </div>');
+//                 setTimeout(function(){ window.location.href = '../index.html'; }, 20000); 
+//             }else{
+//                 setInterval(function(){ $("#login_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Algo está errado(a)!!</b> confira os dados inseridos e tente novamente! </div>'); }, 5000); 
+//             }
+//             console.log(response);
+//         })
+//         .catch(function(response){
+           
+//             console.log(response);
+//         })      
+//     });
+// });
+//_________________________________________________________________________________________________________________________________
+
+// REQUEST PARA CADASTRAR PACIENTE (Fetch).
+// $("#cad_pacit").click(function () {
+//     let nome = document.querySelector("#cad_nome"); 
+//     let sobrenome = document.querySelector("#cad_sobrenome"); 
+//     let genero = document.querySelector("#cad_genero option:selected"); 
+//     let etnia = document.querySelector("#cad_etnia option:selected"); 
+//     let niver = document.querySelector("#cad_nasci"); 
+//     let plano = document.querySelector("#cad_plano"); 
+//     let natural = document.querySelector("#cad_natural"); 
+//     let renda = document.querySelector("#cad_renda");
+//     let ocupacao = document.querySelector("#cad_profi");  
+//     let tel_1 = document.querySelector("#cad_tel_1");
+//     let tel_2 = document.querySelector("#cad_tel_2");
+//     let cel = document.querySelector("#cad_cel");
+//     let email = document.querySelector("#cad_email");
+//     let escolar = document.querySelector("#cad_escolar");
+//     let conheceu = document.querySelector("#cad_conheceu");
+//     let rua = document.querySelector("#cad_rua");
+//     let pais = document.querySelector("#cad_cidade");
+//     let estado = document.querySelector("#cad_estado");
+//     let cidade = document.querySelector("#cad_pais");
+//     let vizinhos = document.querySelector("#cad_complemento");
+//     let complemento = document.querySelector("#cad_vizinhos");
+    
+// form_cad_pacit.addEventListener("submit", function(event){
+//     event.preventDefault();
+
+//     let cad_pacit = {
+//                 first_name: nome,
+//                 last_name: sobrenome,
+//                 gender: genero,
+//                 ethnicity: etnia,
+//                 birthdate: niver,
+//                 health_insurance: plano,
+//                 nationality: natural,
+//                 income: renda,
+//                 occupation: ocupacao,
+//                 phone: tel_1,
+//                 second_phone: tel_2,
+//                 cellphone: cel,
+//                 email: email,
+//                 schooling: escolar,
+//                 street_address: rua,
+//                 country: pais,
+//                 state: estado,
+//                 city: cidade,
+//                 neighborhood: vizinhos,
+//                 complement: complemento,
+//                 how_met: conheceu
+//         }
+                
+//     fetch('"http://127.0.0.1:3333/patient', {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         mode: 'cors',
+//         credentials: 'include',
+//         body: JSON.stringify(cad_pacit)
+//     })
+
+//     .then(function(response){
+//         return response
+//     })
+//     .then(function(response){
+//         console,log(response);
+//         showInfoToast();
+//     })
+
+//     })
+// })
+//_________________________________________________________________________________________________________________________________
+
+// REQUEST PARA AGENDAR PACIENTE (XMLhttp)  
+// $("#agendar_pacit").click(function () {
+//     var data_init = $("#agd_data").val(); 
+//     var data_fim = $("#agd_data_fim").val(); 
+//     var etapa = 1; // Não lembro pra que serve
+//     var consulta_tipo = $("#agd_tipo option:selected").val();
+//     var agd_status = $("#agd_status  option:selected").val();
+//     var pacit_id = 1; //Tem que fazer a busca pra pegar ID 
+//     var user_id = 1; //Tem que fazer a busca pra pegar ID 
+//     var record_id = 1; // Oq é isso?
+    
+
+//     var login_user = {
+//                         patientId: pacit_id,
+//                         startDate: data_init,
+//                         endDate: data_fim,
+//                         stage: etapa,
+//                         type: consulta_tipo,
+//                         userId: user_id,
+//                         recordId: record_id,
+//                         status: agd_status
+//                     }
+//     var request = new XMLHttpRequest();
+//     request.open("POST", "http://127.0.0.1:3333/appointment", true);
+//     request.setRequestHeader("Content-Type", "application/json");
+//     request.responseType = "json";
+
+//     request.onreadystatechange = function() { // Chama a função quando o estado mudar.
+//         if (this.readyState === this.DONE && this.status == 201) {
+//             alert("Usuário agendado com sucesso!!");
+//             console.log(request.response);
+//         }else if (this.readyState === this.DONE){
+//             showInfoToast();
+//             console.log(request.response);
+//         }
+//     }
+//     request.send(JSON.stringify(login_user));
+// });
+//_________________________________________________________________________________________________________________________________
+
+$("#cad_user").click(function () {
+    var email = $("#email").val(); //ok
+    var senha = $("#senha").val(); //ok
+    var funcao = $("#funcao option:selected").val(); //ok
+    var ramo = $("#ramo").val(); //ok   
+    var cel = $("#celular").val(); //ok
+    var tel = $("#telefone").val(); //ok
+    var cpf = $("#cpf").val(); //ok
+    var nome = $("#nome").val(); //ok
+    var registro = $("#registro").val(); //ok
+
+    var request = new XMLHttpRequest();
+        request.responseType = "json"
+
+        var cad_user = {
+                        email: email,
+                        password: senha,
+                        password_confirmation: senha,
+                        specialty: ramo,
+                        cellphone: cel,
+                        phone: tel,
+                        cpf: cpf,
+                        name: nome,
+                        registry: registro,
+                        role: funcao
+                        }
+        
+        request.open("POST", url+"/user", true);
+        
+        // Envia a informação do cabeçalho junto com a requisição.
+        request.setRequestHeader("Content-Type", "application/json");
+
+        request.onreadystatechange = function() { // Chama a função quando o estado mudar.
+                        if (this.readyState === XMLHttpRequest.DONE && this.status === 201) {
+                            $("#cad_user_msg").html('<div class="alert bg-success alert-success text-white" role="alert"> Usuário <b> Cadastrado(a)!!</b> com sucesso!! </div>');
+                                console.log(request);
+                                setTimeout(function(){ window.location.href = '../index.html'; }, 35000); 
+                            console.log(request.response);
+                            alert("DEu certo");
+                        }else{
+                            $("#cad_user_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> Algo deu <b> errado</b> no bagulho! </div>');
+                            alert("Cadastro não realizado!");
+                            console.log(request.response);
+                            alert("nAO DEU CERTO")
+                        }
+                    }
+                    console.log(request);
+        request.send(JSON.stringify(cad_user));
+        })
