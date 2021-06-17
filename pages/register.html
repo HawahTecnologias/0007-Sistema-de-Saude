@@ -124,7 +124,7 @@
                             </div>
 
                             <div class="sign-btn text-center">
-                                <button id="enviar" class="btn btn-inverse">Registrar Usuário</button>
+                                <button id="cad_user" class="btn btn-inverse">Registrar Usuário</button>
                             </div>
                         </form>
                     </div>
@@ -142,6 +142,7 @@
     <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
     <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <script src="../dist/js/theme.js"></script>
+    <script src="../js/requests.js"></script>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function (b, o, i, l, e, r) {
@@ -159,58 +160,5 @@
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
     </script>
-    <script>
-    $(document).ready(function () {
-
-        $("#enviar").click(function () {
-            var email = $("#email").val(); //ok
-            var senha = $("#senha").val(); //ok
-            var funcao = $("#funcao option:selected").val(); //ok
-            var ramo = $("#ramo").val(); //ok   
-            var cel = $("#celular").val(); //ok
-            var tel = $("#telefone").val(); //ok
-            var cpf = $("#cpf").val(); //ok
-            var nome = $("#nome").val(); //ok
-            var registro = $("#registro").val(); //ok
-
-            var request = new XMLHttpRequest();
-            request.responseType = "json"
-
-            var cad_user = {
-                            email: email,
-                            password: senha,
-                            password_confirmation: senha,
-                            specialty: ramo,
-                            cellphone: cel,
-                            phone: tel,
-                            cpf: cpf,
-                            name: nome,
-                            registry: registro,
-                            role: funcao
-                            }
-        
-        request.open("POST", "http://127.0.0.1:3333/user", true);
-        
-        // Envia a informação do cabeçalho junto com a requisição.
-        request.setRequestHeader("Content-Type", "application/json");
-
-        request.onreadystatechange = function() { // Chama a função quando o estado mudar.
-                        if (this.readyState === XMLHttpRequest.DONE && this.status === 201) {
-                            $("#cad_user_msg").html('<div class="alert bg-success alert-success text-white" role="alert"> Usuário <b> Cadastrado(a)!!</b> com sucesso!! </div>');
-                                console.log(request);
-                                setTimeout(function(){ window.location.href = '../index.html'; }, 35000); 
-                            console.log(request.response);
-                        }else{
-                            $("#cad_user_msg").html('<div class="alert bg-danger alert-danger text-white" role="alert"> Algo deu <b> errado</b> no bagulho! </div>');
-                            alert("Cadastro não realizado!");
-                            console.log(request.response);
-                        }
-                    }
-                    console.log(request);
-        request.send(JSON.stringify(cad_user));
-        })
-    })
-    </script>
 </body>
-
 </html>
