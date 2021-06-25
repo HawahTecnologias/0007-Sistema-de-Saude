@@ -1,18 +1,16 @@
 <!doctype html>
 <html class="no-js" lang="pt-br">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Home - Saúde Massa </title>
+    <title>Agendamento - Saúde Massa </title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="icon" href="" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
-
     <link rel="stylesheet" href="plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="plugins/icon-kit/dist/css/iconkit.min.css">
@@ -28,18 +26,36 @@
     <link rel="stylesheet" href="plugins/jquery-toast-plugin/dist/jquery.toast.min.css">
     <link rel="stylesheet" href="dist/css/theme.min.css">
     <link rel="stylesheet" href="plugins/fullcalendar/dist/fullcalendar.min.css">
-    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui-1.11.4.custom/jquery-ui.min.css">
-    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui-1.11.4.custom/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="plugins/jquery-ui/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="dist/css/mystyle.css"><!-- Meu estilo de CSS (Criado para colocar meus proprios css) -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    
+    <script src="plugins/fullcalendar/locales/pt-br.js"></script>
     <script src="src/js/vendor/modernizr-2.8.3.min.js"></script>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    
+    <script src="js/requests.js"></script>
+    <script> conect(); </script>    
 </head>
 
 <body>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <!-- início do preloader -->
+  <div id="preloader">
+    <div class="inner">
+       <!-- HTML DA ANIMAÇÃO MUITO LOUCA DO SEU PRELOADER! -->
+       <img src="img/icons/preloader.gif" alt="Recarregando">
+    </div>
+</div>
+<!-- fim do preloader --> 
 
     <div class="wrapper">
+        <!-- Barra de menu superior -->
         <header class="header-top" header-theme="light">
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
@@ -53,6 +69,9 @@
                             </div>
                         </div>
                         <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
+                    </div>
+                    <div>
+                        <div><span>Bem vindo(a): </span> <span id="paralax">User</span> </div>
                     </div>
                     <div class="top-menu d-flex align-items-center">
                         <!-- Ícone de Notificações (Dropdown) -->
@@ -116,11 +135,11 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="img/user.jpg" alt=""></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Perfil</a>
+                                <a class="dropdown-item" href="pages/profile.html"><i class="ik ik-user dropdown-icon"></i> Perfil</a>
                                 <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Configuração</a>
                                 <a class="dropdown-item" href="#"><span class="float-right"><span class="badge badge-primary">6</span></span><i class="ik ik-mail dropdown-icon"></i> Inbox</a>
                                 <a class="dropdown-item" href="#"><i class="ik ik-navigation dropdown-icon"></i> Messagem</a>
-                                <a class="dropdown-item" href="login.html"><i class="ik ik-power dropdown-icon"></i> Sair</a>
+                                <a class="dropdown-item" onclick="desconect()" href="pages/login.html"><i class="ik ik-power dropdown-icon"></i> Sair</a>
                             </div>
                         </div>
                     </div>
@@ -275,7 +294,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="card">
@@ -753,47 +771,38 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label for="agd_nome">Buscar</label>
-                                <input type="text" class="form-control" id="agd_nome" name="agd_nome" placeholder="Buscar por paciente cadastrado">
+                                <input onclick="agdAutocomplete()" type="text" class="form-control" id="agd_nome" name="agd_nome" placeholder="Buscar por paciente cadastrado">
                             </div>
                         </div>
                         <div class="col-md-4">
+                            
                             <div class="form-group">
-                                <label for="agd_consulta">Tipo de Consulta: </label>
-                                <div><p class="badge badge-pill badge-info">Primeira</p></div>
-                                <!-- <select class="form-control"
-                                    id="exampleSelectGender">
-                                    <option>Primeira</option>
-                                    <option>Retorno</option>
-                                    <option>Internação</option>
-                                </select> -->
+                                <label for="">.</label>
+                               <div><button onclick="GetPacit()" type="button" class="btn btn-info">Buscar</button></div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="row" >
+                        <div class="col-md-12"></div>
+                        <p id="agd_info_id"></p>
+                    </div>
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
                                 <label for="agd_info_nome">Nome: </label>
-                                <p>Paciente sobre nome</p>
-                                <!-- <input type="text" class="form-control" id="exampleInputName1" placeholder="Nome completo"> -->
+                                <p id="agd_info_nome"></p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="agd_info_gene">Gênero: </label>
-                                <p>Masculino</p>
-                                <!-- <select class="form-control"
-                                    id="exampleSelectGender">
-                                    <option>Masculino</option>
-                                    <option>Feminino</option>
-                                </select> -->
+                                <p id="agd_info_gene"></p>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="agd_info_nasc">Nascimento: </label>
-                                    <p>10/12/1995</p>
-                                <!-- <input type="date" class="form-control" id="exampleInputEmail3" placeholder="Nascimento"> -->
+                                    <p id="agd_info_nasc"></p>
                             </div>
                         </div>
                     </div>
@@ -801,47 +810,30 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="agd_info_tel1">Telefone 01: </label>
-                                <p>(71) 9 8455-9568</p>
-                                <!-- <input type="tel" class="form-control" id="exampleInputPassword4" placeholder="Contato 01"> -->
+                                <p id="agd_info_tel1"></p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="agd_info_tel2">Telefone 02: </label>
-                                <p>(71) 9 8455-9568</p>
-                                <!-- <input type="tel" class="form-control" id="exampleInputPassword4" placeholder="Contato 02"> -->
+                                <p id="agd_info_tel2"></p>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="agd_info_email">E-mail: </label>
-                                <p>email@hotmail.com</p>
+                                <p id="agd_info_email"></p>
                                 <!-- <input type="email" class="form-control" id="exampleInputPassword4" placeholder="E-mail"> -->
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="agd_info_plano">Plano de saúde: </label>
-                                <p>Plaserv</p>
-                                <!-- <select class="form-control"
-                                    id="exampleSelectGender">
-                                    <option>Plano O1</option>
-                                    <option>Plano 02</option>
-                                </select> -->
+                                <p id="agd_info_plano"></p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="agd_data">Horário da consulta</label>
-                                <!-- <input type="text" class="form-control datetimepicker-input" id="eventStarts" name="eventStarts" data-toggle="datetimepicker" data-target="#eventStarts"> -->
-                                <div><small>Início:</small></div>
-                                <input type="datetime-local" class="form-control" name="agd_data" id="agd_data">
-                                <div><small>Final:</small></div>
-                                <input type="datetime-local" class="form-control" name="agd_data_fim" id="agd_data_fim">
-                            </div>
-                        </div>
                         <div class="col-md-4">
                             <label for="agd_tipo">Tipo de consulta:</label>
                                 <select class="form-control" id="agd_tipo" name="agd_tipo">
@@ -861,7 +853,16 @@
                                     <option value="missed ">Perdido</option>
                                 </select>
                         </div>
-                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="agd_data">Horário da consulta</label>
+                                <!-- <input type="text" class="form-control datetimepicker-input" id="eventStarts" name="eventStarts" data-toggle="datetimepicker" data-target="#eventStarts"> -->
+                                <div><small>Início:</small></div>
+                                <input type="datetime-local" class="form-control" name="agd_data" id="agd_data">
+                                <div><small>Final:</small></div>
+                                <input type="datetime-local" class="form-control" name="agd_data_fim" id="agd_data_fim">
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 ">
@@ -875,7 +876,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group mb-0" id="addColor">
+                   <!-- <div class="form-group mb-0" id="addColor">
                         <label for="colors">Nível de atendimento</label>
                         <ul class="color-selector">
                             <li class="bg-aqua">
@@ -898,7 +899,7 @@
                                 <input type="radio" data-color="bg-yellow" name="colorChosen" id="addColorYellow">
                                 <label for="addColorYellow"></label>
                             </li>
-                            <!-- <li class="bg-orange">
+                             <li class="bg-orange">
                                 <input type="radio" data-color="bg-orange" name="colorChosen" id="addColorOrange">
                                 <label for="addColorOrange"></label>
                             </li>
@@ -929,15 +930,14 @@
                             <li class="bg-navy">
                                 <input type="radio" data-color="bg-navy" name="colorChosen" id="addColorNavy">
                                 <label for="addColorNavy"></label>
-                            </li> -->
+                            </li> 
                         </ul>
-                    </div>
+                    </div>-->
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger delete-event" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
-                <button type="button" class="btn btn-success save-event" value="Agendando" id="agendar_pacit" name="agendar_pacit">Agendar</button>
+                <button onclick="agend_pacit()" type="button" class="btn btn-success save-event" value="Agendando" id="agendar_pacit" name="agendar_pacit">Agendar</button>
             </div>
         </div>
     </div>
@@ -953,7 +953,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <form id="form_cad_pacit" class="forms-sample">
+                        <form id="form_cad_pacit" class="forms-sample" >
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="row">
@@ -962,10 +962,10 @@
                                                 <label for="cad_nome"> Nome </label>
                                                 <div class="row">
                                                     <div class="col-sm-5">
-                                                      <input type="text" class="form-control" placeholder="Nome" id="cad_nome" name="cad_nome" >
+                                                      <input type="text" class="form-control" placeholder="Nome" id="cad_nome" name="cad_nome" required >
                                                     </div>
                                                     <div class="col-sm-7">
-                                                        <input type="text" class="form-control" placeholder="Sobrenome" id="cad_sobrenome" name="cad_sobrenome" >
+                                                        <input type="text" class="form-control" placeholder="Sobrenome" id="cad_sobrenome" name="cad_sobrenome" required >
                                                     </div>
                                                 </div>
                                             </div>
@@ -973,7 +973,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="cad_genero">Gênero</label>
-                                                <select class="form-control" id="cad_genero" name="cad_genero">
+                                                <select class="form-control" id="cad_genero" name="cad_genero" required>
                                                     <option value="male">Masculino</option>
                                                     <option value="female">Feminino</option>
                                                 </select>
@@ -982,7 +982,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="cad_etnia">Etinia</label>
-                                                <select class="form-control" id="cad_etnia" name="cad_etnia">
+                                                <select class="form-control" id="cad_etnia" name="cad_etnia" required>
                                                     <option value="white">Branco</option>
                                                     <option value="black">Marrom</option>
                                                 </select>
@@ -991,7 +991,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="cad_nasci">Nascimento</label>
-                                                <input type="date" class="form-control" placeholder="Nascimento" id="cad_nasci" name="cad_nasci">
+                                                <input type="date" class="form-control" placeholder="Nascimento" id="cad_nasci" name="cad_nasci" required>
                                             </div>
                                         </div>
                                     </div>
@@ -999,27 +999,27 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="cad_plano">Plano de Saúde</label>
-                                                <input type="text" class="form-control" placeholder="Plano de saúde" id="cad_plano" name="cad_plano">
+                                                <input type="text" class="form-control" placeholder="Plano de saúde" id="cad_plano" name="cad_plano" required>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="cad_natural">Naturalidade</label>
-                                                <input type="text" class="form-control" placeholder="Naturalidade" id="cad_natural" name="cad_natural">
+                                                <input type="text" class="form-control" placeholder="Naturalidade" id="cad_natural" name="cad_natural" required>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <div class="form-group">
                                                     <label for="cad_renda">Renda</label>
-                                                    <input type="number" class="form-control" placeholder="Renda" id="cad_renda" name="cad_renda">
+                                                    <input type="number" class="form-control" placeholder="Renda" id="cad_renda" name="cad_renda" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="cad_profi">Profissão</label>
-                                                <input type="text" class="form-control" placeholder="Profissão" id="cad_profi" name="cad_profi">
+                                                <input type="text" class="form-control" placeholder="Profissão" id="cad_profi" name="cad_profi" required>
                                             </div>
                                         </div>
                                     </div>
@@ -1027,31 +1027,31 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="cad_tel_1">Telefone 1</label>
-                                                <input type="tel" class="form-control" placeholder="Contado principal" id="cad_tel_1" name="cad_tel_1">
+                                                <input type="tel" class="form-control" placeholder="Contado principal" id="cad_tel_1" name="cad_tel_1" required>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="cad_tel_2">Telefone 2</label>
-                                                <input type="tel" class="form-control"  placeholder="Contato secundário" id="cad_tel_2" name="cad_tel_2">
+                                                <input type="tel" class="form-control"  placeholder="Contato secundário" id="cad_tel_2" name="cad_tel_2" required>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="cad_cel">Tel Celular</label>
-                                                <input type="text" class="form-control" placeholder="Como conheceu" id="cad_cel" name="cad_cel">
+                                                <input type="text" class="form-control" placeholder="Como conheceu" id="cad_cel" name="cad_cel" required>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="cad_email">E-mail</label>
-                                                <input type="email" class="form-control" placeholder="Seu melhor e-mail" id="cad_email" name="cad_email">
+                                                <input type="email" class="form-control" placeholder="Seu melhor e-mail" id="cad_email" name="cad_email" required>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label for="cad_escolar">Escolaridade</label>
-                                                <input type="text" class="form-control" placeholder="Escolaridade" id="cad_escolar" name="cad_escolar">
+                                                <input type="text" class="form-control" placeholder="Escolaridade" id="cad_escolar" name="cad_escolar" required>
                                             </div>
                                         </div>
                                     </div>
@@ -1061,24 +1061,24 @@
                                                 <label for="cad_rua">Endereço</label>
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <input type="text" class="form-control" placeholder="Minha rua, nº 23(apt)" id="cad_rua" name="cad_rua">
+                                                        <input type="text" class="form-control" placeholder="Minha rua, nº 23(apt)" id="cad_rua" name="cad_rua" required>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <input type="text" class="form-control" placeholder="Cidade" id="cad_cidade" name="cad_cidade">
+                                                        <input type="text" class="form-control" placeholder="Cidade" id="cad_cidade" name="cad_cidade" required>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <input type="text" class="form-control" placeholder="Estado" id="cad_estado" name="cad_estado" >
+                                                        <input type="text" class="form-control" placeholder="Estado" id="cad_estado" name="cad_estado"  required>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <input type="text" class="form-control" placeholder="Pais" id="cad_pais" name="cad_pais">
+                                                        <input type="text" class="form-control" placeholder="Pais" id="cad_pais" name="cad_pais" required>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="margin-top: 5px;">
                                                     <div class="col-md-6">
-                                                        <input type="text" class="form-control" placeholder="complemento" id="cad_complemento" name="cad_complemento">
+                                                        <input type="text" class="form-control" placeholder="complemento" id="cad_complemento" name="cad_complemento" required>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <input type="text" class="form-control" placeholder="Vizinhos" id="cad_vizinhos" name="cad_vizinhos">
+                                                        <input type="text" class="form-control" placeholder="Vizinhos" id="cad_vizinhos" name="cad_vizinhos" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1088,7 +1088,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="cad_conheceu">Como conheceu?</label>
-                                                <input type="text" class="form-control" placeholder="Como conheceu" id="cad_conheceu" name="cad_conheceu">
+                                                <input type="text" class="form-control" placeholder="Como conheceu" id="cad_conheceu" name="cad_conheceu" required>
                                             </div>
                                         </div>
                                     </div>
@@ -1159,18 +1159,19 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary" id="cad_pacit" name="cad_pacit">Cadastrar</button>
+                    <button onclick="cad_pacit()" type="submit" class="btn btn-primary" id="cad_pacit" name="cad_pacit">Cadastrar</button>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        userDados();
+    </script>
     <script>
         window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')
     </script>
+    <!-- <script src="plugins/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js"></script> -->
+    <script src="plugins/jvectormap/jquery-jvectormap.min.js"></script>
     <script src="plugins/popper.js/dist/umd/popper.min.js"></script>
     <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
@@ -1179,8 +1180,7 @@
     <script src="plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-    <script src="plugins/jvectormap/jquery-jvectormap.min.js"></script>
-    <!-- <script src="plugins/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js"></script> -->
+    
     <script src="plugins/moment/moment.js"></script>
     <script src="plugins/fullcalendar/dist/fullcalendar.min.js"></script>
     <script src="plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
@@ -1194,8 +1194,7 @@
     <script src="js/calendar.js"></script>
     <script src="js/datatables.js"></script>
     <script src="js/alerts.js"></script>
-    <script src="js/requests.js"></script>
-    <script src="plugins/jquery-ui/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function (b, o, i, l, e, r) {
@@ -1213,7 +1212,20 @@
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
     </script>
-
+    <script>
+        //<![CDATA[
+        $(window).on('load', function () {
+          $('#preloader .inner').fadeOut();
+          $('#preloader').delay(350).fadeOut('slow'); 
+          $('body').delay(350).css({'overflow': 'visible'});
+        })
+        //]]>
+        
+    </script>
+    <script>
+        allAgend();
+    </script>
+    
 </body>
 
 </html>
