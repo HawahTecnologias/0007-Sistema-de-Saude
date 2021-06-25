@@ -32,11 +32,19 @@ $(document).ready(function(t, e, i) {
             title: "All Day Event",
             start: new Date(r, n, 1),
             className: "bg-purple"
-        }],
-        locale: 'pt-br',
+        },
+        {
+            title: "Testando",
+            start:  new Date(r, n, 1),
+            className: "bg-aqua"
+        }
+        
+        ],
+        locale: 'pt',
         editable: !0,
         selectable: !0,
         droppable: !0,
+        eventLimit: true,
         drop: function(t, e) {
             var i = $(this).data("eventObject"),
                 n = $.extend({}, i);
@@ -85,7 +93,7 @@ $(document).ready(function(t, e, i) {
                         title: title,
                         start: start,
                         end: end,
-                        allDay: false,
+                        allDay: true,
                         className: categoryClass
                     }, true);
                     $("#addEvent").modal('hide');
