@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="pt_BR">
 
 <head>
     <meta charset="utf-8">
@@ -18,9 +18,13 @@
     <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
     <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
     <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../plugins/jquery-toast-plugin/dist/jquery.toast.min.css">
     <link rel="stylesheet" href="../dist/css/theme.min.css">
     <link rel="stylesheet" href="../dist/css/mystyle.css"><!-- Meu estilo de CSS (Criado para colocar meus proprios css) -->
+    
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="../js/requests.js"></script>
+    <script>conect2(); </script>
 </head>
 
 <body>
@@ -39,16 +43,16 @@
                 <div class="col-xl-6 col-lg-6 col-md-7 my-auto p-0">
                     <div class="authentication-form mx-auto">
                         <div class="logo-centered d-flex j-content-center">
-                            <a href="#"><img src="../img/icons/logo_sm.svg" alt="Logo"></a>
+                            <a href="#"><img width="100" src="../img/icons/logo_sm.svg" alt="Logo"></a>
                         </div>
                         <h3>Registre um novo usuário no Saúde Massa <i class="ik ik-user-plus f-40 ml-30" ></i> </h3> 
-                        <div class="mb-30" id="cad_user_msg" > O cadastro leva apenas alguns passos!</div>
+                        <!-- <div class="mb-30" id="cad_user_msg" > O cadastro leva apenas alguns passos!</div> -->
 
-                        <form >
+                        <form id="form_cad_user" >
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Nome" required id="nome">
+                                        <input type="text" class="form-control" placeholder="Nome "  id="user_nome">
                                         <i class="ik ik-user"></i>
                                     </div>
                                 </div>
@@ -63,7 +67,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <select class="form-control" id="funcao">
+                                        <select class="form-control" id="user_func">
                                             <option value="" selected hidden> Área de atuação</option>
                                             <option value="admin">Admin</option>
                                             <option value="doctor">Doutor</option>
@@ -74,7 +78,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Especialidade" required id="ramo">
+                                        <input type="text" class="form-control" placeholder="Especialidade"  id="user_espec">
                                         <i class="ik ik-plus-square"></i>
                                     </div>
                                 </div>
@@ -82,49 +86,46 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="CPF" required id="cpf">
+                                        <input type="text" class="form-control" placeholder="CPF"  id="user_cpf">
                                         <i class="ik ik-lock"></i>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Registro Profissional" required
-                                            id="registro">
+                                        <input type="text" class="form-control" placeholder="Registro Profissional"  id="user_registro">
                                         <i class="ik ik-info"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Email" required id="email">
+                                <input type="text" class="form-control" placeholder="Email"  id="user_email">
                                 <i class="ik ik-at-sign"></i>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Celular " required
-                                            id="celular">
+                                        <input type="text" class="form-control" placeholder="Celular "  id="user_cel">
                                         <i class="ik ik-smartphone"></i>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Telefone" required
-                                            id="telefone">
+                                        <input type="text" class="form-control" placeholder="Telefone"  id="user_tel">
                                         <i class="ik ik-phone"></i>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" required id="senha">
+                                <input type="password" class="form-control" placeholder="Password"  id="user_senha">
                                 <i class="ik ik-lock"></i>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Confirm Password" required>
+                                <input type="password" class="form-control" placeholder="Confirm Password"  id="user_senha_confirm">
                                 <i class="ik ik-eye-off"></i>
                             </div>
 
                             <div class="sign-btn text-center">
-                                <button id="cad_user" class="btn btn-inverse">Registrar Usuário</button>
+                                <button onclick="cadUser()" id="cad_user" class="btn btn-inverse">Registrar Usuário</button>
                             </div>
                         </form>
                     </div>
@@ -140,9 +141,11 @@
     <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
     <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="../plugins/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
     <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <script src="../dist/js/theme.js"></script>
-    <script src="../js/requests.js"></script>
+    <script src="../js/alerts.js"></script>
+    
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
         (function (b, o, i, l, e, r) {
