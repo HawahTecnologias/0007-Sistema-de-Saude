@@ -79,3 +79,9 @@
   } 
 }
 /* end: Preloader */
+
+/* Auto complete para modal */
+.ui-autocomplete{
+  z-index: 1050 !important;
+}
+/* Fim Autocomplete Modal */
