@@ -1,4 +1,16 @@
 (function($) {
+  show201Toast = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Cadastrado!',
+      text: 'Cadastrado com sucesso!.',
+      showHideTransition: 'slide',
+      icon: 'success',
+      loaderBg: '#f96868',
+      position: 'top-right'
+    })
+  };
   showValidationToast = function() {
     'use strict';
     resetToastPosition();
