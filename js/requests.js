@@ -1,6 +1,6 @@
 
 // -------------------------------------------- CONTROLE DE CONEXÃO/VARIÁVEIS -----------------------------------------------------------
-let url = "www.portomassa.com/";
+let url = process.env.ENVIRONMENT === "prod" ? API_URL : API_URL_LOCALHOST;
 let auth = localStorage.getItem('Acess');
 function userDados(){
     let user_dados = JSON.parse(atob(auth.split('.')[1]));
