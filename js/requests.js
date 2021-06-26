@@ -14,7 +14,7 @@ function userDados(){
 };
 function conect() {
     if(auth == null ){
-        window.location.replace("0007-Sistema-de-Saude/../pages/login.html"); 
+        window.location.replace("pages/login.html"); 
     }
 };
 function conect2() {
