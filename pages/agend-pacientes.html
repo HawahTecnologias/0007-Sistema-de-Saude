@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="../plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../dist/css/theme.min.css">
+    <link rel="stylesheet" href="../dist/css/mystyle.css"><!-- Meu estilo de CSS (Criado para colocar meus proprios css) -->
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -29,6 +30,14 @@
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+<!-- início do preloader -->
+<div id="preloader">
+    <div class="inner">
+       <!-- HTML DA ANIMAÇÃO MUITO LOUCA DO SEU PRELOADER! -->
+       <img src="../img/icons/preloader.gif" alt="Recarregando">
+    </div>
+</div>
+<!-- fim do preloader --> 
 
     <div class="wrapper">
         <!-- Barra de navegação superior -->
@@ -155,6 +164,55 @@
             <!-- Barra de menu lateral -->
             <div class="app-sidebar colored">
                 <div class="sidebar-header">
+                    <a class="header-brand" href="../index.html">
+                        <div class="logo-img">
+                            <img src="../img/icons/logo_sm.svg" class="header-brand-img" alt="." width="100%">
+                            <!-- colocar no alt texto indicando q é a logo -->
+                        </div>
+                        <span class="text"> Saúde Masssa</span>
+                    </a>
+                    <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
+                    <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
+                </div>
+
+                <div class="sidebar-content">
+                    <div class="nav-container">
+                        <nav id="main-menu-navigation" class="navigation-main">
+                            <div class="nav-lavel">Agendamentos</div>
+                            <div class="nav-item active">
+                                <a href="../index.html"><i class="ik ik-calendar"></i><span>Agenda</span></a>
+                            </div>
+                            <div class="nav-item has-sub">
+                                <a href="javascript:void(0)"><i class="ik ik-users"></i><span>Pacientes</span> </a>
+                                <div class="submenu-content">
+                                    <a href="cad-pacientes.html" class="menu-item">Cadastros</a>
+                                    <a href="agend-pacientes.html" class="menu-item">Agendamentos</a>
+                                    <!-- <a href="pages/widget-data.html" class="menu-item">Lista de Atendimentos</a>
+                                    <a href="pages/widget-chart.html" class="menu-item">Histórico de agendamento</a> -->
+                                </div>
+                            </div>
+                            <div class="nav-item">
+                                <a href="navbar.html"><i class="ik ik-settings"></i><span>Configuração</span> </a>
+                            </div>
+                            <div class="nav-lavel">Atendimento</div>
+                            <div class="nav-item">
+                                <a href="consulta-list.html"><i class="ik ik-menu"></i><span>Consultas</span> </a>
+                            </div>
+                            <div class="nav-lavel">Usuários</div>
+                            <div class="nav-item">
+                                <a href="register.html" ><i class="ik ik-user-plus"></i><button type="button" class="btn btn-outline-info">Adicionar Usuário</button></a>
+                            </div>
+                            <div class="nav-item">
+                                <a href="cad-user-list.html"><i class="ik ik-users"></i><span>Usuários</span> </a>
+                            </div>
+                            <div class="nav-lavel">CRM</div>
+                           
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="app-sidebar colored">
+                <div class="sidebar-header">
                     <a class="header-brand" href="index.html">
                         <div class="logo-img">
                             <img src="#" class="header-brand-img" alt=".">
@@ -178,8 +236,8 @@
                                 <div class="submenu-content">
                                     <a href="cad-pacientes.html" class="menu-item">Cadastros</a>
                                     <a href="agend-pacientes.html" class="menu-item">Agendamentos</a>
-                                    <!-- <a href="pages/widget-data.html" class="menu-item">Lista de Atendimentos</a>
-                                    <a href="pages/widget-chart.html" class="menu-item">Histórico de agendamento</a> -->
+                                    <a href="pages/widget-data.html" class="menu-item">Lista de Atendimentos</a>
+                                    <a href="pages/widget-chart.html" class="menu-item">Histórico de agendamento</a>
                                 </div>
                             </div>
                             <div class="nav-item">
@@ -190,7 +248,7 @@
                         </nav>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- Conteúdo da pagina -->
             <div class="main-content">
                 <div class="container-fluid">
@@ -200,7 +258,7 @@
                                 <div class="page-header-title">
                                     <i class="ik ik-clock bg-blue"></i>
                                     <div class="d-inline">
-                                        <h5>Todos Agendamentos</h5>
+                                        <h5>Histórico de Agendamentos</h5>
                                         <span>Busque edite e reagende os agendamentos aqui.</span>
                                     </div>
                                 </div>
@@ -212,9 +270,9 @@
                                             <a href="../index.html"><i class="ik ik-home"></i></a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="#">Apps</a>
+                                            <a href="consulta-list.html">Consultas</a>
                                         </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Agendamentos</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -232,38 +290,24 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th class="nosort">&nbsp;</th>
-                                                <th>Name</th>
-                                                <th>Email</th>
+                                                <th>Nome</th>
+                                                <th>Telefone</th>
                                                 <th>Covênio</th>
-                                                <th>Agenda</th>
+                                                <th>Início</th>
+                                                <th>Fim</th>
+                                                <th>Consulta</th>
                                                 <th>Status</th>
                                                 <th class="nosort">&nbsp;</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>001</td>
-                                                <td><img src="../img/users/1.jpg" class="table-user-thumb" alt=""></td>
-                                                <td>Samuel Jesus</td>
-                                                <td>samuel.jesus@gmail.com</td>
-                                                <td>Sus</td>
-                                                <td>27/02/2021</td>
-                                                <td>Confirmado</td>
-                                                <td>
-                                                    <div class="table-actions">
-                                                        <a href="#"><i class="ik ik-eye"></i></a>
-                                                        <a href="#"><i class="ik ik-edit-2"></i></a>
-                                                        <a href="#"><i class="ik ik-trash-2"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="agends">
+                                            
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <aside class="right-sidebar">
@@ -740,6 +784,12 @@
     <script src="../plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="../dist/js/theme.min.js"></script>
     <script src="../js/datatables.js"></script>
+    <script src="../js/requests.js"></script>
+    <script>
+        conect2();
+        allAgend();
+      
+    </script>
     
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -758,13 +808,17 @@
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
     </script>
+    <script>
+        //<![CDATA[
+        $(window).on('load', function () {
+          $('#preloader .inner').fadeOut();
+          $('#preloader').delay(350).fadeOut('slow'); 
+          $('body').delay(350).css({'overflow': 'visible'});
+        })
+        //]]>
+        
+    </script>
 
-
-    
-    
-    
-    
-    
 </body>
 
 </html>

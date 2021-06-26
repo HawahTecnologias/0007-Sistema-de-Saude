@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI （Autocomplete）</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script>
+  function focando(){
+    let auth = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlzQWRtaW4iOnRydWUsImlkIjozLCJuYW1lIjoiU2FtdWVsIEplc3VzIiwiY3BmIjoiODYyNTUyMzIxNjQiLCJyZWdpc3RyeSI6IjE1NDYyMyIsInNwZWNpYWx0eSI6IkRldiIsInBob25lIjoiKzU1NzEzMjY1NDg3NSIsImNlbGxwaG9uZSI6Iis1NTcxOTgzNTU2NDg3IiwiZW1haWwiOiJzYW11a2EuZmVsaXhzYW50b3NAaG90bWFpbC5jb20iLCJwYXNzd29yZCI6IiRhcmdvbjJpZCR2PTE5JHQ9MyxtPTQwOTYscD0xJGl1WlROWlVibkFyNm1maXpFS01wRHckYUxqTEcrVEVZeFZBekFKQWowZFlmRlY3ZzNmWDA1MDlUclZIWC8xYlhMbyIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjEtMDUtMTJUMTc6MjE6MzUuNDUyLTAzOjAwIiwidXBkYXRlZEF0IjoiMjAyMS0wNS0xMlQxNzoyMTozNS40NTItMDM6MDAifSwiaWF0IjoxNjIzNzM0OTM4LCJleHAiOjE2MjQzMzk3Mzh9.WANFyiL3rXi1gTErC3JXrs2iYqIIxGX3oRk1T7m3cAU";
+    let url = "http://localhost:3333/";
+    let request = $.ajax({
+            type: "GET",
+            url: url+"patient",
+            headers: { 'Authorization': 'Bearer ' + auth },
+            xhrFields: { withCredentials: true },
+            data: {
+                page : 1,
+                perPage: 10
+            },    
+            cache: false,
+            dataType:"json",
+            success: function (response, xhr, ajaxOptions, thrownError) {
+                let dados = request.responseText
+                let pacits = JSON.parse(dados)
+                let dado = pacits.data
+                let agd_pacits = []
+                dado.forEach(paciente => {
+                    agd_pacits.push(paciente.first_name +" "+ paciente.last_name)
+                    agd_pacits.push(paciente.email)
+                    agd_pacits.push(paciente.cellphone)
+                    agd_pacits.push(paciente.phone)
+                });
+                $("#esporte").autocomplete({source: agd_pacits})
+            
+                
+                let agd_busca = $("#esporte").val();
+                
+                console.log(dado)
+                console.log(agd_pacits)
+                function agendPacit(array, key, value) {
+
+                    for (var i = 0; i < array.length; i++) {
+
+                    if (array[i][key] == value) {
+                        return i;
+                        }
+                    }
+                 return null;
+                }
+                let index = agendPacit(dado, "cellphone", agd_busca);
+                let pacit = dado[index];
+
+                if (index == null){
+                    alert("Este paciente ainda não foi cadastrado!");
+                }
+                    console.log(pacit)
+                    let id = pacit.id;
+                    let nome = pacit.first_name +" "+pacit.last_name;
+                    let genero = pacit.gender;
+                    let nasc = pacit.birthdate;
+                    let cel = pacit.phone;
+                    let cel2 = pacit.second_phone;
+                    let email = pacit.email;
+                    let plano = pacit.health_insurance;
+                document.getElementById("id").innerHTML = id;
+                document.getElementById("nome").innerHTML = nome;
+                document.getElementById("genero").innerHTML = genero;
+                document.getElementById("nasc").innerHTML = nasc;
+                document.getElementById("cel").innerHTML = cel;
+                document.getElementById("email").innerHTML = email;
+                document.getElementById("plano").innerHTML = plano;
+
+
+
+            },
+            error: function (xhr, ajaxOptions, thrownError){
+                console.log(xhr, ajaxOptions, thrownError);
+            }
+        });
+        
+}
+  </script>
+</head>
+<body>
+ 
+    <input onclick="focando()" type="text" id="esporte" placeholder="Informe um esporte"/>
+    <p id="id"></p>
+    <p id="nome"></p>
+    <p id="genero"></p>
+    <p id="nasc"></p>
+    <p id="cel"></p>
+    <p id="email"></p>
+    <p id="plano"></p>
+   
+    
+    
+ 
+ 
+</body>
+</html>

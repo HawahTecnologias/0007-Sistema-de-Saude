@@ -11,23 +11,24 @@ function userDados(){
     localStorage.setItem('user_espec', user_dado.specialty)
     localStorage.setItem('user_admin', user_dado.isAdmin)
  
-}
+};
 function conect() {
     if(auth == null ){
         window.location.replace("0007-Sistema-de-Saude/../pages/login.html"); 
     }
-}
+};
 function conect2() {
     if(auth == null ){
         window.location.replace("login.html"); 
     }
-}
+};
 function desconect() {
+    clearStorage()
     localStorage.removeItem('Acess');
-}
+};
 function clearStorage() {
     localStorage.clear();
-}
+};
 
 let msg = {
     400 : '<div class="alert bg-danger alert-danger text-white" role="alert"> <b> Algo está errado(a)!!</b> confira os dados inseridos e tente novamente! </div>',
@@ -80,7 +81,7 @@ function login() {
             }
         });
     });
-}//_________________________________________________________________________________________________________________________________ 
+};//_________________________________________________________________________________________________________________________________ 
        
 // REQUEST PARA CADASTRAR PACIENTE (Jquery>Ajax)  [O Status response para erro de preenchimento ta como 401 e não 400 | Está cadastrando usuários com 
 // campos especificos iguais]
@@ -205,7 +206,7 @@ function agend_pacit () {
             console.log(xhr, ajaxOptions, thrownError);
             }
     });      
-}//_________________________________________________________________________________________________________________________________
+};//_________________________________________________________________________________________________________________________________
 
 // REQUEST PARA CADASTRAR USUÀRIO (Jquery>Ajax)  [O Status response para erro de preenchimento ta como 401 e não 400 | Estamos obtendo erro 500 não ta cadastrando]
 function cadUser(){ 
@@ -259,7 +260,7 @@ function cadUser(){
             }   
     })
 });
-}//_________________________________________________________________________________________________________________________________
+};//_________________________________________________________________________________________________________________________________
 
 
 //--------------------------------------------------------------- REQUISIÇÕES MÉTODO > GET ---------------------------------------------------------------
@@ -448,11 +449,33 @@ function GetPacit(){
     
 }
 //_____________________________________________________________________________________________________________________________
-
+function getPacitId(id){
+    let request = $.ajax({
+            type: "GET",
+            url: url+"patient/"+id,
+            headers: { 'Authorization': 'Bearer ' + auth },
+            xhrFields: { withCredentials: true },
+            data: {
+                
+            },
+            cache: false,
+            success: function(response){
+                let pacit_dados = response
+                let pacit_nome = pacit_dados.first_name +" "+ pacit_dados.last_name
+                localStorage.setItem('agd_pacit_nome', pacit_nome )
+                localStorage.setItem('agd_pacit_tel', pacit_dados.cellphone)
+                
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                  
+                console.log(xhr, ajaxOptions, thrownError);
+            }   
+    })
+}
 
 function allAgend() {
   
-        let request = $.ajax({
+    let request = $.ajax({
             type: "GET",
             url: url+"appointment",
             headers: { 'Authorization': 'Bearer ' + auth },
@@ -466,7 +489,63 @@ function allAgend() {
         success: function (response) {
             let dados = JSON.parse(request.responseText)
             let dado = dados.data
-            
+            let body = document.getElementById('agends');
+            console.log(dado)
+            dado.forEach(paciente => {
+                let tr = body.insertRow();
+                let td_id = tr.insertCell();
+                let td_foto = tr.insertCell();
+                let td_nome = tr.insertCell();
+                let td_tel = tr.insertCell();
+                let td_inicio = tr.insertCell();
+                let td_fim = tr.insertCell();
+                let td_consulta = tr.insertCell();
+                let td_status= tr.insertCell();
+                let td_actions = tr.insertCell();
+                let div = document.createElement("div");
+                let a = document.createElement("a");
+                let aa = document.createElement("a");
+                let aaa = document.createElement("a");
+                let i = document.createElement("i");
+                let ii = document.createElement("i");
+                let iii = document.createElement("i");
+    
+                td_actions.appendChild(div);
+                div.appendChild(a);
+                div.appendChild(aa);
+                div.appendChild(aaa);
+                a.appendChild(i);
+                aa.appendChild(ii);
+                aaa.appendChild(iii);
+
+
+                 getPacitId(paciente.patient_id)
+                 
+                //  const toDate = (date) => {
+                //     let initializeDate = new Date(date);
+                 
+                //     new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' }).format(date);
+                //  }
+                //  let teste = toDate()
+                //  console.log(teste)
+                td_id.innerText = paciente.id
+                td_foto.innerText = "foto"
+                td_nome.innerText = "Paciente"
+                td_tel.innerText = "(71) 9 9999-9999"
+                td_inicio.innerText = paciente.start_date
+                td_fim.innerText = paciente.end_date
+                td_consulta.innerText = paciente.type
+                td_status.innerText = paciente.status
+                
+                div.classList.add('table-actions');
+                i.classList.add('ik', 'ik-eye');
+                ii.classList.add('ik', 'ik-edit-2'); 
+                iii.classList.add('ik', 'ik-trash-2');
+                a.setAttribute("href","#")
+                aa.setAttribute("href","#")
+                aaa.setAttribute("href","#")
+                tr.setAttribute("rule", "row");
+            });
             
         },
         error: function (xhr, ajaxOptions, thrownError) {
