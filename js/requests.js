@@ -1,6 +1,6 @@
 
 // -------------------------------------------- CONTROLE DE CONEXÃO/VARIÁVEIS -----------------------------------------------------------
-let url = "http://localhost:3333/";
+let url = "www.portomassa.com/";
 let auth = localStorage.getItem('Acess');
 function userDados(){
     let user_dados = JSON.parse(atob(auth.split('.')[1]));
