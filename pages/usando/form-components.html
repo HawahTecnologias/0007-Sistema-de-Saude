@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Forms Group Add-Ons | ThemeKit - Admin Template</title>
+        <title>Form Components | ThemeKit - Admin Template</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,13 +12,13 @@
 
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
         
-        <link rel="stylesheet" href="../plugins/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
-        <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
-        <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
-        <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
-        <link rel="stylesheet" href="../dist/css/theme.min.css">
-        <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+        <link rel="stylesheet" href="../../plugins/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="../../plugins/ionicons/dist/css/ionicons.min.css">
+        <link rel="stylesheet" href="../../plugins/icon-kit/dist/css/iconkit.min.css">
+        <link rel="stylesheet" href="../../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+        <link rel="stylesheet" href="../../dist/css/theme.min.css">
+        <script src="../../src/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
 
     <body>
@@ -178,8 +178,8 @@
                                 <div class="nav-item has-sub active open">
                                     <a href="#"><i class="ik ik-edit"></i><span>Forms</span></a>
                                     <div class="submenu-content">
-                                        <a href="form-components.html" class="menu-item">Components</a>
-                                        <a href="form-addon.html" class="menu-item active">Add-On</a>
+                                        <a href="form-components.html" class="menu-item active">Components</a>
+                                        <a href="form-addon.html" class="menu-item">Add-On</a>
                                         <a href="form-advance.html" class="menu-item">Advance</a>
                                     </div>
                                 </div>
@@ -273,7 +273,7 @@
                                     <div class="page-header-title">
                                         <i class="ik ik-edit bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Group Add-Ons</h5>
+                                            <h5>Components</h5>
                                             <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
                                         </div>
                                     </div>
@@ -285,7 +285,7 @@
                                                 <a href="../index.html"><i class="ik ik-home"></i></a>
                                             </li>
                                             <li class="breadcrumb-item"><a href="#">Forms</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Group Add-Ons</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Components</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -293,450 +293,388 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h3>Input Group</h3>
-                                    </div>
+                                    <div class="card-header"><h3>Default form</h3></div>
                                     <div class="card-body">
-                                        <div class="mb-20">
-                                            <h4 class="sub-title">Basic Group Add-ons</h4>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Simple Add-on</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text">@</label>
-                                                        </span>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
+                                        <form class="forms-sample">
+                                            <div class="form-group">
+                                                <label for="exampleInputUsername1">Username</label>
+                                                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
                                             </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Placeholder</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend" id="basic-addon2">
-                                                            <label class="input-group-text">%</label>
-                                                        </span>
-                                                        <input type="text" class="form-control" placeholder="Left addon">
-                                                    </div>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email address</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
                                             </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Right Add-on</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Right addon">
-                                                        <span class="input-group-append" id="basic-addon3">
-                                                            <label class="input-group-text">$</label>
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Password</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                             </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Both-side Add-on</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text">$</label>
-                                                        </span>
-                                                        <input type="text" class="form-control" placeholder="Both-side addon">
-                                                        <span class="input-group-append">
-                                                            <label class="input-group-text">.20</label>
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputConfirmPassword1">Confirm Password</label>
+                                                <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
                                             </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Muliple Add-ons</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text">$</label>
-                                                        </span>
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text">.20</label>
-                                                        </span>
-                                                        <input type="text" class="form-control" placeholder="Multiple addons">
-                                                    </div>
-                                                </div>
+                                            <div class="form-group">
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input">
+                                                    <span class="custom-control-label">&nbsp;Remember me</span>
+                                                </label>
                                             </div>
-                                        </div>
-                                        <!-- Basic group add-ons end -->
-                                        <!-- Icon Group Addons start -->
-                                        <div>
-                                            <h4 class="sub-title">Icon Group Addons</h4>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Left Icon</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-volume"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control" placeholder="Left addon">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Right Icon</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Right addon">
-                                                        <span class="input-group-append">
-                                                            <label class="input-group-text"><i class="ik ik-wifi"></i></label>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Both-side Icons Addon</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-chevron-left"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control" placeholder="Right add-on">
-                                                        <span class="input-group-append">
-                                                            <label class="input-group-text"><i class="ik ik-chevron-right"></i></label>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Icon Group Addons end -->
+                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                            <button class="btn btn-light">Cancel</button>
+                                          </form>
                                     </div>
                                 </div>
-                                <!-- Input group card end -->
-                                <!-- Input Group Sizes & Colors card start -->
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3>Input Group Colors</h3>
-                                    </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card" style="min-height: 484px;">
+                                    <div class="card-header"><h3>Horizontal Form</h3></div>
                                     <div class="card-body">
-                                        <h4 class="sub-title">Color Addons</h4>
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="input-group input-group-primary">
-                                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-tv"></i></label></span>
-                                                    <input type="text" class="form-control" placeholder="input-group-primary">
+                                        <form class="forms-sample">
+                                            <div class="form-group row">
+                                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Username</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Username">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="input-group input-group-warning">
-                                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-gitlab"></i></label></span>
-                                                    <input type="text" class="form-control" placeholder="input-group-warning">
+                                            <div class="form-group row">
+                                                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
+                                                <div class="col-sm-9">
+                                                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="input-group input-group-default">
-                                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-shield"></i></label></span>
-                                                    <input type="text" class="form-control" placeholder="input-group-default">
+                                            <div class="form-group row">
+                                                <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="input-group input-group-danger">
-                                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-volume-1"></i></label></span>
-                                                    <input type="text" class="form-control" placeholder="input-group-danger">
+                                            <div class="form-group row">
+                                                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="input-group input-group-success">
-                                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-volume-x"></i></label></span>
-                                                    <input type="text" class="form-control" placeholder="input-group-success">
+                                            <div class="form-group row">
+                                                <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="input-group input-group-inverse">
-                                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-wifi"></i></label></span>
-                                                    <input type="text" class="form-control" placeholder="input-group-inverse">
-                                                </div>
+                                            <div class="form-group">
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input">
+                                                    <span class="custom-control-label">&nbsp;Remember me</span>
+                                                </label>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="input-group input-group-info">
-                                                    <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-bar-chart-line"></i></label></span>
-                                                    <input type="text" class="form-control" placeholder="input-group-info">
-                                                </div>
-                                            </div>
-                                        </div>
+                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                            <button class="btn btn-light">Cancel</button>
+                                        </form>
                                     </div>
                                 </div>
-                                <!-- Input Group Sizes & Colors card end -->
-                                <!-- Input Group With Components card start -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h3>Input Group With Components</h3>
-                                    </div>
+                                    <div class="card-header"><h3>Basic form elements</h3></div>
                                     <div class="card-body">
-                                        <div class="row mb-20">
-                                            <div class="col-sm-12 col-lg-6">
-                                                <h4 class="sub-title">Icon Group with Buttons</h4>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="input-group input-group-button">
-                                                            <div class="input-group-prepend">
-                                                                <button class="btn btn-primary" type="button">Left Button</button>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Left Button">
-                                                        </div>
+                                        <form class="forms-sample">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Name</label>
+                                                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail3">Email address</label>
+                                                        <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="input-group input-group-button">
-                                                            <input type="text" class="form-control" placeholder="Right Button">
-                                                            <div class="input-group-append">
-                                                                <button class="btn btn-primary" type="button">Right Button</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="input-group input-group-button">
-                                                            <div class="input-group-prepend">
-                                                                <button class="btn btn-primary" type="button">Left Button</button>
-                                                            </div>
-                                                            <input type="text" class="form-control" placeholder="Both side addons">
-                                                            <div class="input-group-append">
-                                                                <button class="btn btn-primary" type="button">Right Button</button>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleSelectGender">Gender</label>
+                                                        <select class="form-control" id="exampleSelectGender">
+                                                            <option>Male</option>
+                                                            <option>Female</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12 col-lg-6">
-                                                <h4 class="sub-title">Icon Group with Dropdowns</h4>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="input-group input-group-dropdown">
-                                                            <div class="input-group-prepend">
-                                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Left Action <i class="ik ik-chevron-down"></i></button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else</a>
-                                                                    <div role="separator" class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item" href="#!">Separated link</a>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="input-group input-group-dropdown">
-                                                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                                            <div class="input-group-append">
-                                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Right Action <i class="ik ik-chevron-down"></i></button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else</a>
-                                                                    <div role="separator" class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item" href="#!">Separated link</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="input-group input-group-dropdown">
-                                                            <div class="input-group-btn">
-                                                                <div class="input-group-prepend">
-                                                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Click <i class="ik ik-chevron-down"></i></button>
-                                                                    <div class="dropdown-menu">
-                                                                        <a class="dropdown-item" href="#!">Action</a>
-                                                                        <a class="dropdown-item" href="#!">Another action</a>
-                                                                        <a class="dropdown-item" href="#!">Something else</a>
-                                                                        <div role="separator" class="dropdown-divider"></div>
-                                                                        <a class="dropdown-item" href="#!">Separated link</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                                            <div class="input-group-append">
-                                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Click <i class="ik ik-chevron-down"></i></button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item" href="#!">Action</a>
-                                                                    <a class="dropdown-item" href="#!">Another action</a>
-                                                                    <a class="dropdown-item" href="#!">Something else</a>
-                                                                    <div role="separator" class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item" href="#!">Separated link</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword4">Password</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>File upload</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                                    <span class="input-group-append">
+                                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                                    </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h4 class="sub-title">Icon Group with Checkbox</h4>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="form-group">
+                                                <label for="exampleTextarea1">Textarea</label>
+                                                <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <h4 class="sub-title">Icon Group with Radio</h4>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <input type="radio" aria-label="Radio button for following text input">
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                            <button class="btn btn-light">Cancel</button>
+                                        </form>
                                     </div>
                                 </div>
-                                <!-- Input Group With Components card end -->
+                            </div>
+                            <div class="col-md-6">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h3>Input Group Alignment</h3>
-                                    </div>
+                                    <div class="card-header"><h3>Input Sizes</h3></div>
                                     <div class="card-body">
                                         <form>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Normal Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-volume"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control" placeholder="Normal Text">
-                                                    </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control form-control-lg" placeholder=".form-control-lg">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" placeholder=".form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control form-control-sm" placeholder=".form-control-sm">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header"><h3>Text-color</h3></div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-txt-primary" placeholder=".form-txt-primary">
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-txt-warning" placeholder=".form-txt-warning">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-txt-default" placeholder=".form-txt-default">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-txt-danger" placeholder=".form-txt-danger">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-txt-success" placeholder=".form-txt-success">
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Bold Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-gitlab"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-bold" placeholder=".form-control-bold">
-                                                    </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-txt-inverse" placeholder=".form-txt-inverse">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-txt-info" placeholder=".form-txt-info">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header"><h3>Color Inputs</h3></div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-primary" placeholder=".form-control-primary">
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-warning" placeholder=".form-control-warning">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-default" placeholder=".form-control-default">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-danger" placeholder=".form-control-danger">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-success" placeholder=".form-control-success">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-inverse" placeholder=".form-control-inverse">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-control-info" placeholder=".form-control-info">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header"><h3>Background-color</h3></div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-bg-primary" placeholder=".form-bg-primary">
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-bg-warning" placeholder=".form-bg-warning">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-bg-default" placeholder=".form-bg-default">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-bg-danger" placeholder=".form-bg-danger">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-bg-success" placeholder=".form-bg-success">
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Capitalize Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-tv"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-capitalize" placeholder=".form-control-capitalize">
-                                                    </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-bg-inverse" placeholder=".form-bg-inverse">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control form-bg-info" placeholder=".form-bg-info">
                                                 </div>
                                             </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card" style="min-height: 180px;">
+                                    <div class="card-header"><h3>Inline forms</h3></div>
+                                    <div class="card-body">
+                                        <form class="form-inline">
+                                            <label class="sr-only" for="inlineFormInputName2">Name</label>
+                                            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Shanker Raj">
+                                          
+                                            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">@</div>
+                                                </div>
+                                                <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                                            </div>
+                                            <div class="form-check mx-sm-2">
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" checked>
+                                                    <span class="custom-control-label">&nbsp; Remember Me</span>
+                                                </label>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header"><h3>Validation States</h3></div>
+                                    <div class="card-body">
+                                        <form class="forms-sample">
                                             <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Uppercase Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-wifi"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-uppercase" placeholder=".form-control-uppercase">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputName1">Name</label>
+                                                        <input type="text" class="form-control is-valid" id="exampleInputName1" placeholder="Name">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Lowercase Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-shield"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-lowercase" placeholder=".form-control-lowercase">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Varient Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-volume"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-variant" placeholder=".form-control-variant">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Left-Align Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-tv"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-left" placeholder=".form-control-left">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Center-Align Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-gitlab"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-center" placeholder=".form-control-center">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">Right-Align Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-shield"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-right" placeholder=".form-control-right">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-4 col-lg-2 col-form-label">RTL Text</label>
-                                                <div class="col-sm-8 col-lg-10">
-                                                    <div class="input-group">
-                                                        <span class="input-group-prepend">
-                                                            <label class="input-group-text"><i class="ik ik-volume"></i></label>
-                                                        </span>
-                                                        <input type="text" class="form-control form-control-rtl" placeholder=".form-control-rtl">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail3">Email address</label>
+                                                        <input type="email" class="form-control is-invalid" id="exampleInputEmail3" placeholder="Email">
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
-                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header"><h3>Input Grid</h3></div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group row">
+                                                <div class="col-sm-1">
+                                                    <input type="text" class="form-control" placeholder="col-sm-1">
+                                                </div>
+                                                <div class="col-sm-11">
+                                                    <input type="text" class="form-control" placeholder="col-sm-11">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control" placeholder="col-sm-2">
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" placeholder="col-sm-10">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-3">
+                                                    <input type="text" class="form-control" placeholder="col-sm-3">
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" placeholder="col-sm-9">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" placeholder="col-sm-4">
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" placeholder="col-sm-8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-5">
+                                                    <input type="text" class="form-control" placeholder="col-sm-5">
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" placeholder="col-sm-7">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" placeholder="col-sm-6">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" placeholder="col-sm-6">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" placeholder="col-sm-12">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <aside class="right-sidebar">
@@ -825,7 +763,7 @@
                                     <div class="message media reply">
                                         <figure class="user--offline">
                                             <a href="#">
-                                                <img src="../img/users/5.jpg" class="rounded-circle" alt="">
+                                                <img src="../img/users/5.jpg" clFass="rounded-circle" alt="">
                                             </a>
                                         </figure>
                                         <div class="message-body media-body">
@@ -964,11 +902,12 @@
         </div>
         
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-        <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
-        <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-        <script src="../dist/js/theme.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../../src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+        <script src="../../plugins/popper.js/dist/umd/popper.min.js"></script>
+        <script src="../../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+        <script src="../../dist/js/theme.min.js"></script>
+        <script src="../../js/form-components.js"></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

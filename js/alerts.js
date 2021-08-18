@@ -1,4 +1,85 @@
 (function($) {
+//Toast for register medical record
+  //Success register Upload File
+  showUploadCreate = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Arquivo Salvo!',
+      text: 'Arquivo foi enviado com sucesso!',
+      showHideTransition: 'slide',
+      icon: 'success',
+      loaderBg: '#57c7d4',
+      position: 'mid-center'
+    })
+  };
+  //Error register Upload File
+  showUploadError = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Algo errado!',
+      text: 'Arquivo não foi enviado!',
+      showHideTransition: 'slide',
+      icon: 'warning',
+      loaderBg: '#57c7d4',
+      position: 'mid-center'
+    })
+  };
+  //Error register Todo
+  showTodoError = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Algo errado!',
+      text: 'To do não foi criado!',
+      showHideTransition: 'slide',
+      icon: 'warning',
+      loaderBg: '#57c7d4',
+      position: 'mid-center'
+    })
+  };
+  // Success create Todo
+  showTodoCreate = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Sucesso!',
+      text: 'To do Criado com sucesso!',
+      showHideTransition: 'slide',
+      icon: 'success',
+      loaderBg: '#57c7d4',
+      position: 'mid-center'
+    })
+  };
+// Toast for register patient
+  //Error cep
+  showErrorNumber = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Error no cadastro!',
+      text: 'Este número de telefone está incorreto!',
+      showHideTransition: 'slide',
+      icon: 'warning',
+      loaderBg: '#f96868',
+      position: 'mid-center'
+    })
+  };
+  //Error cep
+  showErrorCep = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Error no cadastro!',
+      text: 'Cep Inválido ou inexistente!',
+      showHideTransition: 'slide',
+      icon: 'warning',
+      loaderBg: '#f96868',
+      position: 'mid-center'
+    })
+  };
+//
   show201Toast = function() {
     'use strict';
     resetToastPosition();
@@ -17,6 +98,18 @@
     $.toast({
       heading: 'Epa!',
       text: 'Prencha todos os campos corretamente antes de enviar!',
+      showHideTransition: 'slide',
+      icon: 'warning',
+      loaderBg: '#57c7d4',
+      position: 'top-right'
+    })
+  };
+  showErrorAgendaToast = function() {
+    'use strict';
+    resetToastPosition();
+    $.toast({
+      heading: 'Não agendado!',
+      text: 'Confira os campos preenchidos, se persistir contate o <b>suporte</b>.',
       showHideTransition: 'slide',
       icon: 'warning',
       loaderBg: '#57c7d4',

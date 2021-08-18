@@ -21,8 +21,16 @@
     <link rel="stylesheet" href="../plugins/jquery-toast-plugin/dist/jquery.toast.min.css">
     <link rel="stylesheet" href="../dist/css/theme.min.css">
     <link rel="stylesheet" href="../dist/css/mystyle.css"><!-- Meu estilo de CSS (Criado para colocar meus proprios css) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> <!-- Tema para o autocomplete -->
+
     
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- Script para o Autocomplete -->
+    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="../plugins/jquery-ui/jquery.ui.autocomplete.scroll.min.js"></script>
+    
     <script src="../js/requests.js"></script>
     <script>conect2(); </script>
 </head>
@@ -40,10 +48,10 @@
                         <div class="lavalite-overlay"></div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-7 my-auto p-0">
-                    <div class="authentication-form mx-auto">
+                <div class="col-xl-6 col-lg-6 col-md-7 my-auto ">
+                    <div class="authentication-form mx-auto p0">
                         <div class="logo-centered d-flex j-content-center">
-                            <a href="#"><img width="100" src="../img/icons/logo_sm.svg" alt="Logo"></a>
+                            <a href="../index.html"><img width="100" src="../img/icons/logo_sm.svg" alt="Logo"></a>
                         </div>
                         <h3>Registre um novo usuário no Saúde Massa <i class="ik ik-user-plus f-40 ml-30" ></i> </h3> 
                         <!-- <div class="mb-30" id="cad_user_msg" > O cadastro leva apenas alguns passos!</div> -->
@@ -70,7 +78,7 @@
                                         <select class="form-control" id="user_func">
                                             <option value="" selected hidden> Área de atuação</option>
                                             <option value="admin">Admin</option>
-                                            <option value="doctor">Doutor</option>
+                                            <option value="doctor">Médico</option>
                                             <option value="secretary">Secretario(a)</option>
                                         </select>
                                         <i class="ik ik-user"></i>
@@ -123,9 +131,44 @@
                                 <input type="password" class="form-control" placeholder="Confirm Password"  id="user_senha_confirm">
                                 <i class="ik ik-eye-off"></i>
                             </div>
+                            <hr style="border-color:aqua">
+                            <div class="row">
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" placeholder="Data de nascimento"  id="user_nasc">
+                                        <i class="ik ik-calendar"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <select class="form-control" id="user_gender">
+                                            <option value="" selected hidden> Gênero Biológico</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Feminino</option>
+                                        </select>
+                                        <i class="ik ik-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Cidade onde está atuando"  id="user_cidade">
+                                        <i class="ik ik-map-pin"></i>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="UF (onde o CRM está cadastrado)"  id="uf_crm">
+                                        <i class="ik ik-map"></i>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="sign-btn text-center">
-                                <button onclick="cadUser()" id="cad_user" class="btn btn-inverse">Registrar Usuário</button>
+                                <button id="cad_user" class="btn btn-inverse">Registrar Usuário</button>
                             </div>
                         </form>
                     </div>
@@ -134,7 +177,7 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
     <script>
         window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')
     </script>
@@ -162,6 +205,25 @@
         }(window, document, 'script', 'ga'));
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
+    </script>
+    <script>
+        let especialidades = []
+        $("#user_espec").autocomplete({
+            source: especialidades,
+            minLength: 0,
+            maxShowItems: 5
+        })
+        let uf_crm = [
+                    "AC Acre","AP Amapá","AM Amazonas","AL Alagoas", "BA Bahia","CE Ceará", "DF Distrito Federal","ES Espírito Santo", "GO Goiás",
+                    "MA Maranhão","MS Mato Grosso do Sul", "Mato Grosso MT", "MG Minas Gerais", "PA Pará", "PB Paraíba","PR Paraná", "PE Pernambuco",
+                    "PI Piauí", "RJ Rio de Janeiro","RS Rio Grande do Sul","RO Rondônia","RR Roraima","RN Rio Grande do Norte", "SE Sergipe", "SP São Paulo",
+                    "SC Santa Catarina", "TO Tocantins"
+                    ]
+        $("#uf_crm").autocomplete({
+            source: uf_crm,
+            minLength: 0,
+            maxShowItems: 4      
+        })      
     </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Atendimento | ThemeKit - Admin Template</title>
+    <title>Atendimento | Saúde Massa</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,74 @@
     <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
     <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css">
     <link rel="stylesheet" href="../plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../plugins/jquery-toast-plugin/dist/jquery.toast.min.css">
+    <!-- <link rel="stylesheet" href="../plugins/select2/dist/css/select2.min.css"> -->
+    <!-- Style de Plugin SELECT2 para Autocomplete (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../plugins/summernote/dist/summernote-bs4.css">
+    <link rel="stylesheet" href="../plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="../plugins/mohithg-switchery/dist/switchery.min.css">
     <link rel="stylesheet" href="../dist/css/theme.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> <!-- Tema para o autocomplete -->
+    <!-- Estilo css personalizados -->
+     <link rel="stylesheet" href="../dist/css/mystyle.css">
+    
+    
+
+    <!-- Lib do Jquery (CDN)-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Script para o Autocomplete -->
+    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!-- Lib para data e hora (Moment) -->
+    <script src="../js/moment.min.js"></script>
+
     <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="../js/requests.js"></script>
+    <script>
+        conect2(); //Função de desconectar caso não esteja logado
+        antendimento() // Função de listar os atendimentos
+    </script>
+    <script
+        type="text/javascript"
+        src="https://sandbox.memed.com.br/modulos/plataforma.sinapse-prescricao/build/sinapse-prescricao.min.js"
+        data-token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.WzMzNDIxLCI0ODliZmE4MmU5NDdlZDcyNjFhMDE5MmNhMThkZjlkNSIsIjIwMjEtMDctMjIiLCJzaW5hcHNlLnByZXNjcmljYW8iLCJwYXJ0bmVyLjMuMjg4MTAiXQ.F0nfzSX9OPC7_VR_lqVGoTQUa6jGABJguk2viPu6LAk"
+        data-color="#17a2b8"
+        data-container="pront_memed">
+    </script>
+    <script>
+    //REQUEST PARA BUSCAR OS DADOS DE CID E EXIBIR NO SELECT
+    $(document).ready(function(){
+        $("#pront_busc_hip-diag").keyup(function(){
+            let busc = $('#pront_busc_hip-diag').val();
+            if(busc.length >= 3){
+                $.ajax({
+                    url: url+'filterDiagnostics/'+busc,
+                    type: "GET",
+                    dataType: 'json',
+                    data: {
+                    },
+                    success: function(response) {
+                        let result = []
+                        let teste = response
+                            teste.forEach(element => {
+                                result.push(element.code+" "+element.name) 
+                            });
+                        console.log(result)
+                        $("#pront_busc_hip-diag").autocomplete({
+                            minLength: 2,
+                            source: result
+                        });
+
+                    },
+                    error: function(xhr, ajaxOptions, thrownError){
+                        console.log(xhr, ajaxOptions, thrownError);
+                    }
+                })
+            }
+        })
+    });
+    </script>
 </head>
 
 <body>
@@ -32,7 +98,7 @@
 
     <div class="wrapper">
         <!-- Barra de navegação superior -->
-        <header class="header-top" header-theme="light">
+        <header class="header-top" header-theme="dark">
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
                     <div class="top-menu d-flex align-items-center">
@@ -45,17 +111,15 @@
                             </div>
                         </div>
                         <!-- Botão de maximizar a pagina -->
-                        <button type="button" id="navbar-fullscreen" class="nav-link"><i
-                                class="ik ik-maximize"></i></button>
+                        <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
                     </div>
                     <div class="top-menu d-flex align-items-center">
                         <!-- Item de notificação -->
                         <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="ik ik-bell"></i><span class="badge bg-danger">3</span></a>
-                            <div class="dropdown-menu dropdown-menu-right notification-dropdown"
-                                aria-labelledby="notiDropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="notiDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="ik ik-bell"></i><span class="badge bg-danger">3</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right notification-dropdown" aria-labelledby="notiDropdown">
                                 <h4 class="header">Notificações</h4>
                                 <div class="notifications-wrap">
                                     <a href="#" class="media">
@@ -145,7 +209,6 @@
                                     Sair</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -155,21 +218,20 @@
             <!-- Barra de menu lateral -->
             <div class="app-sidebar colored">
                 <div class="sidebar-header">
-                    <a class="header-brand" href="index.html">
+                    <a class="header-brand" href="../index.html">
                         <div class="logo-img">
-                            <img src="#" class="header-brand-img" alt=".">
+                            <img src="../index.html" class="header-brand-img" alt=".">
                         </div>
-                        <span class="text">Sistema</span>
+                        <span class="text">Saúde Massa</span>
                     </a>
-                    <button type="button" class="nav-toggle"><i data-toggle="expanded"
-                            class="ik ik-toggle-right toggle-icon"></i></button>
+                    <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
                     <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
                 </div>
 
                 <div class="sidebar-content">
                     <div class="nav-container">
                         <nav id="main-menu-navigation" class="navigation-main">
-                            <div class="nav-lavel">Atendimento</div>
+                            <!-- <div class="nav-lavel">Atendimento</div>
                             <div class="nav-item">
                                 <a href="../index.html"><i class="ik ik-calendar"></i><span>Agenda</span></a>
                             </div>
@@ -309,7 +371,7 @@
                             <div class="nav-item">
                                 <a href="javascript:void(0)"><i class="ik ik-help-circle"></i><span>Submit
                                         Issue</span></a>
-                            </div>
+                            </div> -->
                         </nav>
                     </div>
                 </div>
@@ -335,123 +397,44 @@
                                             <a href="../index.html"><i class="ik ik-home"></i></a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="#">Apps</a>
+                                            <a href="agend-pacientes.html">Agenda</a>
                                         </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Calendar</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Atendimento</li>
                                     </ol>
                                 </nav>
                             </div>
                         </div>
                     </div>
+                    
+
+
+                  
+                    
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" >
                                 <div class="card-header">
                                     <h3>Consultas</h3>
                                 </div>
-                                <div class="card-body">
-                                    <table id="data_table" class="table">
+                                <div class="card-body" style="overflow-x: scroll;">
+                                    <table id="data_table" class="table" >
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
                                                 <th class="nosort">Avatar</th>
                                                 <th>Nome</th>
                                                 <th>Email</th>
-                                                <th>Horário</th>
+                                                <th>Início</th>
+                                                <th>Fim</th>
+                                                <th>Consulta</th>
                                                 <th>Status</th>
-                                                <th class="nosort">&nbsp;</th>
                                                 <th class="nosort">&nbsp;</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>001</td>
-                                                <td><img src="../img/users/1.jpg" class="table-user-thumb" alt=""></td>
-                                                <td>Erich Heaney</td>
-                                                <td>erich@example.com</td>
-                                                <td>15:35</td>
-                                                <td>Em atendimento</td>
-                                                <td>
-                                                <a class="btn btn-outline-dark btn-rounded"href="" data-toggle="modal" data-target="#prontuario">Iniciar Atendimento</i></a>
-                                                <a class="btn btn-outline-dark btn-rounded" href="#">Reagendar</i></a>
-                                                </td>
-                                                <td>
-                                                    <div class="table-actions">
-                                                        <a href="#"><i class="ik ik-eye"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>002</td>
-                                                <td><img src="../img/users/2.jpg" class="table-user-thumb" alt=""></td>
-                                                <td>Abraham Douglas</td>
-                                                <td>jgraham@example.com</td>
-                                                <td>15:35</td>
-                                                <td>Em atendimento</td>
-                                                <td>
-                                                    <a class="btn btn-outline-dark btn-rounded"href="" data-toggle="modal" data-target="#prontuario">Iniciar Atendimento</i></a>
-                                                    <a class="btn btn-outline-dark btn-rounded" href="#">Reagendar</i></a>
-                                                </td>
-                                                <td>
-                                                    <div class="table-actions">
-                                                        <a href="#"><i class="ik ik-eye"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>003</td>
-                                                <td><img src="../img/users/3.jpg" class="table-user-thumb" alt=""></td>
-                                                <td>Roderick Simonis</td>
-                                                <td>grant.simonis@example.com</td>
-                                                <td>15:35</td>
-                                                <td>Em atendimento</td>
-                                                <td>
-                                                    <a class="btn btn-outline-dark btn-rounded"href="" data-toggle="modal" data-target="#prontuario">Iniciar Atendimento</i></a>
-                                                    <a class="btn btn-outline-dark btn-rounded" href="#">Reagendar</i></a>
-                                                </td>
-                                                <td>
-                                                    <div class="table-actions">
-                                                        <a href="#"><i class="ik ik-eye"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>004</td>
-                                                <td><img src="../img/users/4.jpg" class="table-user-thumb" alt=""></td>
-                                                <td>Christopher Henry</td>
-                                                <td>henry.chris@example.com</td>
-                                                <td>15:35</td>
-                                                <td>Em atendimento</td>
-                                                <td>
-                                                    <a class="btn btn-outline-dark btn-rounded"href="" data-toggle="modal" data-target="#prontuario">Iniciar Atendimento</i></a>
-                                                    <a class="btn btn-outline-dark btn-rounded" href="#">Reagendar</i></a>
-                                                </td>
-                                                <td>
-                                                    <div class="table-actions">
-                                                        <a href="#"><i class="ik ik-eye"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>005</td>
-                                                <td><img src="../img/users/5.jpg" class="table-user-thumb" alt=""></td>
-                                                <td>Sonia Wilkinson</td>
-                                                <td>boyle.aglea@example.com</td>
-                                                <td>15:35</td>
-                                                <td>Em atendimento</td>
-                                                <td>
-                                                    <a class="btn btn-outline-dark btn-rounded"href="" data-toggle="modal" data-target="#prontuario">Iniciar Atendimento</i></a>
-                                                    <a class="btn btn-outline-dark btn-rounded" href="#">Reagendar</i></a>
-                                                </td>
-                                                <td>
-                                                    <div class="table-actions">
-                                                        <a href="#"><i class="ik ik-eye"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                        <tbody id="atendimentos">
+                                            
                                         </tbody>
-                                    </table>
+                                    </table>                                    
                                 </div>
                             </div>
                         </div>
@@ -598,20 +581,17 @@
                     <form action="javascript:void(0)" class="card-footer" method="post">
                         <div class="d-flex justify-content-end">
                             <textarea class="border-0 flex-1" rows="1" placeholder="Type your message here"></textarea>
-                            <button class="btn btn-icon" type="submit"><i
-                                    class="ik ik-arrow-right text-success"></i></button>
+                            <button class="btn btn-icon" type="submit"><i class="ik ik-arrow-right text-success"></i></button>
                         </div>
                     </form>
                 </div>
             </div>
+            
             <!-- Rodapé da página -->
             <footer class="footer">
                 <div class="w-100 clearfix">
-                    <span class="text-center text-sm-left d-md-inline-block">Copyright © 2018 ThemeKit v2.0. All Rights
-                        Reserved.</span>
-                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i
-                            class="fa fa-heart text-danger"></i> by <a href="http://lavalite.org/" class="text-dark"
-                            target="_blank">Lavalite</a></span>
+                    <span class="text-center text-sm-left d-md-inline-block">Copyright © 2018 ThemeKit v2.0. All Rights Reserved.</span>
+                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i class="fa fa-heart text-danger"></i> by <a href="http://lavalite.org/" class="text-dark" target="_blank">Lavalite</a></span>
                 </div>
             </footer>
         </div>
@@ -620,19 +600,17 @@
 
     <!-- ------------------------------------- Modais ------------------------------------------ -->
     <!-- Modal de prontuário do paciente -->
-    <div class="modal fade full-window-modal" id="prontuario" tabindex="-1" role="dialog"
-        aria-labelledby="fullwindowModalLabel" aria-hidden="true">
+    <div class="modal fade full-window-modal" id="prontuario" tabindex="-1" role="dialog" aria-labelledby="fullwindowModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="fullwindowModalLabel">Prontuário de (Nome)</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title" id="fullwindowModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-3 col-md-12">
+                            <div class="col-lg-12 col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h3>Dados</h3>
@@ -646,92 +624,90 @@
                                     </div>
                                     <div class="card-body timeline" style="max-height: 350px; overflow-y: scroll;">
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-4 d-flex" >
-                                            <img src="../img/user.jpg" width="50" class="rounded-circle mr-15" alt="user">
-                                            <div>
-                                            <p class="text-muted mb-5">Nome</p>
-                                            <h6>Samuel Jesus</h6>
+                                            <div class="col-lg-3 col-md-3 col-sm-6 d-flex" >
+                                                <img src="../img/user.jpg" width="100" class="rounded-circle mr-15" alt="user">
+                                                <div>
+                                                    <p class="text-muted mb-5">Nome</p>
+                                                    <h6 id="pront_pacit_nome"></h6>
+                                                </div>
                                             </div>
-                                            </div>
-                                            <div class="col-lg-12 col-md-4">
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
                                                 <p class="text-muted mb-5">Gênero</p>
-                                            <h6>Masculino</h6>
+                                                <h6 id="pront_pacit_genero"></h6>
                                             </div>
-                                            <div class="col-lg-12 col-md-4">
-                                                <p class="text-muted mb-5">Cor</p>
-                                            <h6>Preto</h6>
+                                            <div class="col-lg-3 col-md-3 col-sm-6" >
+                                                <p class="text-muted mb-5">Nascimento</p>
+                                                <h6 id="pront_pacit_nasc"></h6>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <p class="text-muted mb-5">Etnia</p>
+                                                <h6 id="pront_pacit_etnia"></h6>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <p class="text-muted mb-5">Naturalidade</p>
+                                                <h6 id="pront_pacit_natural"></h6>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <p class="text-muted mb-5">Plano de Saúde</p>
+                                                <h6 id="pront_pacit_plano"></h6>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <p class="text-muted mb-5">Contatos</p>
+                                                <h6 id="pront_pacit_tel"></h6>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-6" >
+                                                <p class="text-muted mb-5">E-mail</p>
+                                                <h6 id="pront_pacit_email"></h6>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-4" >
-                                            <p class="text-muted mb-5">Nascimento</p>
-                                            <h6>08/01/2001</h6>
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <p class="text-muted mb-5">Escolaridade</p>
+                                                <h6 id="pront_pacit_grau"></h6>
                                             </div>
-                                            <div class="col-lg-12 col-md-4">
-                                            <p class="text-muted mb-5">Plano de Saúde</p>
-                                            <h6>SUS</h6>
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <p class="text-muted mb-5">Profissão</p>
+                                                <h6 id="pront_pacit_prof"></h6>
                                             </div>
-                                            <div class="col-lg-12 col-md-4">
-                                            <p class="text-muted mb-5">Naturalidade</p>
-                                            <h6>Salvador</h6>
+                                            <div class="col-lg-3 col-md-3 col-sm-6" >
+                                                <p class="text-muted mb-5">Renda</p>
+                                                <h6 id="pront_pacit_renda"></h6>
                                             </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-4" >
-                                            <p class="text-muted mb-5">Renda</p>
-                                            <h6>R$ 500,00</h6>
-                                            </div>
-                                            <div class="col-lg-12 col-md-4">
-                                            <p class="text-muted mb-5">Profissão</p>
-                                            <h6>Estudante</h6>
-                                            </div>
-                                            <div class="col-lg-12 col-md-4">
-                                            <p class="text-muted mb-5">Telefone I</p>
-                                            <h6>(71) 98188-0000</h6>
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <p class="text-muted mb-5">Como conheceu?</p>
+                                                <h6 id="pront_pacit_conheceu"></h6>
                                             </div>
                                         </div>
-
+                                        <hr>
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-4" >
-                                            <p class="text-muted mb-5">E-mail</p>
-                                            <h6>Samuel.jesan2018@hotmail.com</h6>
-                                            </div>
-                                            <div class="col-lg-12 col-md-4">
-                                            <p class="text-muted mb-5">Escolaridade</p>
-                                            <h6>Superior</h6>
-                                            </div>
-                                            <div class="col-lg-12 col-md-4">
-                                            <p class="text-muted mb-5">Como conheceu?</p>
-                                            <h6>Internet</h6>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-4" >
+                                            <div class="col-lg-3 col-md-3 col-sm-6" >
                                             <p class="text-muted mb-5">Endereço</p>
-                                            <h6>Salvador/Ba, São Cristóvão, Rua Lauro de Freitas, n 01.</h6>
+                                            <h6 id="pront_pacit_endereco"></h6>
                                             </div>
-                                            <div class="col-lg-12 col-md-4">
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
                                             <p class="text-muted mb-5">Remédios em uso</p>
-                                            <h6>Dipirona</h6>
+                                            <h6 id="pront_pacit_remedios"></h6>
                                             </div>
-                                            <div class="col-lg-12 col-md-4">
+                                            <div class="col-lg-3 col-md-3 col-sm-6">
                                             <p class="text-muted mb-5">Acompanhantes</p>
-                                            <h6>Pai, mãe</h6>
+                                            <h6></h6>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12 col-md-4" >
                                             <p class="text-muted mb-5">Observações</p>
-                                            <h6>Esse paciente ja gosta de queimar neuronios, tem uma vida complicada, e é o tempo ta o tempo todo em problemas</h6>
+                                            <h6></h6>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-12">
+                            <div class="col-lg-4 col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h3>Planos de tratamento</h3>
@@ -744,98 +720,95 @@
                                         </div>
                                     </div>
                                     <div class="card-body timeline" style="max-height: 350px; overflow-y: scroll;">
-                                        <h6>Curto Prazo <button onclick="AddCheck2()" type="button" class="btn btn-icon btn-outline-secondary ml-10"><i class="ik ik-plus"></i></button></h6>
-                                        <div class="row">
-                                            <div class="col-lg-12" id="div-curt-praz">
-
+                                        <h6 class="badge badge-pill badge-dark mb-1">Curto Prazo </h6>
+                                        <div class="input-group input-group-button input-group-info" id="pront_hd_autocomplete">
+                                            <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-list"></i></label></span>
+                                            <input id="pront_plano_curto" type="text" class="form-control" placeholder="Tratamento curto">
+                                            <div class="input-group-append">
+                                                <button id="btn_adc_trat_curto" class="btn btn-primary" type="button"><i class="ik ik-plus"></i></button>
                                             </div>
                                         </div>
+                                        <div class="form-radio border_top" >
+                                                <div class="radio radiofill radio-inline radio-success">
+                                                    <label>
+                                                        <input type="radio" name="radio" >
+                                                        <i class="helper"></i>Concluido
+                                                    </label>
+                                                </div>
+                                                <div class="radio radiofill radio-inline radio-warning">
+                                                    <label>
+                                                        <input type="radio" name="radio">
+                                                        <i class="helper"></i>Parcialmente
+                                                    </label>
+                                                </div>
+                                                <div class="radio radiofill radio-inline radio-danger">
+                                                    <label>
+                                                        <input type="radio" name="radio">
+                                                        <i class="helper"></i>Não realizado
+                                                    </label>
+                                                </div>
+                                                <p>Plano de tratamento X</p>
+                                        </div>
+                                        <div class="form-radio border_top" >
+                                            <div class="radio radiofill radio-inline radio-success">
+                                                <label>
+                                                    <input type="radio" name="radio" >
+                                                    <i class="helper"></i>Status 1
+                                                </label>
+                                            </div>
+                                            <div class="radio radiofill radio-inline radio-warning">
+                                                <label>
+                                                    <input type="radio" name="radio">
+                                                    <i class="helper"></i>Status 2
+                                                </label>
+                                            </div>
+                                            <div class="radio radiofill radio-inline radio-danger">
+                                                <label>
+                                                    <input type="radio" name="radio">
+                                                    <i class="helper"></i>Status 2
+                                                </label>
+                                            </div>
+                                            <p>Plano de tratamento X</p>
+                                        </div>                                        
                                         
-                                        <h6>Longo Prazo <button onclick="AddCheck3()" type="button" class="btn btn-icon btn-outline-secondary ml-10"><i class="ik ik-plus"></i></button></h6>
-                                        <div class="row">
-                                            <div class="col-lg-12" id="div-long-praz">
-
+                                        
+                                        <h6 class="badge badge-pill badge-dark mb-1">Longo Prazo </h6>
+                                        <div class="input-group input-group-button input-group-info" id="pront_hd_autocomplete">
+                                            <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-list"></i></label></span>
+                                            <input id="pront_plano_longo" type="text" class="form-control" placeholder="Tratamento longo">
+                                            <div class="input-group-append">
+                                                <button id="btn_adc_trat_longo" class="btn btn-primary" type="button"><i class="ik ik-plus"></i></button>
                                             </div>
                                         </div>
+
+                                        <div class="form-radio border_top" >
+                                            <div class="radio radiofill radio-inline radio-success">
+                                                <label>
+                                                    <input type="radio" name="radio" >
+                                                    <i class="helper"></i>Status 1
+                                                </label>
+                                            </div>
+                                            <div class="radio radiofill radio-inline radio-warning">
+                                                <label>
+                                                    <input type="radio" name="radio">
+                                                    <i class="helper"></i>Status 2
+                                                </label>
+                                            </div>
+                                            <div class="radio radiofill radio-inline radio-danger">
+                                                <label>
+                                                    <input type="radio" name="radio">
+                                                    <i class="helper"></i>Status 2
+                                                </label>
+                                            </div>
+                                            <p>Plano de tratamento X</p>
+                                        </div> 
                                     </div>
                                 </div>
-                                <script>
-                                    var CountProds = 1;
-
-                                    function AddCheck2() {
-                                    h = CountProds;
-                                    var form = document.getElementById("div-curt-praz");
-                                    var input = document.createElement("INPUT");
-                                    var div = document.createElement("DIV");
-                                    var div2 = document.createElement("DIV");
-                                    var label = document.createElement("label");
-
-                                    var pbm = prompt("Digite o problema:", "");
-
-                                    input.setAttribute("type", "checkbox");
-                                    input.setAttribute("id", "ref" + h);
-                                    input.setAttribute("onkeyup", "lsRef()");
-                                    input.setAttribute("name", "ref" + h);
-
-                                    div.setAttribute("id", "lsRef" + h);
-                                    div.setAttribute("name", "lsRef" + h);
-                                    div.setAttribute("class", "col-lg-12 col-md-4");
-
-                                    div2.setAttribute("class", "row");
-
-                                    label.setAttribute("value", pbm);
-                                    label.setAttribute("class", "ml-10")
-                                    label.setAttribute("for", "ref" + h);
-                                    label.innerText = pbm;
-
-                                    form.appendChild(div2);
-                                    div2.appendChild(div);
-                                    div.appendChild(input);
-                                    div.appendChild(label);
-                                    CountProds++;
-                                    
-                                    }
-
-                                    function AddCheck3() {
-                                    h = CountProds;
-                                    var form = document.getElementById("div-long-praz");
-                                    var input = document.createElement("INPUT");
-                                    var div = document.createElement("DIV");
-                                    var div2 = document.createElement("DIV");
-                                    var label = document.createElement("label");
-
-                                    var pbm = prompt("Digite o problema:", "");
-
-                                    input.setAttribute("type", "checkbox");
-                                    input.setAttribute("id", "ref" + h);
-                                    input.setAttribute("onkeyup", "lsRef()");
-                                    input.setAttribute("name", "ref" + h);
-
-                                    div.setAttribute("id", "lsRef" + h);
-                                    div.setAttribute("name", "lsRef" + h);
-                                    div.setAttribute("class", "col-lg-12 col-md-4");
-
-                                    div2.setAttribute("class", "row");
-
-                                    label.setAttribute("value", pbm);
-                                    label.setAttribute("class", "ml-10")
-                                    label.setAttribute("for", "ref" + h);
-                                    label.innerText = pbm;
-
-                                    form.appendChild(div2);
-                                    div2.appendChild(div);
-                                    div.appendChild(input);
-                                    div.appendChild(label);
-                                    CountProds++;
-                                    
-                                    }
-                            </script>
                             </div>
-                            <div class="col-lg-3 col-md-12">
+                            <div class="col-lg-4 col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h3>Lista de problemas</h3>
-                                      <button onclick="AddCheck()" type="button" class="btn btn-icon btn-outline-secondary ml-10"><i class="ik ik-plus"></i></button>
                                         <div class="card-header-right">
                                             <ul class="list-unstyled card-option">
                                                 <li><i class="ik ik-chevron-left action-toggle"></i></li>
@@ -845,6 +818,13 @@
                                         </div>
                                     </div>
                                     <div class="card-body timeline" style="max-height: 350px; overflow-y: scroll;">
+                                        <div class="input-group input-group-button input-group-info" id="pront_hd_autocomplete">
+                                            <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-list"></i></label></span>
+                                            <input id="pront_problemas" type="text" class="form-control" placeholder="Problemas detectados">
+                                            <div class="input-group-append">
+                                                <button id="btn_adc_trat_longo" class="btn btn-primary" type="button"><i class="ik ik-plus"></i></button>
+                                            </div>
+                                        </div>
                                         
                                         <div class="row " >
                                             <div class="col-lg-12" id="divForm">
@@ -855,45 +835,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <script>
-                                    var CountProds = 1;
 
-                                    function AddCheck() {
-                                    h = CountProds;
-                                    var form = document.getElementById("divForm");
-                                    var input = document.createElement("INPUT");
-                                    var div = document.createElement("DIV");
-                                    var div2 = document.createElement("DIV");
-                                    var label = document.createElement("label");
-
-                                    var pbm = prompt("Digite o problema:", "");
-
-                                    input.setAttribute("type", "checkbox");
-                                    input.setAttribute("id", "ref" + h);
-                                    input.setAttribute("onkeyup", "lsRef()");
-                                    input.setAttribute("name", "ref" + h);
-
-                                    div.setAttribute("id", "lsRef" + h);
-                                    div.setAttribute("name", "lsRef" + h);
-                                    div.setAttribute("class", "col-lg-12 col-md-4");
-
-                                    div2.setAttribute("class", "row");
-
-                                    label.setAttribute("value", pbm);
-                                    label.setAttribute("class", "ml-10")
-                                    label.setAttribute("for", "ref" + h);
-                                    label.innerText = pbm;
-
-                                    form.appendChild(div2);
-                                    div2.appendChild(div);
-                                    div.appendChild(input);
-                                    div.appendChild(label);
-                                    CountProds++;
-                                    
-                                   
-                                    }
-                            </script>
-                            <div class="col-lg-3 col-md-12">
+                            <div class="col-lg-4 col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h3>Histórico</h3>
@@ -1005,26 +948,24 @@
                                             </div>
                                             <div class="card-body timeline">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail3">QP</label>
-                                                    <input type="text" class="form-control" id="exampleInputEmail3"
-                                                        placeholder="Cor">
+                                                    <label for="anam_qp">QP</label>
+                                                    <input type="text" class="form-control" id="anam_qp" placeholder="QP">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="lb-qp">HDA</label>
-                                                    <textarea class="form-control" id="lb-qp" rows="4"></textarea>
+                                                    <label for="anam_hda">HDA</label>
+                                                    <textarea class="form-control" id="anam_hda" rows="4"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail3">HPP</label>
-                                                    <input type="text" class="form-control" id="exampleInputEmail3"
-                                                        placeholder="Cor">
+                                                    <label for="anm_hpp">HPP</label>
+                                                    <input type="text" class="form-control" id="anam_hpp" placeholder="HPP">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="lb-qp">HPS</label>
-                                                    <textarea class="form-control" id="lb-qp" rows="4"></textarea>
+                                                    <label for="anam_hps">HPS</label>
+                                                    <textarea class="form-control" id="anam_hps" rows="4"></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="lb-qp">HF</label>
-                                                    <textarea class="form-control" id="lb-qp" rows="2"></textarea>
+                                                    <label for="anam_hf">HF</label>
+                                                    <textarea class="form-control" id="anam_hf" rows="2"></textarea>
                                                 </div>
 
                                             </div>
@@ -1043,8 +984,419 @@
                                             </div>
                                         </div>
                                         <div class="card-body timeline">
-
-
+                                            <div class="form-radio">
+                                                <div class="row mb-25 mb">
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Geral</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input onclick="radio()" type="radio" value="Normal" name="pront_ef_geral" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning" >
+                                                            <label>
+                                                                <input onclick="radio()" type="radio" value="Alterado" name="pront_ef_geral">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>   
+                                                        <div class="form-group " >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_geral" >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Pele e fâneros</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input onclick="radio()" type="radio" value="Normal" name="pront_ef_pele" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input onclick="radio()" type="radio" value="Alterado" name="pront_ef_pele">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront " placeholder="Digite a alteração" id="pront_ef_pele">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Cabeça e pescoço</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input onclick="radio()" type="radio" value="Normal" name="pront_ef_cab-pesc" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input onclick="radio()" type="radio" value="Alterado" name="pront_ef_cab-pesc">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_cab-pesc">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Ap. Respiratório</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                           
+                                                           <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_ap-resp" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_ap-resp">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_ap-resp">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-25">
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Ap. Cardiovascular</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_ap-cardio" > 
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_ap-cardio">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_ap-cardio">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Ap. Abdominal</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_ap-abdom" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_ap-abdom">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_ap-abdom">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Ap. Urinário</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_ap-uri" >  
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_ap-uri">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_ap-uri">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Extremidades</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_extre" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_extre">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_extre">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-25">
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Sistema Neurológico</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_sis-neuro" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_sis-neuro"> 
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_sis-neuro">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Osteoarticular</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_osteo" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_osteo">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_osteo">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Estado Mental</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_est-mental" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_est-mental">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_est-mental">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Funções corticais superiores</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_func-cort-sup" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_func-cort-sup">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_func-cort-sup">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-25">
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Nervos Cranianos</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_nerv-cran" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_nerv-cran"> 
+                                                                <i class="helper"></i> Alterado 
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_nerv-cran">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Motricidade</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_motric" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_motric">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_motric">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Sensorial</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_sensor" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_sensor">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_sensor">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Reflexos</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_reflex" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_reflex">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_reflex">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-25">
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Cerebelares</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_cerebel" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_cerebel">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_cerebel">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Marcha</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input type="radio" value="Normal" name="pront_ef_marcha" > 
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input type="radio" value="Alterado" name="pront_ef_marcha">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_marcha">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-12">
+                                                        <h6 class="sub-title text-muted mb-5">Outros achados</h6>
+                                                        <hr>
+                                                        <div class="radio radio-inline radio-info">
+                                                            <label>
+                                                                <input onclick="radio()" type="radio" value="Normal" name="pront_ef_outros" >
+                                                                <i class="helper"></i> Normal
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-inline radio-warning">
+                                                            <label>
+                                                                <input onclick="radio()" type="radio" value="Alterado" name="pront_ef_outros">
+                                                                <i class="helper"></i> Alterado
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group" >
+                                                            <div class="">
+                                                                <input type="text" class="form-control form-control-warning inpt-ef-pront" placeholder="Digite a alteração" id="pront_ef_outros">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="card">
@@ -1059,8 +1411,17 @@
                                             </div>
                                         </div>
                                         <div class="card-body timeline">
-
-
+                                            <div class="input-group input-group-button input-group-info" id="pront_hd_autocomplete">
+                                                <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-search"></i></label></span>
+                                                <input id="pront_busc_hip-diag" type="text" class="form-control" placeholder="Pesquise">
+                                                <div class="input-group-append">
+                                                    <button id="btn_adc_hip" class="btn btn-primary" type="button">Adicionar</button>
+                                                </div>
+                                            </div>
+                                            
+                                            <ul id="hip_list">
+                                                
+                                            </ul>
                                         </div>
                                     </div>
                                     <div class="card">
@@ -1074,8 +1435,20 @@
                                                 </ul>
                                             </div>
                                         </div>
+                                        
                                         <div class="card-body timeline">
+                                            <div class="input-group input-group-button input-group-info" id="pront_hd_autocomplete">
+                                                <span class="input-group-prepend"><label class="input-group-text"><i class="ik ik-list"></i></label></span>
+                                                <input id="pront_conduta" type="text" class="form-control" placeholder="Adicione novas condutas">
+                                                <div class="input-group-append">
+                                                    <button id="btn_adc_conduta" class="btn btn-primary" type="button">Adicionar</button>
+                                                </div>
+                                            </div>
+                                            
 
+                                            <ul id="conduta_list">
+                                                
+                                            </ul>
 
                                         </div>
                                     </div>
@@ -1111,11 +1484,8 @@
                                             </span>
                                         </div>
                                     </div>
-
                                         </div>
                                     </div>
-
-
                                     <div class="card">
                                         <div class="card-header">
                                             <h3>Fotos</h3>
@@ -1156,25 +1526,43 @@
                                             </div>
                                         </div>
                                         <div class="card-body timeline">
-                                           <div class="form-group">
-                                        <label>Anexar Documentos</label>
-                                        <input type="file" name="img[]" class="file-upload-default">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled
-                                                placeholder="Adicionar : pedidos médicos, receitas enviadas, relatórios...">
-                                            <span class="input-group-append".>
-                                                <button class="file-upload-browse btn btn-primary"
-                                                    type="button">Adicionar</button>
-                                            </span>
-                                        </div>
-                                    </div>
+                                            <div class="form-group">
+                                                <label>Anexar Documentos</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Adicionar : pedidos médicos, receitas enviadas, relatórios...">
+                                                    <span   span class="input-group-append".>
+                                                        <button class="file-upload-browse btn btn-primary" type="button">Adicionar</button>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
+                            <div id="card_prescricao" class="card" style="display: none;">
+                                <div class="card-header">
+                                    <h3>Prescrições</h3>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="ik ik-chevron-left action-toggle"></i></li>
+                                            <li><i class="ik ik-minus minimize-card"></i></li>
+                                            <li><i class="ik ik-x close-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body timeline">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="pront_memed" style="display: none;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="row">
-                                <div class="col-md-4 offset-8">
+                                <div class="col-md-4 ">
                                     <div class="modal-header">
                                         <h4>Observações</h4>
                                     </div>
@@ -1183,18 +1571,16 @@
                                         <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-4 offset-8">
+                                <div class="col-md-4 ">
                                     <div class="form-group">
-                                        <label for="exampleInputPassword4">Acompanhante</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4"
-                                            placeholder="Nome Completo">
+                                        <label for="obs_acompanha">Acompanhante</label>
+                                        <input type="text" class="form-control" id="obs_acompanha" placeholder="Nome Completo">
                                     </div>
                                 </div>
-                                <div class="col-md-4 offset-8">
+                                <div class="col-md-4 ">
                                     <div class="form-group">
-                                        <label for="exampleInputPassword4">Remédios em uso</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4"
-                                            placeholder="Remédios">
+                                        <label for="obs_remedios">Remédios em uso</label>
+                                        <input type="text" class="form-control" id="obs_remedios" placeholder="Remédios">
                                     </div>
                                 </div>
                             </div>
@@ -1203,13 +1589,13 @@
                 </div>
                 <div class="modal-footer " style="display: flex; flex-wrap: nowrap; justify-content:space-between;">
                     <div>
-                        <button type="button" class="btn btn-info">Prescrição</button>
+                        <button id="botaoShowPrescricao" type="button" class="btn btn-info">Prescrição</button>
                         <button type="button" class="btn btn-info">Doc/Atestados</button>
                     </div>
                     <div>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-info">Salvar</button>
-                    <button type="button" class="btn btn-primary">Finalizar</button>
+                    <button id="pront_finalizar" type="button" class="btn btn-primary">Finalizar</button>
                     </div>
 
                 </div>
@@ -1296,7 +1682,63 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        MdSinapsePrescricao.event.add('core:moduleInit', function moduleInitHandler(module) {
+        
+        // O módulo da prescrição foi iniciado
+        if (module.name === 'plataforma.prescricao') {
+          // Registrando o evento de click no elemento
+          document.getElementById("botaoShowPrescricao").addEventListener("click", function () {
+            $("#card_prescricao") .css("display", "block")
+            $("#pront_memed") .css("display", "block")
+            
+            let request = $.ajax({
+                type: "GET",
+                url: url+"patient/"+localStorage.getItem('id_pacit_agd'),
+                headers: { 'Authorization': 'Bearer ' + auth },
+                xhrFields: { withCredentials: true },
+                data: {
+                },
+                cache: false,
+                success: function(response){
+                    MdHub.command.send('plataforma.prescricao', 'setPaciente', {
+            
+                    idExterno: response.email+response.id,
+                    // Nome do paciente (obrigatório)
+                    nome: response.first_name+" "+response.last_name,
+                    // Endereço do paciente (opcional)
+                    endereco: response.street_address,
+                    // Cidade do paciente (opcional)
+                    cidade: response.city,
+                    // Telefone celular (obrigatório, DDD + digitos, somente números. NÃO ENVIAR PREFIXO "+55")
+                    telefone: response.cellphone.substring(3),
+                    // // Usado no receituário de alto custo (Opcional)
+                    // peso: 75,
+                    // // Usado no receituário de alto custo (Opcional)
+                    // altura: 1.80,
+                    // // Usado no receituário de alto custo (Opcional)
+                    // nome_mae: 'Nome da mãe',
+                    // // Usado no receituário de alto custo (Opcional)
+                    // dificuldade_locomocao: false
+                    }).then(function() {
+                        // Mostra o módulo de prescrição
+                        MdHub.module.show('plataforma.prescricao');
+                    });
+                    
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    
+                    console.log(xhr, ajaxOptions, thrownError);
+                }   
+                })
+
+            
+          });
+
+
+        }
+        });
+    </script>
     <script>
         window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')
     </script>
@@ -1306,11 +1748,24 @@
     <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <script src="../plugins/moment/moment.js"></script>
     <script src="../plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="../dist/js/theme.min.js"></script>
+    <!-- Script pára inputs -->
+    <script src="../plugins/select2/dist/js/select2.min.js"></script>
+    <script src="../plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="../plugins/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="../plugins/mohithg-switchery/dist/switchery.min.js"></script>
+    <script src="../plugins/jquery.repeater/jquery.repeater.min.js"></script>
+    <script src="../js/form-advanced.js"></script>
     <!-- Script para redenrizar a tabela -->
     <script src="../plugins/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="../dist/js/theme.min.js"></script>
     <script src="../js/datatables.js"></script>
+    <script src="../plugins/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+    <!-- Script para o plugin SELECT2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <!-- Script para o pacote de alertas flutuantes -->
+    <script src="../js/alerts.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -1329,11 +1784,137 @@
         ga('create', 'UA-XXXXX-X', 'auto');
         ga('send', 'pageview');
     </script>
+    <!-- Script para... -->
+    <script>
 
+        var CountProds = 1;
 
+        function AddCheck() {
+        h = CountProds;
+        var form = document.getElementById("divForm");
+        var input = document.createElement("INPUT");
+        var div = document.createElement("DIV");
+        var div2 = document.createElement("DIV");
+        var label = document.createElement("label");
 
+        var pbm = prompt("Digite o problema:", "");
 
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("id", "ref" + h);
+        input.setAttribute("onkeyup", "lsRef()");
+        input.setAttribute("name", "ref" + h);
 
+        div.setAttribute("id", "lsRef" + h);
+        div.setAttribute("name", "lsRef" + h);
+        div.setAttribute("class", "col-lg-12 col-md-4");
+
+        div2.setAttribute("class", "row");
+
+        label.setAttribute("value", pbm);
+        label.setAttribute("class", "ml-10")
+        label.setAttribute("for", "ref" + h);
+        label.innerText = pbm;
+
+        form.appendChild(div2);
+        div2.appendChild(div);
+        div.appendChild(input);
+        div.appendChild(label);
+        CountProds++;
+        }
+    </script>
+    <script>
+        var CountProds = 1;
+
+        function AddCheck2() {
+        h = CountProds;
+        var form = document.getElementById("div-curt-praz");
+        var input = document.createElement("INPUT");
+        var div = document.createElement("DIV");
+        var div2 = document.createElement("DIV");
+        var label = document.createElement("label");
+
+        var pbm = prompt("Digite o problema:", "");
+
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("id", "ref" + h);
+        input.setAttribute("onkeyup", "lsRef()");
+        input.setAttribute("name", "ref" + h);
+
+        div.setAttribute("id", "lsRef" + h);
+        div.setAttribute("name", "lsRef" + h);
+        div.setAttribute("class", "col-lg-12 col-md-4");
+
+        div2.setAttribute("class", "row");
+
+        label.setAttribute("value", pbm);
+        label.setAttribute("class", "ml-10")
+        label.setAttribute("for", "ref" + h);
+        label.innerText = pbm;
+
+        form.appendChild(div2);
+        div2.appendChild(div);
+        div.appendChild(input);
+        div.appendChild(label);
+        CountProds++;
+        
+        }
+
+        function AddCheck3() {
+        h = CountProds;
+        var form = document.getElementById("div-long-praz");
+        var input = document.createElement("INPUT");
+        var div = document.createElement("DIV");
+        var div2 = document.createElement("DIV");
+        var label = document.createElement("label");
+
+        var pbm = prompt("Digite o problema:", "");
+
+        input.setAttribute("type", "checkbox");
+        input.setAttribute("id", "ref" + h);
+        input.setAttribute("onkeyup", "lsRef()");
+        input.setAttribute("name", "ref" + h);
+
+        div.setAttribute("id", "lsRef" + h);
+        div.setAttribute("name", "lsRef" + h);
+        div.setAttribute("class", "col-lg-12 col-md-4");
+
+        div2.setAttribute("class", "row");
+
+        label.setAttribute("value", pbm);
+        label.setAttribute("class", "ml-10")
+        label.setAttribute("for", "ref" + h);
+        label.innerText = pbm;
+
+        form.appendChild(div2);
+        div2.appendChild(div);
+        div.appendChild(input);
+        div.appendChild(label);
+        CountProds++;
+        
+        }
+    </script>
+    <script>
+    //SCRIPT para efeito de hide e show nos inputs do Exames Fisicos
+        function radio(){
+
+           let radios = event.target.value
+           let select = event.target
+           
+           console.log(select)
+            if(radios == "Alterado"){
+               // let element = select.parent().parent().next().find('input')
+               // element.classList.add("inpt-ef-pront");
+               console.log(radios)
+               console.log(select)
+            }else if( radios == "Normal"){
+               // let element = select.parent().parent().next().next().
+               // element[0].classList.remove("inpt-ef-pront");
+               console.log(radios)
+               console.log(select)
+            }
+        }
+       
+    </script>   
 
 
 </body>

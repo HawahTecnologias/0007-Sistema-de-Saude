@@ -1,9 +1,9 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="pt-BR">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Taskboard | ThemeKit - Admin Template</title>
+        <title>Saúde Massa | Perfil Paciente</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +19,8 @@
         <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
         <link rel="stylesheet" href="../dist/css/theme.min.css">
         <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="../js/profile.js"></script>
     </head>
 
     <body>
@@ -53,7 +55,7 @@
                                             </span>
                                             <span class="media-body">
                                                 <span class="heading-font-family media-heading">Invitation accepted</span> 
-                                                <span class="media-content">Your have been Invited ...</span>
+                                                <span class="media-content">Your have been Invited ../.</span>
                                             </span>
                                         </a>
                                         <a href="#" class="media">
@@ -71,7 +73,7 @@
                                             </span>
                                             <span class="media-body">
                                                 <span class="heading-font-family media-heading">To Do</span> 
-                                                <span class="media-content">Meeting with Nathan on Friday 8 AM ...</span>
+                                                <span class="media-content">Meeting with Nathan on Friday 8 AM ../.</span>
                                             </span>
                                         </a>
                                     </div>
@@ -120,7 +122,7 @@
                             <div class="logo-img">
                                <img src="../src/img/brand-white.svg" class="header-brand-img" alt="lavalite"> 
                             </div>
-                            <span class="text">ThemeKit</span>
+                            <span class="text">Saúde Massa</span>
                         </a>
                         <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
                         <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
@@ -210,7 +212,7 @@
                                 <div class="nav-item">
                                     <a href="calendar.html"><i class="ik ik-calendar"></i><span>Calendar</span></a>
                                 </div>
-                                <div class="nav-item active">
+                                <div class="nav-item">
                                     <a href="taskboard.html"><i class="ik ik-server"></i><span>Taskboard</span></a>
                                 </div>
 
@@ -224,10 +226,10 @@
                                         <a href="forgot-password.html" class="menu-item">Forgot Password</a>
                                     </div>
                                 </div>
-                                <div class="nav-item has-sub">
+                                <div class="nav-item has-sub open active">
                                     <a href="#"><i class="ik ik-file-text"></i><span>Other</span></a>
                                     <div class="submenu-content">
-                                        <a href="profile.html" class="menu-item">Profile</a>
+                                        <a href="profile.html" class="menu-item active">Profile</a>
                                         <a href="invoice.html" class="menu-item">Invoice</a>
                                     </div>
                                 </div>
@@ -271,10 +273,10 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-server bg-blue"></i>
+                                        <i class="ik ik-file-text bg-blue"></i>
                                         <div class="d-inline">
-                                            <h5>Taskboard</h5>
-                                            <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                                            <h5>Perfil</h5>
+                                            <span>Veja toda informações e dados aqui.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -285,120 +287,211 @@
                                                 <a href="../index.html"><i class="ik ik-home"></i></a>
                                             </li>
                                             <li class="breadcrumb-item">
-                                                <a href="#">Apps</a>
+                                                <a href="../index.html">Agenda</a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Taskboard</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
                                         </ol>
                                     </nav>
                                 </div>
                             </div>
                         </div>
 
-
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="card task-board">
-                                    <div class="card-header">
-                                        <h3>Todos</h3>
-                                        <div class="card-header-right">
-                                            <ul class="list-unstyled card-option">
-                                                <li><i class="ik ik-chevron-left action-toggle"></i></li>
-                                                <li><i class="ik ik-rotate-cw reload-card" data-loading-effect="pulse"></i></li>
-                                                <li><i class="ik ik-minus minimize-card"></i></li>
-                                                <li><i class="ik ik-x close-card"></i></li>
-                                            </ul>
+                            <div class="col-lg-4 col-md-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="text-center" id="head_info"> 
+                                            <img src="../img/user.jpg" class="rounded-circle" />
+                                            <h4 class="card-title mt-10" id="profile-info-name">Nome do Paciente</h4>
+                                            <p class="card-subtitle" id="profile-info-gender">Gênero</p>
+                                            <div class="row text-center justify-content-md-center">
+                                                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="ik ik-user"></i> <font class="font-medium">254</font></a></div>
+                                                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="ik ik-image"></i> <font class="font-medium">54</font></a></div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-body todo-task">
-                                        <div class="dd" data-plugin="nestable">
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="1">
-                                                    <div class="dd-handle">
-                                                        <h6>Dashbaord</h6>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="2">
-                                                    <div class="dd-handle">
-                                                        <h6>New project</h6>
-                                                        <p>It is a long established fact that a reader will be distracted.</p>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="3">
-                                                    <div class="dd-handle">
-                                                        <h6>Feed Details</h6>
-                                                        <p>here are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </div>
-
+                                    <hr class="mb-0"> 
+                                    <div class="card-body" id="body_info">
+                                        <small class="text-muted d-block" >Email</small>
+                                        <h6 id="profile-info-email"> </h6> 
+                                        <small class="text-muted d-block pt-10" >Telefone</small>
+                                        <h6 id="profile-info-phone"> </h6>
+                                        <h6 id="profile-info-phone2"> </h6> 
+                                        <h6 id="profile-info-phone3"> </h6>
+                                        <small class="text-muted d-block pt-10" >Nascido</small>
+                                        <h6 id="profile-info-birthdate"> </h6>
+                                        <small class="text-muted d-block pt-10">Etnia</small>
+                                        <h6 id="profile-info-ethnicity"> </h6>
+                                        <small class="text-muted d-block pt-10">Plano de Saúde</small>
+                                        <h6 id="profile-info-health_insurance"> </h6>
+                                        <small class="text-muted d-block pt-10">Grau de Instrução</small>
+                                        <h6 id="profile-info-schooling"> </h6>
+                                        <small class="text-muted d-block pt-10">Naturalidade</small>
+                                        <h6 id="profile-info-city"> </h6>
+                                        <small class="text-muted d-block pt-10">Ocupação</small>
+                                        <h6 id="profile-info-occupation"> </h6>
+                                        <small class="text-muted d-block pt-10">Renda</small>
+                                        <h6 id="profile-info-income"> </h6>
+                                        <small class="text-muted d-block pt-10" >Endereço</small>
+                                        <h6 id="profile-info-andress"> </h6>
+                                        <hr>
+                                        <small class="text-muted d-block pt-10">Acompanhantes</small>
+                                        <h6></h6>
+                                        <h6></h6>
+                                        <small class="text-muted d-block pt-10">Observação:</small>
+                                        <h6 id="profile-info-obs"> </h6>
+                                        <hr>
+                                        <small class="text-muted d-block pt-30">Social Perfil</small>
+                                        <br/>
+                                        <button class="btn btn-icon btn-facebook"><i class="fab fa-facebook-f"></i></button>
+                                        <button class="btn btn-icon btn-twitter"><i class="fab fa-twitter"></i></button>
+                                        <button class="btn btn-icon btn-instagram"><i class="fab fa-instagram"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-lg-8 col-md-7">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h3>In Progress</h3>
-                                        <div class="card-header-right">
-                                            <ul class="list-unstyled card-option">
-                                                <li><i class="ik ik-chevron-left action-toggle"></i></li>
-                                                <li><i class="ik ik-rotate-cw reload-card" data-loading-effect="pulse"></i></li>
-                                                <li><i class="ik ik-minus minimize-card"></i></li>
-                                                <li><i class="ik ik-x close-card"></i></li>
-                                            </ul>
+                                    <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="pills-timeline-tab" data-toggle="pill" href="#current-month" role="tab" aria-controls="pills-timeline" aria-selected="true">Linha do tempo</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#last-month" role="tab" aria-controls="pills-profile" aria-selected="false">Perfil</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month" role="tab" aria-controls="pills-setting" aria-selected="false">Prontuário I <span>10/12/2021</span></a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="current-month" role="tabpanel" aria-labelledby="pills-timeline-tab">
+                                            <div class="card-body">
+                                                <div class="profiletimeline mt-0">
+                                                    <div class="sl-item">
+                                                        <div class="sl-left"> <img src="../img/users/1.jpg" alt="user" class="rounded-circle" /> </div>
+                                                        <div class="sl-right">
+                                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
+                                                                <p>assign a new task <a href="javascript:void(0)"> Design weblayout</a></p>
+                                                                <div class="row">
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img2.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img3.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img4.jpg" class="img-fluid rounded" /></div>
+                                                                    <div class="col-lg-3 col-md-6 mb-20"><img src="../img/big/img5.jpg" class="img-fluid rounded" /></div>
+                                                                </div>
+                                                                <div class="like-comm"> 
+                                                                    <a href="javascript:void(0)" class="link mr-10">2 comment</a> 
+                                                                    <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="sl-item">
+                                                        <div class="sl-left"> <img src="../img/users/2.jpg" alt="user" class="rounded-circle" /> </div>
+                                                        <div class="sl-right">
+                                                            <div> <a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
+                                                                <div class="mt-20 row">
+                                                                    <div class="col-md-3 col-xs-12"><img src="../img/big/img6.jpg" alt="user" class="img-fluid rounded" /></div>
+                                                                    <div class="col-md-9 col-xs-12">
+                                                                        <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. </p> <a href="javascript:void(0)" class="btn btn-success"> Design weblayout</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="like-comm mt-20"> 
+                                                                    <a href="javascript:void(0)" class="link mr-10">2 comment</a> 
+                                                                    <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="sl-item">
+                                                        <div class="sl-left"> <img src="../img/users/3.jpg" alt="user" class="rounded-circle" /> </div>
+                                                        <div class="sl-right">
+                                                            <div>
+                                                                <a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
+                                                                <p class="mt-10"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper </p>
+                                                            </div>
+                                                            <div class="like-comm mt-20"> 
+                                                                <a href="javascript:void(0)" class="link mr-10">2 comment</a> 
+                                                                <a href="javascript:void(0)" class="link mr-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="sl-item">
+                                                        <div class="sl-left"> <img src="../img/users/4.jpg" alt="user" class="rounded-circle" /> </div>
+                                                        <div class="sl-right">
+                                                            <div><a href="javascript:void(0)" class="link">John Doe</a> <span class="sl-date">5 minutes ago</span>
+                                                                <blockquote class="mt-10">
+                                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                                                </blockquote>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card-body progress-task">
-                                        <div class="dd" data-plugin="nestable">
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="1">
-                                                    <div class="dd-handle">
-                                                        <h6>New Code Update</h6>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="2">
-                                                    <div class="dd-handle">
-                                                        <h6>Meeting</h6>
-                                                        <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero</p>
-                                                    </div>
-                                                </li>
-                                            </ol>
+                                        <div class="tab-pane fade" id="last-month" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                            
+                                            <div class="card-body timeline">
+                                                <div class="header bg-info" >
+                                                    <div class="color-overlay d-flex align-items-center">
+                                                        <div class="day-number"><i class="ik ik-list"></i></div>
+                                                        <div class="date-right">
+                                                            <div class="day-name">Histórico</div>
+                                                            <div class="month">Histórico de procedimentos</div>
+                                                        </div>
+                                                    </div>                                
+                                                </div>
+                                                <hr>
+                                                <p><b>Lista de Problemas</b></p>
+                                                <ul id="list_problem_historic"> </ul>
+                                                 <p><b>Planos de tratamento</b></p>
+                                                 <p>Curto Prazo </p>
+                                                <ul id="list_short_term_historic"> </ul>
+                                                 <p>Longo Prazo </p>
+                                                <ul id="list_long_term_historic"> </ul>
+                                                <p><b>Lista de Medicamentos</b></p>
+                                                <ul id="list_medicine_historic"> </ul>
+                                                
+                                                <hr>
+                                                
+                                                <!-- <h4 class="mt-30">Problemas</h4>
+                                                <hr>
+                                                <h6 class="mt-30">Bem sucedido <span class="pull-right">80%</span></h6>
+                                                <div class="progress progress-sm">
+                                                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:80%;"> <span class="sr-only">50% Complete</span> </div>
+                                                </div>
+                                                <h6 class="mt-30">Mais ou menos <span class="pull-right">90%</span></h6>
+                                                <div class="progress  progress-sm">
+                                                    <div class="progress-bar bg-yellow" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%;"> <span class="sr-only">50% Complete</span> </div>
+                                                </div>
+                                                <h6 class="mt-30">Falha <span class="pull-right">50%</span></h6>
+                                                <div class="progress  progress-sm">
+                                                    <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:50%;"> <span class="sr-only">50% Complete</span> </div>
+                                                </div>
+                                                <h6 class="mt-30">Em andamento <span class="pull-right">70%</span></h6>
+                                                <div class="progress  progress-sm">
+                                                    <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:70%;"> <span class="sr-only">50% Complete</span> </div>
+                                                </div>
+                                                <hr> -->
+                                               
+                                            </div>
+                                            <div class="card-body timeline">
+                                                <div class="header bg-info" >
+                                                    <div class="color-overlay d-flex align-items-center">
+                                                        <div class="day-number"><i class="ik ik-file"></i></div>
+                                                        <div class="date-right">
+                                                            <div class="day-name">Arquivos</div>
+                                                            <div class="month">Documentos, exames e fotos</div>
+                                                        </div>
+                                                    </div>                                
+                                                </div>
+                                            </div>
                                         </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3>Completed</h3>
-                                        <div class="card-header-right">
-                                            <ul class="list-unstyled card-option">
-                                                <li><i class="ik ik-chevron-left action-toggle"></i></li>
-                                                <li><i class="ik ik-rotate-cw reload-card" data-loading-effect="pulse"></i></li>
-                                                <li><i class="ik ik-minus minimize-card"></i></li>
-                                                <li><i class="ik ik-x close-card"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card-body completed-task">
-                                        <div class="dd" data-plugin="nestable">
-                                            <ol class="dd-list">                                   
-                                                <li class="dd-item" data-id="1">
-                                                    <div class="dd-handle">                                        
-                                                        <h6>Job title</h6>
-                                                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                                                    </div>
-                                                </li>
-                                                <li class="dd-item" data-id="2">
-                                                    <div class="dd-handle">
-                                                        <h6>Event Done</h6>
-                                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical</p>
-                                                    </div>
-                                                </li>
-                                            </ol>
+                                        <div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
+                                            <div class="card-body">
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -412,7 +505,7 @@
                             <h6>Chat List</h6>
                             <form class="mr-t-10">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search for friends ..."> 
+                                    <input type="text" class="form-control" placeholder="Search for friends ../."> 
                                     <i class="ik ik-search"></i>
                                 </div>
                             </form>
@@ -549,7 +642,9 @@
                 </footer>
             </div>
         </div>
-
+        
+        
+        
 
         <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
@@ -560,7 +655,7 @@
                             <div class="row">
                                 <div class="col-md-4 ml-auto mr-auto">
                                     <div class="input-wrap">
-                                        <input type="text" id="quick-search" class="form-control" placeholder="Search..." />
+                                        <input type="text" id="quick-search" class="form-control" placeholder="Search../." />
                                         <i class="ik ik-search"></i>
                                     </div>
                                 </div>
@@ -628,15 +723,13 @@
             </div>
         </div>
         
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        
         <script>window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
         <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
         <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
         <script src="../plugins/screenfull/dist/screenfull.js"></script>
-        <script src="../plugins/nestable/jquery.nestable.js"></script>
         <script src="../dist/js/theme.min.js"></script>
-        <script src="../js/taskboard.js"></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
