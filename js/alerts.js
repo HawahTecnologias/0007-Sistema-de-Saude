@@ -59,7 +59,7 @@
     resetToastPosition();
     $.toast({
       heading: 'Error no cadastro!',
-      text: 'Este número de telefone está incorreto!',
+      text: 'Este número de telefone está incorreto! Conserte antes de enviar.',
       showHideTransition: 'slide',
       icon: 'warning',
       loaderBg: '#f96868',
