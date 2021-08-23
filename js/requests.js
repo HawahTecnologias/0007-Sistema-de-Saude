@@ -699,9 +699,7 @@ $(document).on('click', 'button[data-upload=true]', function(){
   }
   if(fileList.length < 1){
     showUploadError()
-  }else{
-    showUploadCreate()
-  }  
+  }
 })
 
 
@@ -765,11 +763,11 @@ $(document).ready(function(){
         let niver = $("#cad_nasci").val(); 
         let plano = $("#cad_plano").val(); 
         let natural = $("#cad_natural").val(); 
-        let renda = $("#cad_renda").val();
+        let renda = $("#cad_renda").val().replace(/\./g,"").replace("\,", ".");
         let ocupacao = $("#cad_profi").val();  
-        let tel_1 = $("#cad_tel_1").val();
-        let tel_2 = $("#cad_tel_2").val();
-        let cel = $("#cad_cel").val();
+        let tel_1 = $("#cad_tel_1").val().replace("","+55").replace(/[ \-()]/g,'');
+        let tel_2 = $("#cad_tel_2").val().replace("","+55").replace(/[ \-()]/g,'');
+        let cel = $("#cad_cel").val().replace("","+55").replace(/[ \-()]/g,'');
         let email = $("#cad_email").val();
         let escolar = $("#cad_escolar").val();
         let conheceu = $("#cad_conheceu").val();
@@ -777,13 +775,9 @@ $(document).ready(function(){
         let pais = $("#cad_cidade").val();
         let estado = $("#cad_estado").val();
         let cidade = $("#cad_pais").val();
-        let vizinhos = $("#cad_complemento").val();
-        let complemento = $("#cad_vizinhos").val();
+        let complemento = $("#cad_complemento").val();
+        let cep = $("#cad_vizinhos").val().replace(/\./g, "");
          
-        // let form_cad_pacit = document.getElementById("form_cad_pacit");
-        //  form_cad_pacit.addEventListener("submit", function(event){
-        //         event.preventDefault();
-
          let request = $.ajax({
                 type: "POST",
                 url: url+"patient",
@@ -808,7 +802,7 @@ $(document).ready(function(){
                     country: pais,
                     state: estado,
                     city: cidade,
-                    neighborhood: vizinhos,
+                    cep: cep,
                     complement: complemento,
                     how_met: conheceu
                 },
@@ -819,7 +813,7 @@ $(document).ready(function(){
                     $('#form_cad_pacit')[0].reset();  
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    if (request.statusText == "Unatourizado"){ //Corrigir a msg que está errada"!
+                    if (request.statusText == "Unauthorized"){
                         showErrorToast();
                     }else if(request.statusText == "Bad Request"){
                         showAlertaToast();
