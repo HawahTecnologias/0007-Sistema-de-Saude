@@ -17,10 +17,15 @@
         <link rel="stylesheet" href="../plugins/ionicons/dist/css/ionicons.min.css">
         <link rel="stylesheet" href="../plugins/icon-kit/dist/css/iconkit.min.css">
         <link rel="stylesheet" href="../plugins/perfect-scrollbar/css/perfect-scrollbar.css">
+        <link rel="stylesheet" href="../plugins/jquery-toast-plugin/dist/jquery.toast.min.css">
         <link rel="stylesheet" href="../dist/css/theme.min.css">
+        <link rel="stylesheet" href="../dist/css/mystyle.css"> <!-- Meu estilo de CSS (Criado para colocar meus proprios css) -->
+        
         <script src="../src/js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="../js/profile.js"></script>
+        
+        <script src="../js/scripts.js"></script>
     </head>
 
     <body>
@@ -310,7 +315,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr class="mb-0"> 
+                                    <hr class="mb-0">
+                                    <div class="m10"><button class="btn btn-icon bg-yellow ml-10" title="Editar informações do paciente"><i class="ik ik-edit"></i></button></div> 
                                     <div class="card-body" id="body_info">
                                         <small class="text-muted d-block" >Email</small>
                                         <h6 id="profile-info-email"> </h6> 
@@ -335,17 +341,18 @@
                                         <small class="text-muted d-block pt-10" >Endereço</small>
                                         <h6 id="profile-info-andress"> </h6>
                                         <hr>
-                                        <small class="text-muted d-block pt-10">Acompanhantes</small>
+                                        <div class="d-flex justify-content-between"><small class="text-muted d-block pt-10">Acompanhante</small> <button class="btn btn-icon btn-twitter ml-30"><i class="ik ik-plus"></i></button></div>
                                         <h6></h6>
-                                        <h6></h6>
-                                        <small class="text-muted d-block pt-10">Observação:</small>
+                                        <div class="d-flex justify-content-between"><small class="text-muted d-block pt-10">Observação</small> <button class="btn btn-icon btn-twitter ml-30"><i class="ik ik-plus"></i></button></div>
                                         <h6 id="profile-info-obs"> </h6>
                                         <hr>
-                                        <small class="text-muted d-block pt-30">Social Perfil</small>
+                                        <button type="button" class="btn btn-info btn-block" name="add_file" data-toggle="modal" data-target="#add-files"><i class="ik ik-file-plus"></i>Adicionar documento</button>
+
+                                        <!-- <small class="text-muted d-block pt-30">Social Perfil</small>
                                         <br/>
                                         <button class="btn btn-icon btn-facebook"><i class="fab fa-facebook-f"></i></button>
                                         <button class="btn btn-icon btn-twitter"><i class="fab fa-twitter"></i></button>
-                                        <button class="btn btn-icon btn-instagram"><i class="fab fa-instagram"></i></button>
+                                        <button class="btn btn-icon btn-instagram"><i class="fab fa-instagram"></i></button> -->
                                     </div>
                                 </div>
                             </div>
@@ -723,13 +730,74 @@
             </div>
         </div>
         
+        <!-- MODAIS -->
+        <!-- Modal for add files -->
+        <div class="modal fade" id="add-files" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterLabel">Anexar Arquivos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Anexar exame</label>
+                                <input type="file" name="exam" class="file-upload-default" multiple>
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Adicionar apenas exames">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Adicionar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-30 mb-30 preview" > </div>
+                            <button type="button" class="btn btn-info btn-block mb-30" data-upload="true" title="Click para enviar os arquivos selecionados"><i class="ik ik-share"></i>Enviar</button>
+
+                            <div class="form-group">
+                                <label>Anexar Fotos</label>
+                                <input type="file" name="img3" class="file-upload-default" multiple>
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Adicionar apenas fotos">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button">Adicionar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-30 mb-30 preview" > </div>
+                            <button type="button" class="btn btn-info btn-block mb-30" data-upload="true" title="Click para enviar os arquivos selecionados"><i class="ik ik-share"></i>Enviar</button>
+
+                            <div class="form-group">
+                                <label>Anexar Documentos</label>
+                                <input type="file" name="img4" class="file-upload-default" multiple>
+                                <div class="input-group col-xs-12">
+                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Adicionar : pedidos médicos, receitas enviadas, relatórios...">
+                                    <span class="input-group-append">
+                                        <button class="file-upload-browse btn btn-primary" type="button"> Adicionar</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-30 mb-30 preview" > </div>
+                            <button type="button" class="btn btn-info btn-block mb-30" data-upload="true" title="Click para enviar os arquivos selecionados"><i class="ik ik-share"></i>Enviar</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <script>window.jQuery || document.write('<script src="../src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
         <script src="../plugins/popper.js/dist/umd/popper.min.js"></script>
         <script src="../plugins/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="../plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
         <script src="../plugins/screenfull/dist/screenfull.js"></script>
+        <script src="../plugins/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
         <script src="../dist/js/theme.min.js"></script>
+        <script src="../js/form-components.js"></script>
+        <script src="../js/alerts.js"></script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
