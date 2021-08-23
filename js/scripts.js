@@ -139,21 +139,45 @@ $(document).ready(function(){
   // inputElement.addEventListener("change", handleFiles, false);
   $(document).on('change', 'input[type=file]', function(){
     const fileList = $(this)[0].files; /* now you can work with the file list */
-    showFiles(fileList)
+    const preview = $(this).closest('div.form-group').next('div.preview')[0]
+    showFiles(fileList, preview)
   })
-  function showFiles(files) {
+  function showFiles(files, preview) {
     for(let i = 0; i < files.length; i++) {
       const file = files[i];
+      
+      if(file.type.endsWith('pdf')){
+        const img = document.createElement("img");
+        img.classList.add("obj");
+        img.file = file;
+
+        preview.appendChild(img); 
+    
+        const reader = new FileReader();
+        reader.onload = (function(aImg) { return function(e) { aImg.src = "img/icons/icon_pdf.png"; }; })(img);
+        reader.readAsDataURL(file);
+      }else if(file.type.endsWith('document')){
+        const img = document.createElement("img");
+        img.classList.add("obj");
+        img.file = file;
+
+        preview.appendChild(img); 
+    
+        const reader = new FileReader();
+        reader.onload = (function(aImg) { return function(e) { aImg.src = "img/icons/icon_docx.png"; }; })(img);
+        reader.readAsDataURL(file);
+      }
       if (!file.type.startsWith('image/')){ continue }
         const img = document.createElement("img");
         img.classList.add("obj");
         img.file = file;
-        const preview = document.getElementById("preview");
-        preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+
+        preview.appendChild(img); 
     
         const reader = new FileReader();
         reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
         reader.readAsDataURL(file);
+      
     }
   };
 });
