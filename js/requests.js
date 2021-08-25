@@ -1476,50 +1476,54 @@ function allPacits(){
     success: function (response) {
         let dados = request.responseText
         let dado = JSON.parse(dados)
-        let body = document.getElementById('pacits');
-        dado.data.forEach(paciente => {
-            let tr = body.insertRow();
-
-            let td_id = tr.insertCell();
-            let td_foto = tr.insertCell();
-            let td_nome = tr.insertCell();
-            let td_idade = tr.insertCell();
-            let td_email = tr.insertCell();
-            let td_tel = tr.insertCell();
-            let td_cad = tr.insertCell();
-            let td_actions = tr.insertCell();
-            let div = document.createElement("div");
-            let a = document.createElement("a");
-            let aa = document.createElement("a");
-            let aaa = document.createElement("a");
-            let i = document.createElement("i");
-            let ii = document.createElement("i");
-            let iii = document.createElement("i");
-
-            td_actions.appendChild(div);
-            div.appendChild(a);
-            div.appendChild(aa);
-            div.appendChild(aaa);
-            a.appendChild(i);
-            aa.appendChild(ii);
-            aaa.appendChild(iii);
-
-            td_id.innerText = paciente.id
-            td_foto.innerText = "foto"
-            td_nome.innerText = paciente.first_name +" "+ paciente.last_name
-            td_idade.innerText = paciente.birthdate
-            td_email.innerText = paciente.email
-            td_tel.innerText = paciente.cellphone
-            td_cad.innerText = paciente.updated_at
+        // let body = document.getElementById('pacits');
+        function calculaadeId(birthdate, newdate){ return Math.floor(Math.ceil(Math.abs(birthdate.getTime() - newdate.getTime()) / (1000 * 3600 * 24)) / 365.25);}
+        dado.data.forEach(patient => {
+            let name = patient.first_name + patient.last_name;
             
-            div.classList.add('table-actions');
-            i.classList.add('ik', 'ik-eye');
-            ii.classList.add('ik', 'ik-edit-2'); 
-            iii.classList.add('ik', 'ik-trash-2');
-            a.setAttribute("href","#")
-            aa.setAttribute("href","#")
-            aaa.setAttribute("href","#")
-            tr.setAttribute("rule", "row");
+            
+            // let tr = body.insertRow();
+
+            // let td_id = tr.insertCell();
+            // let td_foto = tr.insertCell();
+            // let td_nome = tr.insertCell();
+            // let td_idade = tr.insertCell();
+            // let td_email = tr.insertCell();
+            // let td_tel = tr.insertCell();
+            // let td_cad = tr.insertCell();
+            // let td_actions = tr.insertCell();
+            // let div = document.createElement("div");
+            // let a = document.createElement("a");
+            // let aa = document.createElement("a");
+            // let aaa = document.createElement("a");
+            // let i = document.createElement("i");
+            // let ii = document.createElement("i");
+            // let iii = document.createElement("i");
+
+            // td_actions.appendChild(div);
+            // div.appendChild(a);
+            // div.appendChild(aa);
+            // div.appendChild(aaa);
+            // a.appendChild(i);
+            // aa.appendChild(ii);
+            // aaa.appendChild(iii);
+
+            // td_id.innerText = paciente.id
+            // td_foto.innerText = "foto"
+            // td_nome.innerText = paciente.first_name +" "+ paciente.last_name
+            // td_idade.innerText = paciente.birthdate
+            // td_email.innerText = paciente.email
+            // td_tel.innerText = paciente.cellphone
+            // td_cad.innerText = paciente.updated_at
+            
+            // div.classList.add('table-actions');
+            // i.classList.add('ik', 'ik-eye');
+            // ii.classList.add('ik', 'ik-edit-2'); 
+            // iii.classList.add('ik', 'ik-trash-2');
+            // a.setAttribute("href","#")
+            // aa.setAttribute("href","#")
+            // aaa.setAttribute("href","#")
+            // tr.setAttribute("rule", "row");
         });
         
         
