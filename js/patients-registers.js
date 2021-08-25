@@ -1,7 +1,7 @@
 
 // Scripts for list registered patients 
 $(document).ready(function(){
-    function list_registered_patient( name, birthdate, contato, email, status1, status2) {
+    function list_registered_patient(id, name, birthdate, contato, email, status1, status2) {
     let list = $(".list_patients")
     
     let div = document.createElement('div')
@@ -64,6 +64,8 @@ $(document).ready(function(){
     p2.classList.add('mb-1', 'text-muted', 'text-small', 'date', 'text-center', 'w-15', 'w-xs-100')
     p3.classList.add('mb-1', 'text-muted', 'text-small', 'date', 'text-center', 'w-25', 'w-xs-100')
     p4.classList.add('mb-1', 'text-muted', 'text-small', 'date', 'text-center', 'w-1', 'w-xs-100')
+
+    a2.setAttribute('id',id)
 
     span.innerHTML = status1;
     a2.innerHTML = name;
@@ -131,7 +133,7 @@ $(document).ready(function(){
                     let date_new =  new Date();
                     let date_birthdate = new Date(patient.birthdate)
                     let age = myAge(date_birthdate, date_new)
-                    list_registered_patient(name, `(${age} anos) / ${birthdate}`, `${regexNumber(patient.cellphone)} </br> ${regexNumber(patient.phone)} </br> ${regexNumber(patient.second_phone)}`, patient.email, "Teste1", "Teste")
+                    list_registered_patient(patient.id, name, `(${age} anos) / ${birthdate}`, `${regexNumber(patient.cellphone)} </br> ${regexNumber(patient.phone)} </br> ${regexNumber(patient.second_phone)}`, patient.email, "Teste1", "Teste")
                     
                 });
             },
@@ -144,36 +146,42 @@ $(document).ready(function(){
        
     }
 
-html.get('')
 
-var pag = localStorage.getItem("navcurrentPage")
+let perPage = $('#view-perpage').val()
+var pag = localStorage.getItem("navCurrentPage")
 let lastPage = localStorage.getItem("navlastPage")
 let firstPage = localStorage.getItem("navfirstPage")
 
     html.get('.first').addEventListener('click', () =>{
-        getPatientRegister(firstPage, '1')
+        perPage = $('#view-perpage').val()
+        getPatientRegister(firstPage, perPage)
     })
     html.get('.last').addEventListener('click', () =>{
-        getPatientRegister(lastPage, '1')
+        perPage = $('#view-perpage').val()
+        getPatientRegister(lastPage, perPage)
     })
     html.get('.next').addEventListener('click', () =>{
-       pag++
+        perPage = $('#view-perpage').val()
+        pag++
         if(pag > lastPage){
+            alert("aqui")
             pag = lastPage
         }
-        getPatientRegister(pag, '1')
+        getPatientRegister(pag, perPage)
     })
     html.get('.prev').addEventListener('click', () =>{
+        perPage = $('#view-perpage').val()
         console.log(pag)
         pag--
         if(pag < firstPage){
             pag = firstPage
         }
-        getPatientRegister(pag, '1')
+        getPatientRegister(pag, perPage)
     })
-    // html.get('#view-perpage').addEventListener('change', () =>{
-    //     let perpage = $('#view-perpage').val()
-       
-    // })
+    html.get('#view-perpage').addEventListener('change', () =>{
+        perPage = $('#view-perpage').val()
+        console.log(pag)
+        getPatientRegister(pag, perPage)
+    })
     
 })
