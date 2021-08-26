@@ -279,7 +279,129 @@
                         </div>
                     </div>
 
-                  
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-2 clearfix">
+                                <a class="btn pt-0 pl-0 d-md-none d-lg-none" data-toggle="collapse" href="#displayOptions" role="button" aria-expanded="true" aria-controls="displayOptions">
+                                    Display Options
+                                    <i class="ik ik-chevron-down align-middle"></i>
+                                </a>
+                                <div class="collapse d-md-block display-options" id="displayOptions">
+                                    <span class="mr-3 d-inline-block float-md-left dispaly-option-buttons">
+                                        <a href="#" class="mr-1 view-list active">
+                                            <i class="ik ik-menu view-icon"></i>
+                                        </a>
+                                        <a href="#" class="mr-1 view-thumb">
+                                            <i class="ik ik-list view-icon"></i>
+                                        </a>
+                                        <a href="#" class="mr-1 view-grid">
+                                            <i class="ik ik-grid view-icon"></i>
+                                        </a>
+                                    </span>
+                                    <div class="d-block d-md-inline-block">
+                                        <div class="btn-group float-md-left mr-1 mb-1">
+                                            <button class="btn btn-outline-dark btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Order By 
+                                                <i class="ik ik-chevron-down mr-0 align-middle"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                            </div>
+                                        </div>
+                                        <div class="search-sm d-inline-block float-md-left mr-1 mb-1 align-top">
+                                            <form action="">
+                                                <input type="text" class="form-control" placeholder="Search.." required>
+                                                <button type="submit" class="btn btn-icon"><i class="ik ik-search"></i></button>
+                                                <button type="button" id="adv_wrap_toggler" class="adv-btn ik ik-chevron-down dropdown-toggle" data-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                <div class="adv-search-wrap dropdown-menu dropdown-menu-right" aria-labelledby="adv_wrap_toggler">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Full Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" placeholder="Email">
+                                                    </div>
+                                                    <button class="btn btn-theme">Search</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="float-md-right">
+                                        <span class="text-muted text-small mr-2" id="displaying_list_patient">Displaying 1-10 of X items </span>
+                                        <select class="btn btn-outline-dark btn-xs dropdown-toggle" name="" id="view-perpage">
+                                            <option value="10"  style="border-radius:80px ;">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="separator mb-20"></div>
+
+                            <div class="row layout-wrap list_patients" id="list-appointments"> 
+                                <!-- <div class="col-12 list-item">
+                                    <div class="card d-flex flex-row mb-3">
+                                        <a class="d-flex card-img" href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem">
+                                            <img src="../img/portfolio-1.jpg" alt="Donec sit amet est at sem iaculis aliquam." class="list-thumbnail responsive border-0">
+                                            <span class="badge badge-pill badge-success position-absolute badge-top-left">Novo</span>
+                                        </a>
+                                        <div class="d-flex flex-grow-1 min-width-zero card-content">
+                                            <div class="card-body align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+                                                <a class="list-item-heading mb-1 truncate text-center w-25 w-xs-100" href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem">
+                                                    Samuel Santos Santos
+                                                </a>
+                                                <p class="mb-1 text-muted text-small category text-center w-20 w-xs-100"> <span>08/07/1992</span> (22 Anos)</p>
+                                                <p class="mb-1 text-muted text-small date text-center w-25 w-xs-100">samuel.jesan2018@gmail.com</p>
+                                                <p class="mb-1 text-muted text-small date text-center w-20 w-xs-100">25/08/21 | 10:30 - 11:30</p>
+                                                <div class="w-15 w-xs-100 text-center">
+                                                    <span class="badge badge-pill badge-danger">Em atendimento</span>
+                                                </div>
+                                                <button type="button" class="mr-5 btn btn-outline-success">Antender</button>
+                                                <button type="button" class="btn btn-outline-secondary">Reagendar</button>
+                                            </div>
+                                            <div class="list-actions">
+                                                <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem"><i class="ik ik-eye"></i></a>
+                                                <a href="layout-edit-item.html"><i class="ik ik-edit-2"></i></a>
+                                                <a href="#" class="list-delete"><i class="ik ik-trash-2"></i></a> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center mb-0" id="pagination-patient-registers">
+                                    <li class="page-item">
+                                        <a class="page-link first" href="#">
+                                            <i class="ik ik-chevrons-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link prev" href="#">
+                                            <i class="ik ik-chevron-left"></i>
+                                        </a>
+                                    </li>
+                                    <!-- <li class="page-item active">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item ">
+                                        <a class="page-link" href="#">2</a>
+                                    </li> -->
+                                    <li class="page-item">
+                                        <a class="page-link next" href="#" aria-label="Next">
+                                            <i class="ik ik-chevron-right"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link last " href="#">
+                                            <i class="ik ik-chevrons-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -785,6 +907,7 @@
     <script src="../dist/js/theme.min.js"></script>
     <script src="../js/datatables.js"></script>
     <script src="../js/requests.js"></script>
+    <script src="../js/patients-appointments.js"></script>
     <script>
         conect2();
         allAgend();
