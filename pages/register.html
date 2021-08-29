@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                         <input type="text" class="form-control" placeholder="Especialidade"  id="user_espec">
                                         <i class="ik ik-plus-square"></i>
                                     </div>
@@ -188,6 +188,7 @@
     <script src="../plugins/screenfull/dist/screenfull.js"></script>
     <script src="../dist/js/theme.js"></script>
     <script src="../js/alerts.js"></script>
+    <script src="../js/user-register.js"></script>
     
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -213,12 +214,10 @@
             minLength: 0,
             maxShowItems: 5
         })
-        let uf_crm = [
-                    "AC Acre","AP Amapá","AM Amazonas","AL Alagoas", "BA Bahia","CE Ceará", "DF Distrito Federal","ES Espírito Santo", "GO Goiás",
+        let uf_crm = [ "AC Acre","AP Amapá","AM Amazonas","AL Alagoas", "BA Bahia","CE Ceará", "DF Distrito Federal","ES Espírito Santo", "GO Goiás",
                     "MA Maranhão","MS Mato Grosso do Sul", "Mato Grosso MT", "MG Minas Gerais", "PA Pará", "PB Paraíba","PR Paraná", "PE Pernambuco",
                     "PI Piauí", "RJ Rio de Janeiro","RS Rio Grande do Sul","RO Rondônia","RR Roraima","RN Rio Grande do Norte", "SE Sergipe", "SP São Paulo",
-                    "SC Santa Catarina", "TO Tocantins"
-                    ]
+                    "SC Santa Catarina", "TO Tocantins" ]
         $("#uf_crm").autocomplete({
             source: uf_crm,
             minLength: 0,
