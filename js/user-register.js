@@ -10,13 +10,21 @@ $(document).ready(function(){
     }
     
    
-
+    let element = html.getAll('.doctor')
+    element.forEach(element => {
+        element.classList.add('invisible')
+    });
     html.get('#user_func').addEventListener('change', () =>{
        let occupation = $("#user_func").val()
        if(occupation == "doctor"){
-        html.getAll('.doctor').hide()
+        let element = html.getAll('.doctor')
+        element.forEach(element => {
+            element.classList.remove('invisible')
+        });
        }else{
-        html.getAll('.doctor').show()
+            element.forEach(element => {
+                element.classList.add('invisible')
+            });
        }
     })
 })
