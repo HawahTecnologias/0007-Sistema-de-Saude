@@ -161,7 +161,19 @@ ul.timeline_v{
 .field_error{
   border-color: red;
 }
-
+/* Style for type of pointer */
+.c-pointer{
+  cursor: pointer;
+}
+.c-grab{
+  cursor: grab;
+}
+.c-move{
+  cursor: move;
+}
+.c-crosshair{
+  cursor:crosshair;
+}
 /* Test for previer input-file */
 .obj{
   height: 110px;
