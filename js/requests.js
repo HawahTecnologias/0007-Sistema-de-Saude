@@ -63,7 +63,7 @@ function cleanFieldsAppointment(){
     $("#agd_info_tel2").html("");
     $("#agd_info_email").html("");
     $("#agd_info_plano").html("");
-}
+    }
 //Block code functions for apen modal and close modal Update
 $(document).ready(function(){
     function onCloseModalRegisterAppointment(){
@@ -968,6 +968,9 @@ $(document).ready(function(){
                         console.log(xhr, ajaxOptions, thrownError);
                     }   
                 })
+            }else if(func == "secretary"){
+                espec = "atendimento"; 
+                registro = cpf
             }
             let request = $.ajax({
                     type: "POST",
@@ -1700,131 +1703,131 @@ function pacienteGet(id){
 }
 
 //Get de todos os agendamentos, para histórico
-function allAgend() {
+// function allAgend() {
   
-    let request = $.ajax({
-            type: "GET",
-            url: url+"appointment",
-            headers: { 'Authorization': 'Bearer ' + auth },
-            xhrFields: { withCredentials: true },
-            data: {
-              page: 1,
-              perPage: 50
-            },    
-            cache: false,
-            dataType:"json",
-        success: function (response) {
-            let dados = JSON.parse(request.responseText)
-            let dado = dados.data
-            let body = document.getElementById('agends');
-            console.log(response)
-            dado.forEach(agendamento => {
-                let tr = body.insertRow();
-                let td_id = tr.insertCell();
-                let td_foto = tr.insertCell();
-                let td_nome = tr.insertCell();
-                let td_tel = tr.insertCell();
-                let td_inicio = tr.insertCell();
-                let td_fim = tr.insertCell();
-                let td_consulta = tr.insertCell();
-                let td_status= tr.insertCell();
-                let td_actions = tr.insertCell();
-                let div = document.createElement("div");
-                let a = document.createElement("a");
-                let aa = document.createElement("a");
-                let aaa = document.createElement("a");
-                let i = document.createElement("i");
-                let ii = document.createElement("i");
-                let iii = document.createElement("i");
+//     let request = $.ajax({
+//             type: "GET",
+//             url: url+"appointment",
+//             headers: { 'Authorization': 'Bearer ' + auth },
+//             xhrFields: { withCredentials: true },
+//             data: {
+//               page: 1,
+//               perPage: 50
+//             },    
+//             cache: false,
+//             dataType:"json",
+//         success: function (response) {
+//             let dados = JSON.parse(request.responseText)
+//             let dado = dados.data
+//             let body = document.getElementById('agends');
+//             console.log(response)
+//             dado.forEach(agendamento => {
+//                 let tr = body.insertRow();
+//                 let td_id = tr.insertCell();
+//                 let td_foto = tr.insertCell();
+//                 let td_nome = tr.insertCell();
+//                 let td_tel = tr.insertCell();
+//                 let td_inicio = tr.insertCell();
+//                 let td_fim = tr.insertCell();
+//                 let td_consulta = tr.insertCell();
+//                 let td_status= tr.insertCell();
+//                 let td_actions = tr.insertCell();
+//                 let div = document.createElement("div");
+//                 let a = document.createElement("a");
+//                 let aa = document.createElement("a");
+//                 let aaa = document.createElement("a");
+//                 let i = document.createElement("i");
+//                 let ii = document.createElement("i");
+//                 let iii = document.createElement("i");
     
-                td_actions.appendChild(div);
-                div.appendChild(a);
-                div.appendChild(aa);
-                div.appendChild(aaa);
-                a.appendChild(i);
-                aa.appendChild(ii);
-                aaa.appendChild(iii);
+//                 td_actions.appendChild(div);
+//                 div.appendChild(a);
+//                 div.appendChild(aa);
+//                 div.appendChild(aaa);
+//                 a.appendChild(i);
+//                 aa.appendChild(ii);
+//                 aaa.appendChild(iii);
 
-                switch(agendamento.type) {
-                    case 'teleconsultation':
-                        var type = "Tele Consulta"
-                      break;
-                    case 'presential':
-                         type = "Presencial"
-                      break;
-                }
-                switch(agendamento.status) {
-                    case 'scheduled':
-                        var status = "Agendado"
-                      break;
-                    case 'waiting':
-                        status = "Aguardando"
-                      break;
-                      case 'inProgress':
-                        status = "Em atendimento"
-                      break;
-                    case 'canceled':
-                        status = "Cancelado"
-                      break;
-                      case 'done':
-                        status = "Finalizado"
-                      break;
-                    case 'confirmed':
-                        status = "Confirmado"
-                      break;
-                      case 'missed':
-                        status = "Faltou"
-                      break;
-                }
+//                 switch(agendamento.type) {
+//                     case 'teleconsultation':
+//                         var type = "Tele Consulta"
+//                       break;
+//                     case 'presential':
+//                          type = "Presencial"
+//                       break;
+//                 }
+//                 switch(agendamento.status) {
+//                     case 'scheduled':
+//                         var status = "Agendado"
+//                       break;
+//                     case 'waiting':
+//                         status = "Aguardando"
+//                       break;
+//                       case 'inProgress':
+//                         status = "Em atendimento"
+//                       break;
+//                     case 'canceled':
+//                         status = "Cancelado"
+//                       break;
+//                       case 'done':
+//                         status = "Finalizado"
+//                       break;
+//                     case 'confirmed':
+//                         status = "Confirmado"
+//                       break;
+//                       case 'missed':
+//                         status = "Faltou"
+//                       break;
+//                 }
                 
-                let dia = agendamento.start_date.substring(0,10)
-                let hora = agendamento.start_date.substring(11,16)
-                let dia_fim = agendamento.end_date.substring(0,10)
-                let hora_fim = agendamento.end_date.substring(11,16)
+//                 let dia = agendamento.start_date.substring(0,10)
+//                 let hora = agendamento.start_date.substring(11,16)
+//                 let dia_fim = agendamento.end_date.substring(0,10)
+//                 let hora_fim = agendamento.end_date.substring(11,16)
 
-                td_id.innerText = agendamento.id
-                    let request = $.ajax({
-                        type: "GET",
-                        url: url+"patient/"+agendamento.patient_id,
-                        headers: { 'Authorization': 'Bearer ' + auth },
-                        xhrFields: { withCredentials: true },
-                        data: {
+//                 td_id.innerText = agendamento.id
+//                     let request = $.ajax({
+//                         type: "GET",
+//                         url: url+"patient/"+agendamento.patient_id,
+//                         headers: { 'Authorization': 'Bearer ' + auth },
+//                         xhrFields: { withCredentials: true },
+//                         data: {
                             
-                        },
-                        cache: false,
-                        success: function(res){            
-                            let cel = res.cellphone.substring(3)
-                            td_foto.innerText = "foto"
-                            td_nome.innerText = res.first_name+" "+res.last_name
-                            td_tel.innerText = cel
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            console.log(xhr, ajaxOptions, thrownError);
-                        }   
-                    })
+//                         },
+//                         cache: false,
+//                         success: function(res){            
+//                             let cel = res.cellphone.substring(3)
+//                             td_foto.innerText = "foto"
+//                             td_nome.innerText = res.first_name+" "+res.last_name
+//                             td_tel.innerText = cel
+//                         },
+//                         error: function(xhr, ajaxOptions, thrownError) {
+//                             console.log(xhr, ajaxOptions, thrownError);
+//                         }   
+//                     })
                 
-                td_inicio.innerText = dia +" "+ hora
-                td_fim.innerText = dia_fim +" "+ hora_fim
-                td_consulta.innerText = type
-                td_status.innerText = status
+//                 td_inicio.innerText = dia +" "+ hora
+//                 td_fim.innerText = dia_fim +" "+ hora_fim
+//                 td_consulta.innerText = type
+//                 td_status.innerText = status
                 
-                div.classList.add('table-actions');
-                i.classList.add('ik', 'ik-eye');
-                ii.classList.add('ik', 'ik-edit-2'); 
-                iii.classList.add('ik', 'ik-trash-2');
-                a.setAttribute("href","#")
-                aa.setAttribute("href","#")
-                aaa.setAttribute("href","#")
-                tr.setAttribute("rule", "row");
-            });
+//                 div.classList.add('table-actions');
+//                 i.classList.add('ik', 'ik-eye');
+//                 ii.classList.add('ik', 'ik-edit-2'); 
+//                 iii.classList.add('ik', 'ik-trash-2');
+//                 a.setAttribute("href","#")
+//                 aa.setAttribute("href","#")
+//                 aaa.setAttribute("href","#")
+//                 tr.setAttribute("rule", "row");
+//             });
             
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            console.log(xhr, ajaxOptions, thrownError)
-            //Aqui vai o corpo da função caso obtenha erro na requisição
-        }
-        })
-};
+//         },
+//         error: function (xhr, ajaxOptions, thrownError) {
+//             console.log(xhr, ajaxOptions, thrownError)
+//             //Aqui vai o corpo da função caso obtenha erro na requisição
+//         }
+//         })
+// };
 
 function antendimento() {
   
