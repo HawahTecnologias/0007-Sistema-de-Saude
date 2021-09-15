@@ -29,12 +29,12 @@ $(document).ready(function(t, e, i) {
             day: "day"
         },
         events: [{
-            title: "All Day Event",
-            start: new Date(r, n, 1),
+            title: "Nome do paciente",
+            start: new Date(r, n, 3),
             className: "bg-purple"
         },
         {
-            title: "Testando",
+            title: "Nome do paciente",
             start:  new Date(r, n, 1),
             className: "bg-aqua"
         }
@@ -74,10 +74,10 @@ $(document).ready(function(t, e, i) {
 
         select: function(start, end, allDay) {
             var $this = this;
-            $("#addEvent").modal({
+            $("#register_appointment").modal({
                 backdrop: 'static'
             });
-            $("#eventStarts").datetimepicker("date", start)
+            $("#agd_data").datetimepicker("date", start)
             var form = $("#addEventForm");
             $("#addEvent").find('.delete-event').hide().end().find('.save-event').show().end().find('.save-event').unbind('click').click(function() {
                 form.submit();
