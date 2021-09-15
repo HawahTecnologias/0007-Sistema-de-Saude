@@ -207,9 +207,9 @@ let request = $.ajax({
             alert("Falha na requisição")  // showAlertaToast(); 
         }else if(request.status == 500){
             showError500Toast();
-        }      
+        }
         console.log(xhr, ajaxOptions, thrownError);
-    }   
+    }
 });  
  $.ajax({
     type: "GET",
